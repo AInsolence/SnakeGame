@@ -26,10 +26,6 @@ public:
 	~StartDisplay();
 
 	int MenuListener();
-
-	//show menu by default
-	//check what screen is displayed
-	//if user press 1 - start the game 2 - show options 3 - 
 	void ShowMenuScreen();
 	void ShowOptionsScreen();
 	void ShowRecordsScreen();

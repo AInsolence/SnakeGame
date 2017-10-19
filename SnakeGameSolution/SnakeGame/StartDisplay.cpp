@@ -2,20 +2,26 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 
-StartDisplay::StartDisplay()
+
+StartDisplay::StartDisplay() // constructor intialize text for main menu screens
 {
 	StartMenu = "\n\n\n    1. Start new game \n    2. Options \n    3. Best Players \n\n\n\
-Press 'q' to exit the game";
+    Press 'q' to exit the game";
 
-	OptionsScreen = "\n\n\n    Options: \n    1. Rules \n    2. Controls \n\n\n";
+	OptionsScreen = "\n\n\n    Options: \n    1. Rules \n    2. Controls \n\n\n\
+   Press ESC to return to previous menu.";
 
-	RecordsScreen = "\n\n\n    1. Anton \n    2. Anton \n    3. Anton \n\n\n";
+	RecordsScreen = "\n\n\n    1. Anton \n    2. Anton \n    3. Anton \n\n\n\
+   Press ESC to return to previous menu.";
 
-	Rules = "\n\n\n   Rules \n\n\n";// TODO write game rules
+	Rules = "\n\n\n   Rules \n\n\n\
+   Press ESC to return to previous menu.";// TODO write game rules
 	
-	Controls = "\n\n\n    Controls \n\n\n";// TODO write game controls
+	Controls = "\n\n\n    Controls \n\n\n\
+   Press ESC to return to previous menu.";// TODO write game controls
 }
 
+//destructor
 StartDisplay::~StartDisplay()
 {
 }
@@ -24,12 +30,12 @@ StartDisplay::~StartDisplay()
 int StartDisplay::MenuListener()
 {
 	ShowMenuScreen(); //show main menu for player
+	// use enum to track current page to handle user input with appropriate switcher
 	MenuPage CurrentMenuPage = MenuPage::MainMenu;
-
-
-	char UserCommand = ' ';
+	
+	char UserCommand = ' ';// variable to store user input in menu area
 	do{
-		if (_kbhit())// check if user input smth
+		if (_kbhit())// check if any key is pressed by player
 		{
 			UserCommand = _getch();
 		}
@@ -40,7 +46,7 @@ int StartDisplay::MenuListener()
 			switch (UserCommand)
 			{
 				case '1':
-					return 0;//Start new game
+					return 0;// TODO change line to "Start the new game"
 					break;
 				case '2':
 					ShowOptionsScreen();
@@ -54,7 +60,7 @@ int StartDisplay::MenuListener()
 		}
 
 		if (CurrentMenuPage == MenuPage::Options)
-			// options navigation
+			// options menu navigation
 		{
 			switch (UserCommand)
 			{
@@ -66,7 +72,7 @@ int StartDisplay::MenuListener()
 				ShowControls();
 				CurrentMenuPage = MenuPage::Controls;
 				break;
-			case 27:
+			case 27:// handle "ESC" keystroke
 				ShowMenuScreen();
 				CurrentMenuPage = MenuPage::MainMenu;
 				break;
@@ -76,11 +82,11 @@ int StartDisplay::MenuListener()
 		}
 
 		if(CurrentMenuPage == MenuPage::Records)
-			// records navigation
+			// records menu navigation
 		{
 			switch (UserCommand)
 			{
-			case 27:
+			case 27:// handle "ESC" keystroke
 				ShowMenuScreen();
 				CurrentMenuPage = MenuPage::MainMenu;
 				UserCommand = ' ';// reset user input to avoid deep fall in menu
@@ -91,11 +97,11 @@ int StartDisplay::MenuListener()
 		}
 
 		if (CurrentMenuPage == MenuPage::Rules || CurrentMenuPage == MenuPage::Controls)
-			// go back to options
+			// go back to options menu
 		{
 			switch (UserCommand)
 			{
-			case 27:
+			case 27:// handle "ESC" keystroke
 				ShowOptionsScreen();
 				CurrentMenuPage = MenuPage::Options;
 				UserCommand = ' ';// reset user input to avoid returning straight to main menu
@@ -103,7 +109,7 @@ int StartDisplay::MenuListener()
 				break;
 			}
 		}
-	} while (tolower(UserCommand) != 'q'); // user could press 'q' to exit
+	} while (tolower(UserCommand) != 'q'); // user could press 'q' to exit game
 	return 0;
 }
 

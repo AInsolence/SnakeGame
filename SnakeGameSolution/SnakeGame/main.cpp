@@ -7,7 +7,7 @@
 
 int main()
 {
-	StartDisplay StartDisplay;
+	StartDisplay StartDisplay;// intialize main menu object
 	StartDisplay.MenuListener();
 
 	system("pause");
