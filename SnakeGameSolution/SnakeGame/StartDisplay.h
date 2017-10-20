@@ -25,12 +25,12 @@ public:
 	StartDisplay();
 	~StartDisplay();
 
-	int MenuListener();
+	int MenuListener() const;
 	
 private:
-	void ShowMenuScreen();
-	void ShowOptionsScreen();
-	void ShowRecordsScreen();
-	void ShowRules();
-	void ShowControls();
+	void ShowMenuScreen() const;
+	void ShowOptionsScreen() const;
+	void ShowRecordsScreen() const;
+	void ShowRules() const;
+	void ShowControls() const;
 };

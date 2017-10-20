@@ -13,7 +13,7 @@ StartDisplay::~StartDisplay()
 }
 
 //show display and handle user input in menu area
-int StartDisplay::MenuListener()
+int StartDisplay::MenuListener() const
 {
 	ShowMenuScreen(); //show main menu for player
 	// use enum to track current page to handle user input with appropriate switcher
@@ -100,35 +100,35 @@ int StartDisplay::MenuListener()
 	return 0;
 }
 
-void StartDisplay::ShowMenuScreen()
+void StartDisplay::ShowMenuScreen() const
 {
 	system ("cls");
 	std::cout << "\n\n\n    1. Start new game \n    2. Options \n    3. Best Players \n\n\n\
     Press 'q' to exit the game" << std::endl;
 }
 
-void StartDisplay::ShowOptionsScreen()
+void StartDisplay::ShowOptionsScreen() const
 {
 	system("cls");
 	std::cout << "\n\n\n    Options: \n    1. Rules \n    2. Controls \n\n\n\
     Press ESC to return to the previous menu." << std::endl;
 }
 
-void StartDisplay::ShowRecordsScreen()
+void StartDisplay::ShowRecordsScreen() const
 {
 	system("cls");
 	std::cout << "\n\n\n    1. Anton \n    2. Anton \n    3. Anton \n\n\n\
     Press ESC to return to the previous menu." << std::endl;
 }
 
-void StartDisplay::ShowRules()
+void StartDisplay::ShowRules() const
 {
 	system("cls");
 	std::cout << "\n\n\n    Rules \n\n\n\
     Press ESC to return to the previous menu." << std::endl;// TODO write game rules
 }
 
-void StartDisplay::ShowControls()
+void StartDisplay::ShowControls() const
 {
 	system("cls");
 	std::cout << "\n\n\n    Controls \n\n\n\
