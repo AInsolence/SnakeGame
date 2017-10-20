@@ -9,7 +9,7 @@
 using int32 = int;
 using FString = std::string;
 
-enum class MenuPage
+enum class EMenuPage
 {
 	MainMenu,
 	Options,
@@ -26,17 +26,11 @@ public:
 	~StartDisplay();
 
 	int MenuListener();
+	
+private:
 	void ShowMenuScreen();
 	void ShowOptionsScreen();
 	void ShowRecordsScreen();
 	void ShowRules();
 	void ShowControls();
-
-private:
-	//initialization in constructor
-	FString StartMenu;
-	FString OptionsScreen;
-	FString RecordsScreen;
-	FString Rules;
-	FString Controls;
 };

@@ -2,23 +2,9 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 
-
-StartDisplay::StartDisplay() // constructor intialize text for main menu screens
+// constructor
+StartDisplay::StartDisplay() 
 {
-	StartMenu = "\n\n\n    1. Start new game \n    2. Options \n    3. Best Players \n\n\n\
-    Press 'q' to exit the game";
-
-	OptionsScreen = "\n\n\n    Options: \n    1. Rules \n    2. Controls \n\n\n\
-   Press ESC to return to previous menu.";
-
-	RecordsScreen = "\n\n\n    1. Anton \n    2. Anton \n    3. Anton \n\n\n\
-   Press ESC to return to previous menu.";
-
-	Rules = "\n\n\n   Rules \n\n\n\
-   Press ESC to return to previous menu.";// TODO write game rules
-	
-	Controls = "\n\n\n    Controls \n\n\n\
-   Press ESC to return to previous menu.";// TODO write game controls
 }
 
 //destructor
@@ -31,16 +17,17 @@ int StartDisplay::MenuListener()
 {
 	ShowMenuScreen(); //show main menu for player
 	// use enum to track current page to handle user input with appropriate switcher
-	MenuPage CurrentMenuPage = MenuPage::MainMenu;
-	
+	EMenuPage CurrentMenuPage = EMenuPage::MainMenu;
+	constexpr int32 ESC_KEY = 27;// used to handle "ESC" keystroke
 	char UserCommand = ' ';// variable to store user input in menu area
+	
 	do{
 		if (_kbhit())// check if any key is pressed by player
 		{
 			UserCommand = _getch();
 		}
 
-		if (CurrentMenuPage == MenuPage::MainMenu)
+		if (CurrentMenuPage == EMenuPage::MainMenu)
 			// main menu navigation
 		{
 			switch (UserCommand)
@@ -50,45 +37,45 @@ int StartDisplay::MenuListener()
 					break;
 				case '2':
 					ShowOptionsScreen();
-					CurrentMenuPage = MenuPage::Options;
+					CurrentMenuPage = EMenuPage::Options;
 					UserCommand = ' ';// reset user input to avoid deep fall in menu
 					break;
 				case '3':
 					ShowRecordsScreen();
-					CurrentMenuPage = MenuPage::Records;
+					CurrentMenuPage = EMenuPage::Records;
 			}
 		}
 
-		if (CurrentMenuPage == MenuPage::Options)
+		if (CurrentMenuPage == EMenuPage::Options)
 			// options menu navigation
 		{
 			switch (UserCommand)
 			{
 			case '1':
 				ShowRules();
-				CurrentMenuPage = MenuPage::Rules;
+				CurrentMenuPage = EMenuPage::Rules;
 				break;
 			case '2':
 				ShowControls();
-				CurrentMenuPage = MenuPage::Controls;
+				CurrentMenuPage = EMenuPage::Controls;
 				break;
-			case 27:// handle "ESC" keystroke
+			case ESC_KEY:
 				ShowMenuScreen();
-				CurrentMenuPage = MenuPage::MainMenu;
+				CurrentMenuPage = EMenuPage::MainMenu;
 				break;
 			default:
 				break;
 			}
 		}
 
-		if(CurrentMenuPage == MenuPage::Records)
+		if(CurrentMenuPage == EMenuPage::Records)
 			// records menu navigation
 		{
 			switch (UserCommand)
 			{
-			case 27:// handle "ESC" keystroke
+			case ESC_KEY:
 				ShowMenuScreen();
-				CurrentMenuPage = MenuPage::MainMenu;
+				CurrentMenuPage = EMenuPage::MainMenu;
 				UserCommand = ' ';// reset user input to avoid deep fall in menu
 				break;
 			default:
@@ -96,14 +83,14 @@ int StartDisplay::MenuListener()
 			}
 		}
 
-		if (CurrentMenuPage == MenuPage::Rules || CurrentMenuPage == MenuPage::Controls)
+		if (CurrentMenuPage == EMenuPage::Rules || CurrentMenuPage == EMenuPage::Controls)
 			// go back to options menu
 		{
 			switch (UserCommand)
 			{
-			case 27:// handle "ESC" keystroke
+			case ESC_KEY:
 				ShowOptionsScreen();
-				CurrentMenuPage = MenuPage::Options;
+				CurrentMenuPage = EMenuPage::Options;
 				UserCommand = ' ';// reset user input to avoid returning straight to main menu
 			default:
 				break;
@@ -116,29 +103,34 @@ int StartDisplay::MenuListener()
 void StartDisplay::ShowMenuScreen()
 {
 	system ("cls");
-	std::cout << StartMenu << std::endl;
+	std::cout << "\n\n\n    1. Start new game \n    2. Options \n    3. Best Players \n\n\n\
+    Press 'q' to exit the game" << std::endl;
 }
 
 void StartDisplay::ShowOptionsScreen()
 {
 	system("cls");
-	std::cout << OptionsScreen << std::endl;
+	std::cout << "\n\n\n    Options: \n    1. Rules \n    2. Controls \n\n\n\
+    Press ESC to return to the previous menu." << std::endl;
 }
 
 void StartDisplay::ShowRecordsScreen()
 {
 	system("cls");
-	std::cout << RecordsScreen << std::endl;
+	std::cout << "\n\n\n    1. Anton \n    2. Anton \n    3. Anton \n\n\n\
+    Press ESC to return to the previous menu." << std::endl;
 }
 
 void StartDisplay::ShowRules()
 {
 	system("cls");
-	std::cout << Rules << std::endl;
+	std::cout << "\n\n\n    Rules \n\n\n\
+    Press ESC to return to the previous menu." << std::endl;// TODO write game rules
 }
 
 void StartDisplay::ShowControls()
 {
 	system("cls");
-	std::cout << Controls << std::endl;
+	std::cout << "\n\n\n    Controls \n\n\n\
+    Press ESC to return to the previous menu." << std::endl;// TODO write game controls
 }
