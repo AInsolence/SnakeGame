@@ -4,11 +4,11 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 #include "Level.h"
-
+#include "Snake.h"
 
 int main()
 {
-	Level Level01(30, 20);
+	Level Level01(15, 25);
 
 	system("pause");
 

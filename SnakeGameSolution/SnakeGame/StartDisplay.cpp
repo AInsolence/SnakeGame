@@ -12,6 +12,8 @@ StartDisplay::~StartDisplay()
 {
 }
 
+// Methods
+
 //show display and handle user input in menu area
 int StartDisplay::MenuListener() const
 {

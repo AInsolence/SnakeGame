@@ -8,18 +8,15 @@ Contains data and methods are needed to interact with objects.
 
 using int32 = int;
 using FPair = std::pair<int32, int32>;
+using FVector = std::vector<char>;
+using FField = std::vector< std::vector<char> >;
 
-class IGameObject
+class BaseGameObject
 {
 public:
-	IGameObject();
-	IGameObject(int, int);
-	virtual ~IGameObject();
-
-	FPair GetCoordinates() const;
-	void SetCoordinates(int32, int32);
+	BaseGameObject();
+	virtual ~BaseGameObject();
 
 protected:
-	char MainObjectTexture;// main textre for represent object
-	FPair Coordinates;// coordinates of the object <x, y> on the game field
+	static FField Canvas;// matrix (vector of vectors) to display all objects in console
 };
