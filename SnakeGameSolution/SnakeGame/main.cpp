@@ -8,19 +8,26 @@
 
 int main()
 {
-	Level Level01(15, 25);
+	Level Level01(25, 15);
 	Snake Snake(2, 2);
 
 	for(int32 i = 0; i < 10; i++)
 	{
+		Level01.Create(25, 15);
 		Snake.Move();
 
 		// check Canvas creation
-		for (auto Column : IGameObject::Canvas) // TODO delete before release
+		for (auto Raw : IGameObject::Canvas) // TODO delete before release
 		{
-			for (auto Character : Column) std::cout << Character;
+			for (auto Character : Raw) std::cout << Character;
 			std::cout << std::endl;
 		}
+		const int32 MILISECONDS_IN_SECOND = 1000;
+
+		clock_t StartOfDelay = clock();
+		// TODO Check right speed here
+		_getch();
+		system("cls");
 	}
 
 	system("pause");

@@ -15,11 +15,12 @@ Level::~Level()
 
 // Methods
 
-void Level::Create(int32 LEVEL_WIDTH, int32 LEVEL_HIGHT)
+void Level::Create(int32 LEVEL_HIGHT, int32 LEVEL_WIDTH)
 {
 	// create the level
-	FVector LevelColumn (LEVEL_HIGHT, LevelSurfaceTexture);// create column of the level
-	std::fill_n(std::back_inserter(Canvas), LEVEL_WIDTH, LevelColumn);// fill the canvas with columns
+	// TODO need to change creation of level
+	FVector LevelRaw (LEVEL_HIGHT, LevelSurfaceTexture);// create column of the level
+	std::fill_n(std::back_inserter(Canvas), LEVEL_WIDTH, LevelRaw);// fill the canvas with columns
 		
 	// loop to create levels border
 	for (int32 i = 0; i < LEVEL_WIDTH; i++)
@@ -29,6 +30,10 @@ void Level::Create(int32 LEVEL_WIDTH, int32 LEVEL_HIGHT)
 			if (i == 0 || i == LEVEL_WIDTH - 1 || j == 0 || j == LEVEL_HIGHT - 1)//if on the border
 			{
 				Canvas[i][j] = LevelBorderTexture;// paint the border
+			}
+			else
+			{
+				Canvas[i][j] = LevelSurfaceTexture;// paint the surface
 			}
 		}
 	}

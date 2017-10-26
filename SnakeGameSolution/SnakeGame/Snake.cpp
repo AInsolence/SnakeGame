@@ -94,16 +94,16 @@ void Snake::Move()
 		switch (CurrentDirection)
 		{
 		case ESnakeCurrentDirection::Left:
-			Body[0].first -= 1;
-			break;
-		case ESnakeCurrentDirection::Right:
-			Body[0].first += 1;
-			break;
-		case ESnakeCurrentDirection::Up:
 			Body[0].second -= 1;
 			break;
-		case ESnakeCurrentDirection::Down:
+		case ESnakeCurrentDirection::Right:
 			Body[0].second += 1;
+			break;
+		case ESnakeCurrentDirection::Up:
+			Body[0].first -= 1;
+			break;
+		case ESnakeCurrentDirection::Down:
+			Body[0].first += 1;
 			break;
 		default:
 			break;
