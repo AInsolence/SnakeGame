@@ -3,7 +3,7 @@
 #include <vector>
 
 
-class Level : public BaseGameObject
+class Level : public IGameObject
 {
 public:
 	Level(int32, int32);

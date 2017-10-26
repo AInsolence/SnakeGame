@@ -6,13 +6,6 @@
 Level::Level(int32 LevelWidth, int32 LevelHight):LevelSurfaceTexture(' '), LevelBorderTexture('#')
 {
 	Create(LevelWidth, LevelHight); // create the canvas with x-width and y-hight sizes
-	
-	// check Canvas creation
-	for (auto Column : Canvas) // TODO delete before release
-	{
-		for (auto Character : Column) std::cout << Character;
-		std::cout << std::endl;
-	}
 }
 
 // destructor

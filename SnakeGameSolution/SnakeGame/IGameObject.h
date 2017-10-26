@@ -11,12 +11,13 @@ using FPair = std::pair<int32, int32>;
 using FVector = std::vector<char>;
 using FField = std::vector< std::vector<char> >;
 
-class BaseGameObject
+class IGameObject
 {
 public:
-	BaseGameObject();
-	virtual ~BaseGameObject();
+	IGameObject();
+	virtual ~IGameObject();
 
-protected:
+	//virtual void Display() = 0;// TODO make decision about this
+
 	static FField Canvas;// matrix (vector of vectors) to display all objects in console
 };

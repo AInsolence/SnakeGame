@@ -3,14 +3,14 @@
 #include "IGameObject.h"
 
 // static member declaration
-FField BaseGameObject::Canvas;// canvas for all game objects
+FField IGameObject::Canvas;// canvas for all game objects
 
 //constructors
-BaseGameObject::BaseGameObject()
+IGameObject::IGameObject()
 {
 }
 
 //destructor
-BaseGameObject::~BaseGameObject()
+IGameObject::~IGameObject()
 {
 }
