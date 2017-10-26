@@ -94,16 +94,16 @@ void Snake::Move()
 		switch (CurrentDirection)
 		{
 		case ESnakeCurrentDirection::Left:
-			Body[0].second -= 1;
-			break;
-		case ESnakeCurrentDirection::Right:
-			Body[0].second += 1;
-			break;
-		case ESnakeCurrentDirection::Up:
 			Body[0].first -= 1;
 			break;
-		case ESnakeCurrentDirection::Down:
+		case ESnakeCurrentDirection::Right:
 			Body[0].first += 1;
+			break;
+		case ESnakeCurrentDirection::Up:
+			Body[0].second -= 1;
+			break;
+		case ESnakeCurrentDirection::Down:
+			Body[0].second += 1;
 			break;
 		default:
 			break;
@@ -123,14 +123,14 @@ void Snake::TimeDelay() const
 
 void Snake::Display() const
 {
-	Canvas[Body.front().first][Body.front().second] = HeadTexture;// paint snake's head
+	Canvas[Body.front().second][Body.front().first] = HeadTexture;// paint snake's head
 	if (Body.size() > 1)
 	{
-		Canvas[Body.back().first][Body.back().second] = TailTexture;// paint snake's tail
+		Canvas[Body.back().second][Body.back().first] = TailTexture;// paint snake's tail
 		// paint snake's body, except first and last elements (head and tail)
 		for (int32 index = 1; index != Body.size() - 1; index++)
 		{
-			Canvas[Body[index].first][Body[index].second] = BodyTexture;
+			Canvas[Body[index].second][Body[index].first] = BodyTexture;
 		}
 	}
 }
