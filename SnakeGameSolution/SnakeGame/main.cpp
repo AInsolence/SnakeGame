@@ -5,28 +5,32 @@
 #include "StartDisplay.h"
 #include "Level.h"
 #include "Snake.h"
+#include "KeyListener.h"
 
 int main()
 {
 	Level Level01(25, 15);
-	Snake Snake(2, 2);
+	Snake Snake1(2, 2);
+	KeyListener KListener;
+	Snake1.SetCurrentDirection(ESnakeCurrentDirection::Left);
 
-	for(int32 i = 0; i < 10; i++)
+	for(int32 i = 0; i < 100; i++)
 	{
-		Level01.Create(25, 15);
-		Snake.Move();
-
-		// check Canvas creation
+		Level01.Display();
+		Snake * Pointer = nullptr;
+		Pointer = &Snake1;
+		KListener.Start(Pointer);
+		Snake1.Move();
+		
+		// paint Objects
 		for (auto Raw : IGameObject::Canvas) // TODO delete before release
 		{
 			for (auto Character : Raw) std::cout << Character;
 			std::cout << std::endl;
 		}
-		const int32 MILISECONDS_IN_SECOND = 1000;
-
-		clock_t StartOfDelay = clock();
+		using namespace std::chrono_literals;
+		std::this_thread::sleep_for(1s);
 		// TODO Check right speed here
-		_getch();
 		system("cls");
 	}
 

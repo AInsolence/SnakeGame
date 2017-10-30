@@ -33,6 +33,7 @@ public:
 	void Reset(int32 &XStartPosition, int32 &YStartPosition);
 	void SetSpeed(int32);
 	void SetSize(int32);
+	void SetCurrentDirection(ESnakeCurrentDirection);
 	void IncreaseSize(int32);
 	void Move();
 
@@ -47,7 +48,6 @@ private:
 	ESnakeState CurrentState;
 	ESnakeCurrentDirection CurrentDirection;
 
-	void TimeDelay() const;// helper function to delay snake's coordinates updating, depends on snake's speed
 	void Display() const;
 };
 

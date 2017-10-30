@@ -1,3 +1,4 @@
+#pragma once
 #include "stdafx.h"
 #include "Snake.h"
 
@@ -49,6 +50,12 @@ void Snake::SetSize(int32 NewSnakeSize)
 	return;
 }
 
+void Snake::SetCurrentDirection(ESnakeCurrentDirection NewDirection)
+{
+	CurrentDirection = NewDirection;
+	return;
+}
+
 // Methods
 
 void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
@@ -91,7 +98,7 @@ void Snake::Move()
 		}
 
 		// change head coordinates depends on current direction
-		switch (CurrentDirection)
+		switch (CurrentDirection)// TODO add changing of snake's  head tile  
 		{
 		case ESnakeCurrentDirection::Left:
 			Body[0].first -= 1;
@@ -108,17 +115,6 @@ void Snake::Move()
 		default:
 			break;
 		}
-		// here we create time gap between updating new coordinates depending on snake's speed
-		TimeDelay();
-}
-
-void Snake::TimeDelay() const
-{
-	const int32 MILISECONDS_IN_SECOND = 1000;
-
-	clock_t StartOfDelay = clock();
-	// TODO Check right speed here
-	while (((StartOfDelay - clock()) / CLOCKS_PER_SEC * MILISECONDS_IN_SECOND) < log(Speed));
 }
 
 void Snake::Display() const

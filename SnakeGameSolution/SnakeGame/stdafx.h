@@ -11,6 +11,8 @@
 #include <tchar.h>
 #include <iostream>
 #include <conio.h>
+#include <chrono>
+#include <thread>
 
 
 
