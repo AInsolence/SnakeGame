@@ -4,10 +4,9 @@
 */
 
 #pragma once
+#include "stdafx.h"
 #include <string>
 
-using int32 = int;
-using FString = std::string;
 
 enum class EMenuPage
 {

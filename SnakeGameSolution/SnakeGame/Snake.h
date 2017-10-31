@@ -1,7 +1,7 @@
 #pragma once
-#include "IGameObject.h"
+#include "stdafx.h"
 #include <vector>
-#include <time.h>
+#include "IGameObject.h"
 
 enum class ESnakeState// current status of the Snake object
 {
@@ -20,10 +20,10 @@ enum class ESnakeCurrentDirection// movement direction of the snake object
 class Snake : public IGameObject
 {
 public:
-	Snake(int32 XStartPosition, int32 YStartPosition);
+	Snake(std::string SnakeColor, int32 x, int32 y);
 	~Snake();
 
-	std::vector<FPair> Body;// container to store snake head & snake segments coordinates
+	std::vector<std::tuple<sf::Sprite, int32, int32>> Body;// container to store snake head & snake segments coordinates
 
 	int32 GetSpeed() const;
 	int32 GetSize() const;
@@ -40,14 +40,11 @@ public:
 	
 private:
 	// initialized in the reset function called in the constructor
-	const char HeadTexture;
-	const char BodyTexture;
-	const char TailTexture;
+	sf::Sprite HeadSprite;
+	sf::Sprite TailSprite;
 	int32 Speed;
 	int32 Size;
 	ESnakeState CurrentState;
 	ESnakeCurrentDirection CurrentDirection;
-
-	void Display() const;
 };
 

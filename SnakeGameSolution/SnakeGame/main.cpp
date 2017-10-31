@@ -3,19 +3,19 @@
 
 #include "stdafx.h"
 #include "StartDisplay.h"
-#include "Level.h"
+#include "BorderBlock.h"
 #include "Snake.h"
 #include "KeyListener.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1366, 720), "SFML works!");
-	sf::Texture texture;
-	if (!texture.loadFromFile("../../image/Block_Blue.png"))
+	sf::Texture Texture;
+	if (!Texture.loadFromFile("../../image/Block_Blue.png"))
 		return EXIT_FAILURE;
-	texture.setSmooth(true);
-	sf::Sprite sprite(texture);
-	sprite.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our texture
+	Texture.setSmooth(true);
+	sf::Sprite sprite(Texture);
+	sprite.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our Texture
 	sprite.setPosition(0, 0);
 
 

@@ -1,12 +1,12 @@
 #pragma once
-#include "stdafx.h"
 #include "Snake.h"
 
 //constructor
-Snake::Snake(int32 XStartPosition, int32 YStartPosition)
-	:HeadTexture('0'), BodyTexture('@'), TailTexture('.')// set snake's textures
+Snake::Snake(std::string SnakeColor, int32 x, int32 y):IGameObject("main_sprite_location")
 {
-	Reset(XStartPosition, YStartPosition);
+	SetSprite(HeadSprite, "head_sprite_location");
+	SetSprite(TailSprite, "tail_sprite_location");
+	Reset(x, y);
 }
 
 // destructor

@@ -12,8 +12,12 @@
 #include <tchar.h>
 #include <iostream>
 #include <conio.h>
-#include <chrono>
-#include <thread>
+
+using int32 = int;
+using FPair = std::pair<int32, int32>;
+using FVector = std::vector<char>;
+using FField = std::vector< std::vector<char> >;
+using FString = std::string;
 
 
 
