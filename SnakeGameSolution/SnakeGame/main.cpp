@@ -7,17 +7,13 @@
 #include "Snake.h"
 #include "KeyListener.h"
 
+
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1366, 720), "SFML works!");
-	sf::Texture Texture;
-	if (!Texture.loadFromFile("../../image/Block_Blue.png"))
-		return EXIT_FAILURE;
-	Texture.setSmooth(true);
-	sf::Sprite sprite(Texture);
-	sprite.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our Texture
-	sprite.setPosition(0, 0);
-
+	
+	BorderBlock NewBlock("Blue", 40, 40);
 
 	while (window.isOpen())
 	{
@@ -29,7 +25,7 @@ int main()
 		}
 
 		window.clear();
-		std::vector<sf::Sprite> vec(10);
+		/*std::vector<sf::Sprite> vec(10);
 		for (int32 i = 0; i < 500; i += 40)
 		{
 			int32 x = 0; int32 y = 0;
@@ -37,9 +33,9 @@ int main()
 			ptr = new sf::Sprite(sprite);
 			ptr->setPosition(0, i);
 			vec.push_back(*ptr);
-			window.draw(vec.back());
-		}
-		
+			
+		}*/
+		window.draw(NewBlock.GetMainSprite());
 		window.display();
 	}
     return 0;

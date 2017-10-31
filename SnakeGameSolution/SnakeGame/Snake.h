@@ -3,6 +3,8 @@
 #include <vector>
 #include "IGameObject.h"
 
+using FTuple = std::tuple<sf::Sprite, int32, int32>;
+
 enum class ESnakeState// current status of the Snake object
 {
 	Alive,
@@ -23,7 +25,7 @@ public:
 	Snake(std::string SnakeColor, int32 x, int32 y);
 	~Snake();
 
-	std::vector<std::tuple<sf::Sprite, int32, int32>> Body;// container to store snake head & snake segments coordinates
+	std::vector<FTuple> Body;// container to store snake head & snake segments coordinates
 
 	int32 GetSpeed() const;
 	int32 GetSize() const;

@@ -1,11 +1,12 @@
 #pragma once
+#include "stdafx.h"
 #include "Snake.h"
 
 //constructor
-Snake::Snake(std::string SnakeColor, int32 x, int32 y):IGameObject("main_sprite_location")
+Snake::Snake(std::string SnakeColor, int32 x, int32 y):IGameObject("../../image/Coin_Front.png")
 {
-	SetSprite(HeadSprite, "head_sprite_location");
-	SetSprite(TailSprite, "tail_sprite_location");
+	SetSprite(HeadSprite, "../../image/Block_Box_2_Light.png");
+	SetSprite(TailSprite, "../../image/Coin_Side.png");
 	Reset(x, y);
 }
 
@@ -75,22 +76,22 @@ void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
 	SetSize(START_SNAKE_SIZE);
 
 	// snake START POSITION 
-	Body.push_back(std::make_pair(XStartPosition, YStartPosition));
+	Body.push_back(std::make_tuple(HeadSprite, XStartPosition, YStartPosition));
+	Body.push_back(std::make_tuple(MainSprite, XStartPosition + 50, YStartPosition));// TODO change to real position
+	Body.push_back(std::make_tuple(TailSprite, XStartPosition + 100, YStartPosition));
 }
 
 void Snake::IncreaseSize(int32 AdditionToCurrentSize)
 {
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{
-		FPair LastSegment = Body.back();
+		FTuple LastSegment = Body.back();
 		Body.push_back(LastSegment);// TODO change to real coordinates here depending on movement direction
 	}
 }
 
 void Snake::Move()
 {
-		Display();
-
 		if (Body.size() > 1)// if body has NOT only head segment
 		{
 			// shift coordinates of all segments to right
@@ -101,33 +102,18 @@ void Snake::Move()
 		switch (CurrentDirection)// TODO add changing of snake's  head tile  
 		{
 		case ESnakeCurrentDirection::Left:
-			Body[0].first -= 1;
+			std::get<1>(Body[0]) -= 1;
 			break;
 		case ESnakeCurrentDirection::Right:
-			Body[0].first += 1;
+			std::get<1>(Body[0]) += 1;
 			break;
 		case ESnakeCurrentDirection::Up:
-			Body[0].second -= 1;
+			std::get<2>(Body[0]) -= 1;
 			break;
 		case ESnakeCurrentDirection::Down:
-			Body[0].second += 1;
+			std::get<2>(Body[0]) += 1;
 			break;
 		default:
 			break;
 		}
 }
-
-void Snake::Display() const
-{
-	Canvas[Body.front().second][Body.front().first] = HeadTexture;// paint snake's head
-	if (Body.size() > 1)
-	{
-		Canvas[Body.back().second][Body.back().first] = TailTexture;// paint snake's tail
-		// paint snake's body, except first and last elements (head and tail)
-		for (int32 index = 1; index != Body.size() - 1; index++)
-		{
-			Canvas[Body[index].second][Body[index].first] = BodyTexture;
-		}
-	}
-}
-

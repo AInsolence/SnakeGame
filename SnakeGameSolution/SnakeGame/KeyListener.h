@@ -6,7 +6,7 @@ constexpr char KEY_DOWN = 's';
 constexpr char KEY_LEFT = 'a';
 constexpr char KEY_RIGHT = 'd';
 
-class KeyListener
+class KeyListener // Change to sf::Keyboard interaction
 {
 public:
 	KeyListener();
