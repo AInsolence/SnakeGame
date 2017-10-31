@@ -9,37 +9,39 @@
 
 int main()
 {
-	Level Level01(25, 15);
-	Snake Snake1(2, 2);
-	KeyListener KListener;
-	Snake1.SetCurrentDirection(ESnakeCurrentDirection::Left);
+	sf::RenderWindow window(sf::VideoMode(1366, 720), "SFML works!");
+	sf::Texture texture;
+	if (!texture.loadFromFile("../../image/Block_Blue.png"))
+		return EXIT_FAILURE;
+	texture.setSmooth(true);
+	sf::Sprite sprite(texture);
+	sprite.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our texture
+	sprite.setPosition(0, 0);
 
-	for(int32 i = 0; i < 100; i++)
+
+	while (window.isOpen())
 	{
-		Level01.Display();
-		Snake * Pointer = nullptr;
-		Pointer = &Snake1;
-		KListener.Start(Pointer);
-		Snake1.Move();
-		
-		// paint Objects
-		for (auto Raw : IGameObject::Canvas) // TODO delete before release
+		sf::Event event;
+		while (window.pollEvent(event))
 		{
-			for (auto Character : Raw) std::cout << Character;
-			std::cout << std::endl;
+			if (event.type == sf::Event::Closed)
+				window.close();
 		}
-		using namespace std::chrono_literals;
-		std::this_thread::sleep_for(1s);
-		// TODO Check right speed here
-		system("cls");
+
+		window.clear();
+		std::vector<sf::Sprite> vec(10);
+		for (int32 i = 0; i < 500; i += 40)
+		{
+			int32 x = 0; int32 y = 0;
+			sf::Sprite *ptr;
+			ptr = new sf::Sprite(sprite);
+			ptr->setPosition(0, i);
+			vec.push_back(*ptr);
+			window.draw(vec.back());
+		}
+		
+		window.display();
 	}
-
-	system("pause");
-
-	StartDisplay StartDisplay;// intialize main menu object
-	StartDisplay.MenuListener();
-
-	system("pause");
     return 0;
 }
 

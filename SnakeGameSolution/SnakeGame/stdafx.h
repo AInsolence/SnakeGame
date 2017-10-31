@@ -7,6 +7,7 @@
 
 #include "targetver.h"
 
+#include "SFML/Graphics.hpp"
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
