@@ -5,14 +5,11 @@
 //constructor
 Snake::Snake(std::string SnakeColor, int32 x, int32 y)
 {
-	 SetSprite(HeadSprite, "../../image/Block_Box_2_Light.png");
-	SetSprite(MainSprite, "../../image/Block_Green.png");
-	//SetSprite(TailSprite, "../../image/Block_Red.png");
 	Reset(x, y);
 	// snake START POSITION 
-	Body.push_back(std::make_tuple(HeadSprite, 100, 100));
-	/*Body.push_back(std::make_tuple(MainSprite, 150, 130));// TODO change to real position
-	Body.push_back(std::make_tuple(TailSprite, 160, 170));*/
+	Body.push_back(new BorderBlock("Light", 300, 150));
+	Body.push_back(new BorderBlock("Green", 300, 235));
+	Body.push_back(new BorderBlock("Red", 300, 320));
 }
 
 // destructor
@@ -85,8 +82,8 @@ void Snake::IncreaseSize(int32 AdditionToCurrentSize)
 {
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{
-		FTuple LastSegment = Body.back();
-		Body.push_back(LastSegment);// TODO change to real coordinates here depending on movement direction
+		
+		// TODO change to real coordinates here depending on movement direction
 	}
 }
 
@@ -102,19 +99,18 @@ void Snake::Move()
 		switch (CurrentDirection)// TODO add changing of snake's  head tile  
 		{
 		case ESnakeCurrentDirection::Left:
-			std::get<1>(Body[0]) -= 1;
+			Body[0];
 			break;
 		case ESnakeCurrentDirection::Right:
-			std::get<1>(Body[0]) += 1;
+			Body[0];
 			break;
 		case ESnakeCurrentDirection::Up:
-			std::get<2>(Body[0]) -= 1;
+			Body[0];
 			break;
 		case ESnakeCurrentDirection::Down:
-			std::get<2>(Body[0]) += 1;
+			Body[0];
 			break;
 		default:
 			break;
 		}
 }
-

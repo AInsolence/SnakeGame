@@ -11,7 +11,6 @@ public:
 	~BorderBlock();
 
 private:
-
 	std::map<std::string, std::string> BlockTypes{
 		{"Blue", "../../image/Block_Blue.png"},
 		{ "Dark", "../../image/Block_Box_1_Dark.png" },

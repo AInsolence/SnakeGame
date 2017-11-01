@@ -45,11 +45,11 @@ int main()
 			
 		}*/
 		window.draw(NewBlock.GetMainSprite());
-		window.draw((std::get<0>(MySnake.Body[0])));
-		/*for (auto segment : MySnake.Body)
+
+		for (auto segment : MySnake.Body)
 		{
-			window.draw(std::get<0>(segment));
-		}*/
+			window.draw(segment->GetMainSprite());
+		}
 		
 		window.display();
 	}

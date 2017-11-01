@@ -5,6 +5,7 @@
 IGameObject::IGameObject()
 {
 	SetCoordinates(0, 0);// initialized by default
+	SetSpriteSize(0, 0);// initialized by default
 }
 
 IGameObject::~IGameObject()
@@ -21,6 +22,11 @@ sf::Sprite IGameObject::GetMainSprite() const
 FPair IGameObject::GetCoordinates() const
 {
 	return Coordinates;
+}
+
+FPair IGameObject::GetSpriteSize() const
+{
+	return SpriteSize;
 }
 
 // Setters
@@ -44,4 +50,10 @@ int32 IGameObject::SetSprite(sf::Sprite &SpriteToSet, std::string TextureLocatio
 	SpriteToSet.setPosition(Coordinates.first, Coordinates.second);
 
 	return 0;
+}
+
+void IGameObject::SetSpriteSize(int32 x, int32 y)
+{
+	SpriteSize.first = x;
+	SpriteSize.second = y;
 }
