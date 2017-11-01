@@ -261,10 +261,10 @@ __pycache__/
 *.pyc
 
 #My GitConfig
-/image/*
-/SFML/*
-/SnakeGameSolution/*
-/!SnakeGameSolution/SnakeGame/*
+/image
+/SFML
+/SnakeGameSolution
+/!SnakeGameSolution/SnakeGame
 /SnakeGameSolution/SnakeGame/Debug
 /SnakeGameSolution/SnakeGame/Release
 /SnakeGameSolution/SnakeGame/x64
