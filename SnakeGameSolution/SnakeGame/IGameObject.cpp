@@ -2,9 +2,9 @@
 #include "stdafx.h"
 #include "IGameObject.h"
 
-IGameObject::IGameObject(std::string TextureLocation)
+IGameObject::IGameObject()
 {
-	SetSprite(MainSprite, TextureLocation);// create object with appropriate sprite
+	SetCoordinates(0, 0);// initialized by default
 }
 
 IGameObject::~IGameObject()
@@ -31,10 +31,8 @@ void IGameObject::SetCoordinates(int32 x, int32 y)// set new coordinates to obje
 	Coordinates.second = y;
 }
 
-int32 IGameObject::SetSprite(sf::Sprite SpriteToSet, std::string TextureLocation)
+int32 IGameObject::SetSprite(sf::Sprite &SpriteToSet, std::string TextureLocation)
 {
-	sf::Texture Texture;
-
 	if (!Texture.loadFromFile(TextureLocation))// load texture image form file
 	{
 		return EXIT_FAILURE;// exit if do not find texture file
@@ -42,8 +40,8 @@ int32 IGameObject::SetSprite(sf::Sprite SpriteToSet, std::string TextureLocation
 
 	Texture.setSmooth(true);
 	SpriteToSet.setTexture(Texture);// set Texture to Sprite
-	SpriteToSet.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our Texture
-	SpriteToSet.setPosition(0, 0);
+	SpriteToSet.setScale(sf::Vector2f(0.4f, 0.4f));// zoom our Texture
+	SpriteToSet.setPosition(Coordinates.first, Coordinates.second);
 
 	return 0;
 }

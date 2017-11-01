@@ -3,11 +3,16 @@
 #include "Snake.h"
 
 //constructor
-Snake::Snake(std::string SnakeColor, int32 x, int32 y):IGameObject("../../image/Coin_Front.png")
+Snake::Snake(std::string SnakeColor, int32 x, int32 y)
 {
-	SetSprite(HeadSprite, "../../image/Block_Box_2_Light.png");
-	SetSprite(TailSprite, "../../image/Coin_Side.png");
+	 SetSprite(HeadSprite, "../../image/Block_Box_2_Light.png");
+	SetSprite(MainSprite, "../../image/Block_Green.png");
+	//SetSprite(TailSprite, "../../image/Block_Red.png");
 	Reset(x, y);
+	// snake START POSITION 
+	Body.push_back(std::make_tuple(HeadSprite, 100, 100));
+	/*Body.push_back(std::make_tuple(MainSprite, 150, 130));// TODO change to real position
+	Body.push_back(std::make_tuple(TailSprite, 160, 170));*/
 }
 
 // destructor
@@ -74,11 +79,6 @@ void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
 	// set snake SIZE in the beginning of the game
 	constexpr int32 START_SNAKE_SIZE = 1;
 	SetSize(START_SNAKE_SIZE);
-
-	// snake START POSITION 
-	Body.push_back(std::make_tuple(HeadSprite, XStartPosition, YStartPosition));
-	Body.push_back(std::make_tuple(MainSprite, XStartPosition + 50, YStartPosition));// TODO change to real position
-	Body.push_back(std::make_tuple(TailSprite, XStartPosition + 100, YStartPosition));
 }
 
 void Snake::IncreaseSize(int32 AdditionToCurrentSize)
