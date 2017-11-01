@@ -261,13 +261,13 @@ __pycache__/
 *.pyc
 
 #My GitConfig
-image/*
-SFML/*
-SnakeGameSolution/*
-!SnakeGameSolution/SnakeGame/*
-SnakeGameSolution/SnakeGame/Debug
-SnakeGameSolution/SnakeGame/Release
-SnakeGameSolution/SnakeGame/x64
-SnakeGameSolution/SnakeGame/SnakeGame.vcxproj
-SnakeGameSolution/SnakeGame/SnakeGame.vcxproj.filters
-SnakeGameSolution/SnakeGame/targetver
+/image/*
+/SFML/*
+/SnakeGameSolution/*
+/!SnakeGameSolution/SnakeGame/*
+/SnakeGameSolution/SnakeGame/Debug
+/SnakeGameSolution/SnakeGame/Release
+/SnakeGameSolution/SnakeGame/x64
+/SnakeGameSolution/SnakeGame/SnakeGame.vcxproj
+/SnakeGameSolution/SnakeGame/SnakeGame.vcxproj.filters
+/SnakeGameSolution/SnakeGame/targetver
