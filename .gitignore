@@ -261,8 +261,8 @@ __pycache__/
 *.pyc
 
 #My GitConfig
-image/
-SFML/
+image/*
+SFML/*
 SnakeGameSolution/*
 !SnakeGameSolution/SnakeGame/*
 SnakeGameSolution/SnakeGame/Debug
