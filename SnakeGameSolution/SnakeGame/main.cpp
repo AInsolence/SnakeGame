@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 #include "BorderBlock.h"
+#include "Level.h"
 #include "Snake.h"
 #include "KeyListener.h"
 
@@ -11,10 +12,11 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1366, 720), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
 	
 	BorderBlock NewBlock("Yellow", 100, 100);
 	Snake MySnake("Red", 200, 200);
+	Level Level01;
 	
 	sf::Texture texture;
 		if (!texture.loadFromFile("../../image/Block_Box_2_Light.png"))// load texture image form file
@@ -49,6 +51,11 @@ int main()
 		for (auto segment : MySnake.Body)
 		{
 			window.draw(segment->GetMainSprite());
+		}
+
+		for (auto block : Level01.MainBorder)
+		{
+			window.draw(block->GetMainSprite());
 		}
 		
 		window.display();

@@ -19,6 +19,9 @@ using FVector = std::vector<char>;
 using FField = std::vector< std::vector<char> >;
 using FString = std::string;
 
-
+// Size of game screen costants
+// TODO replace this variables  into GAME class
+constexpr int32 MAIN_WINDOW_WIDTH = 1302;
+constexpr int32 MAIN_WINDOW_HIGHT = 672;
 
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы

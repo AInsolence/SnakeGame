@@ -6,15 +6,19 @@
 Snake::Snake(std::string SnakeColor, int32 x, int32 y)
 {
 	Reset(x, y);
-	// snake START POSITION 
+	// snake's head, tail and body segments
 	Body.push_back(new BorderBlock("Light", 300, 150));
-	Body.push_back(new BorderBlock("Green", 300, 235));
-	Body.push_back(new BorderBlock("Red", 300, 320));
+	Body.push_back(new BorderBlock("Green", 300, 192));
+	Body.push_back(new BorderBlock("Red", 300, 234));
 }
 
 // destructor
 Snake::~Snake()
 {
+	for (auto segment : Body)
+	{
+		delete segment;
+	}
 }
 
 // Getters
