@@ -13,7 +13,16 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1366, 720), "SFML works!");
 	
-	BorderBlock NewBlock("Blue", 40, 40);
+	BorderBlock NewBlock("Yellow", 100, 100);
+	Snake MySnake("Red", 200, 200);
+	
+	sf::Texture texture;
+		if (!texture.loadFromFile("../../image/Block_Box_2_Light.png"))// load texture image form file
+		{
+			return EXIT_FAILURE;// exit if do not find texture file
+		}
+		sf::Sprite sprite;
+		sprite.setTexture(texture);
 
 	while (window.isOpen())
 	{
@@ -36,6 +45,12 @@ int main()
 			
 		}*/
 		window.draw(NewBlock.GetMainSprite());
+
+		for (auto segment : MySnake.Body)
+		{
+			window.draw(segment->GetMainSprite());
+		}
+		
 		window.display();
 	}
     return 0;

@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include <vector>
-#include "IGameObject.h"
+#include "BorderBlock.h"
 
 using FTuple = std::tuple<sf::Sprite, int32, int32>;
 
@@ -25,7 +25,7 @@ public:
 	Snake(std::string SnakeColor, int32 x, int32 y);
 	~Snake();
 
-	std::vector<FTuple> Body;// container to store snake head & snake segments coordinates
+	std::vector<BorderBlock*> Body;// container to store snake head & snake segments
 
 	int32 GetSpeed() const;
 	int32 GetSize() const;
@@ -42,8 +42,6 @@ public:
 	
 private:
 	// initialized in the reset function called in the constructor
-	sf::Sprite HeadSprite;
-	sf::Sprite TailSprite;
 	int32 Speed;
 	int32 Size;
 	ESnakeState CurrentState;

@@ -4,9 +4,10 @@
 
 
 // constructor
-BorderBlock::BorderBlock(std::string BlockType, int32 x, int32 y):IGameObject(BlockTypes[BlockType])
+BorderBlock::BorderBlock(std::string BlockType, int32 x, int32 y)
 {
 	SetCoordinates(x, y);
+	SetSprite(MainSprite, BlockTypes[BlockType]);
 }
 
 // destructor
