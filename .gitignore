@@ -266,3 +266,4 @@ __pycache__/
 SnakeGame.vcxproj
 SnakeGame.vcxproj.filters
 targetver.h
+SnakeGameSolution/SnakeGame/targetver.h
