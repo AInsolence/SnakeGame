@@ -7,9 +7,9 @@ Snake::Snake(std::string SnakeColor, int32 x, int32 y)
 {
 	Reset(x, y);
 	// snake's head, tail and body segments
-	Body.push_back(new BorderBlock("Light", 300, 150));
-	Body.push_back(new BorderBlock("Green", 300, 192));
-	Body.push_back(new BorderBlock("Red", 300, 234));
+	Body.push_back(new BorderBlock("Light", 1000, 150));
+	Body.push_back(new BorderBlock("Green", 1000, 192));
+	Body.push_back(new BorderBlock("Red", 1000, 234));
 }
 
 // destructor
@@ -103,16 +103,16 @@ void Snake::Move()
 		switch (CurrentDirection)// TODO add changing of snake's  head tile  
 		{
 		case ESnakeCurrentDirection::Left:
-			Body[0];
+			Body[0]->MoveSprite(-1, 0);// TODO Change 1 to step const var
 			break;
 		case ESnakeCurrentDirection::Right:
-			Body[0];
+			Body[0]->MoveSprite(1, 0);
 			break;
 		case ESnakeCurrentDirection::Up:
-			Body[0];
+			Body[0]->MoveSprite(0, -1);
 			break;
 		case ESnakeCurrentDirection::Down:
-			Body[0];
+			Body[0]->MoveSprite(0, 1);
 			break;
 		default:
 			break;

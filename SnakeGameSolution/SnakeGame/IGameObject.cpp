@@ -4,7 +4,7 @@
 
 IGameObject::IGameObject()
 {
-	SetCoordinates(0, 0);// initialized by default
+	MainSprite.setPosition(0, 0);// initialized by default
 	SetSpriteSize(0, 0);// initialized by default
 }
 
@@ -19,11 +19,6 @@ sf::Sprite IGameObject::GetMainSprite() const
 	return MainSprite;
 }
 
-FPair IGameObject::GetCoordinates() const
-{
-	return Coordinates;
-}
-
 FPair IGameObject::GetSpriteSize() const
 {
 	return SpriteSize;
@@ -31,13 +26,7 @@ FPair IGameObject::GetSpriteSize() const
 
 // Setters
 
-void IGameObject::SetCoordinates(int32 x, int32 y)// set new coordinates to object
-{
-	Coordinates.first = x;
-	Coordinates.second = y;
-}
-
-int32 IGameObject::SetSprite(sf::Sprite &SpriteToSet, std::string TextureLocation)
+int32 IGameObject::SetTexture(sf::Sprite &SpriteToSet, std::string TextureLocation)
 {
 	if (!Texture.loadFromFile(TextureLocation))// load texture image form file
 	{
@@ -47,7 +36,6 @@ int32 IGameObject::SetSprite(sf::Sprite &SpriteToSet, std::string TextureLocatio
 	Texture.setSmooth(true);
 	SpriteToSet.setTexture(Texture);// set Texture to Sprite
 	SpriteToSet.setScale(sf::Vector2f(0.2f, 0.2f));// zoom our Texture
-	SpriteToSet.setPosition(Coordinates.first, Coordinates.second);
 
 	return 0;
 }
@@ -57,3 +45,10 @@ void IGameObject::SetSpriteSize(int32 x, int32 y)
 	SpriteSize.first = x;
 	SpriteSize.second = y;
 }
+
+void IGameObject::MoveSprite(int32 x, int32 y)
+{
+	MainSprite.move(x, y);// TODO here is the problem with design!!
+}
+
+// Methods
