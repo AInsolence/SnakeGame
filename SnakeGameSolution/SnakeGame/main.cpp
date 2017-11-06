@@ -17,7 +17,6 @@ int main()
 	
 	BorderBlock NewBlock("Yellow", 100, 100);
 	Snake MySnake("Red", 200, 200);
-	MySnake.SetCurrentDirection(ESnakeCurrentDirection::Left);
 	Level Level01;
 	KeyListener Klistner;
 	
@@ -43,6 +42,13 @@ int main()
 		std::cout << MySnake.Body.size();
 		std::cout << MySnake.Body[0]->GetMainSprite().getPosition().x << " ";
 		std::cout << MySnake.Body[0]->GetMainSprite().getPosition().y << std::endl;
+
+		MySnake.SetCurrentDirection(ESnakeCurrentDirection::Down);
+		if (ESnakeCurrentDirection::Down ==  MySnake.GetCurrentDirection())
+		{
+			std::cout << "Right" << std::endl;
+		}
+		
 
 		window.clear();
 

@@ -60,7 +60,6 @@ void Snake::SetSize(int32 NewSnakeSize)
 void Snake::SetCurrentDirection(ESnakeCurrentDirection NewDirection)
 {
 	CurrentDirection = NewDirection;
-	return;
 }
 
 // Methods
