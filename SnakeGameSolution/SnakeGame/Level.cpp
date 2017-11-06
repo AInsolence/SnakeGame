@@ -4,7 +4,9 @@
 
 Level::Level()
 {
-	SetMainBorder(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT);
+	float XScale = 0.2f;
+	float YScale = 0.2f;
+	SetMainBorder(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT, XScale, YScale);
 }
 
 
@@ -16,7 +18,7 @@ Level::~Level()
 	}
 }
 
-void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT)
+void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, float XScale, float YScale)
 {
 	// fill border with blocks
 	for (int32 x = 0; x < MAIN_WINDOW_WIDTH; x += 42)//TODO change 42 to variable SpriteSize
@@ -25,7 +27,7 @@ void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT)
 		{
 			if (x == 0 || x == MAIN_WINDOW_WIDTH - 42 || y == 0 || y == MAIN_WINDOW_HIGHT - 42)
 			{
-				MainBorder.push_back(new BorderBlock("Light", x, y));
+				MainBorder.push_back(new BorderBlock("Light", x, y, XScale, YScale));
 			}
 		}
 	}

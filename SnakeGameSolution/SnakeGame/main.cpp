@@ -15,8 +15,8 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
 	
-	BorderBlock NewBlock("Yellow", 100, 100);
-	Snake MySnake("Red", 200, 200);
+	BorderBlock NewBlock("Yellow", 100, 100, 0.2f, 0.2f);
+	Snake MySnake("Red", 200, 200, 0.1f, 0.1f);
 	Level Level01;
 	KeyListener Klistner;
 	
@@ -29,6 +29,9 @@ int main()
 		sf::Sprite sprite;
 		sprite.setTexture(texture);
 
+	//start the clock
+	sf::Clock clock;
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -40,8 +43,8 @@ int main()
 		Klistner.Start(&MySnake);
 		MySnake.Move();
 		std::cout << MySnake.Body.size();
-		std::cout << MySnake.Body[0]->GetMainSprite().getPosition().x << " ";
-		std::cout << MySnake.Body[0]->GetMainSprite().getPosition().y << std::endl;
+		std::cout << MySnake.Body[0]->MainSprite.getPosition().x << " ";
+		std::cout << MySnake.Body[0]->MainSprite.getPosition().y << std::endl;
 
 		MySnake.SetCurrentDirection(ESnakeCurrentDirection::Down);
 		if (ESnakeCurrentDirection::Down ==  MySnake.GetCurrentDirection())
@@ -49,7 +52,6 @@ int main()
 			std::cout << "Right" << std::endl;
 		}
 		
-
 		window.clear();
 
 		//window.draw(NewBlock.GetMainSprite());
@@ -57,16 +59,21 @@ int main()
 
 		for (auto block : Level01.GetMainBorder())
 		{
-			window.draw(block->GetMainSprite());
+			window.draw(block->MainSprite);
 		}
 		
 		for (auto segment : MySnake.Body)
 		{
-			window.draw(segment->GetMainSprite());
+			window.draw(segment->MainSprite);
 		}
 
 		window.display();
-		
+		sf::Time TimeGap = sf::seconds(0.6f);
+		sf::Time Elapsed = clock.restart();
+		while (Elapsed < TimeGap)
+		{
+			Elapsed = clock.getElapsedTime();
+		}
 	}
     return 0;
 }

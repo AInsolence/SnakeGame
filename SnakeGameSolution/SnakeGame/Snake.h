@@ -22,7 +22,7 @@ enum class ESnakeCurrentDirection// movement direction of the snake object
 class Snake : public IGameObject
 {
 public:
-	Snake(std::string SnakeColor, int32 x, int32 y);
+	Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale);
 	~Snake();
 
 	std::vector<BorderBlock*> Body;// container to store snake head & snake segments

@@ -8,7 +8,7 @@ class BorderBlock : public IGameObject
 {
 public:
 	// (SIZE, x_size, y_size)
-	BorderBlock(std::string BlockType, int32 x, int32 y);
+	BorderBlock(std::string BlockType, int32 x, int32 y, float XScale, float YScale);
 	~BorderBlock();
 
 private:

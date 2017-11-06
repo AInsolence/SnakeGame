@@ -3,13 +3,17 @@
 #include "Snake.h"
 
 //constructor
-Snake::Snake(std::string SnakeColor, int32 x, int32 y)
+Snake::Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale)
 {
 	Reset(x, y);
 	// snake's head, tail and body segments
-	Body.push_back(new BorderBlock("Light", 1000, 150));
-	Body.push_back(new BorderBlock("Green", 1000, 192));
-	Body.push_back(new BorderBlock("Red", 1000, 234));
+	Body.push_back(new BorderBlock("Light", 1000, 150, XScale, YScale));
+	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new BorderBlock("Red", 1000, 192, XScale, YScale));
 }
 
 // destructor
@@ -92,28 +96,62 @@ void Snake::IncreaseSize(int32 AdditionToCurrentSize)
 
 void Snake::Move()
 {
-		if (Body.size() > 1)// if body has NOT only head segment
-		{
-			// shift coordinates of all segments to right
-			std::rotate(Body.rbegin(), Body.rbegin(), Body.rend());
-		}
-
-		// change head coordinates depends on current direction
-		switch (CurrentDirection)// TODO add changing of snake's  head tile  
-		{
-		case ESnakeCurrentDirection::Left:
-			Body[0]->MoveSprite(-1, 0);// TODO Change 1 to step const var
-			break;
-		case ESnakeCurrentDirection::Right:
-			Body[0]->MoveSprite(1, 0);
-			break;
-		case ESnakeCurrentDirection::Up:
-			Body[0]->MoveSprite(0, -1);
-			break;
+	float tmpX = Body[0]->MainSprite.getPosition().x;
+	float tmpY = Body[0]->MainSprite.getPosition().y;
+	
+	// change head coordinates depends on current direction
+	switch (CurrentDirection)// TODO add changing of snake's  head tile  
+	{
+	case ESnakeCurrentDirection::Left:
+		Body[0]->MainSprite.move(-20, 0);// TODO Change to step const var
+		break;
+	case ESnakeCurrentDirection::Right:
+		Body[0]->MainSprite.move(20, 0);
+		break;
+	case ESnakeCurrentDirection::Up:
+		Body[0]->MainSprite.move(0, -20);
+	break;
 		case ESnakeCurrentDirection::Down:
-			Body[0]->MoveSprite(0, 1);
-			break;
-		default:
-			break;
+		Body[0]->MainSprite.move(0, 20);
+		break;
+	default:
+		break;
+	}
+
+	
+	for (size_t i = Body.size() - 1; i > 0; i--)
+	{
+		float XFactor = 0;
+		float YFactor = 0;
+		// if forward block above or below the current
+		/*if (Body[i]->MainSprite.getPosition().x == Body[i - 1]->MainSprite.getPosition().x)
+		{
+			//if block above
+			if (Body[i]->MainSprite.getPosition().y > Body[i - 1]->MainSprite.getPosition().y)
+			{
+				//change position to -y
+				YFactor = -30;
+			}
+			else //change position to +y
+			{
+				YFactor = 30;
+			}
 		}
+		else// if forward block right-side or left-side from the current
+		{
+			//if block left-side from the current
+			if (Body[i]->MainSprite.getPosition().x > Body[i - 1]->MainSprite.getPosition().x)
+			{
+				//change position to -x
+				XFactor = -30;
+			}
+			else //change position to +x
+			{
+				XFactor = 30;
+			}
+		}*/
+		Body[i]->MainSprite.setPosition(Body[i - 1]->MainSprite.getPosition().x + XFactor, Body[i - 1]->MainSprite.getPosition().y + YFactor);
+	}
+	Body[1]->MainSprite.setPosition(tmpX, tmpY);
+	//std::rotate(Body.rbegin() + 1, Body.rbegin() + 2, Body.rend());
 }

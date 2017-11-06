@@ -6,7 +6,9 @@
 #pragma once
 
 #include "targetver.h"
+//SFML Headers
 #include "SFML/Graphics.hpp"
+//
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
@@ -17,6 +19,8 @@ using FPair = std::pair<int32, int32>;
 using FVector = std::vector<char>;
 using FField = std::vector< std::vector<char> >;
 using FString = std::string;
+
+
 
 // Size of game screen costants
 // TODO replace this variables  into GAME class
