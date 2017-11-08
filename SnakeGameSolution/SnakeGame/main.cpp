@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "StartDisplay.h"
-#include "BorderBlock.h"
+#include "Block.h"
 #include "Level.h"
 #include "Snake.h"
 #include "KeyListener.h"
@@ -15,9 +15,9 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
 	
-	BorderBlock NewBlock("Yellow", 100, 100, 0.2f, 0.2f);
+	Block NewBlock("Yellow", 100, 100, 0.2f, 0.2f);
 	Snake MySnake("Red", 200, 200, 0.1f, 0.1f);
-	Level Level01;
+	Level Level01(0.2f, 0.2f);
 	KeyListener Klistner;
 	
 	

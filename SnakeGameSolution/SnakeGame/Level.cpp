@@ -2,10 +2,8 @@
 #include "Level.h"
 
 
-Level::Level()
+Level::Level(float XScale, float YScale)
 {
-	float XScale = 0.2f;
-	float YScale = 0.2f;
 	SetMainBorder(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT, XScale, YScale);
 }
 
@@ -20,20 +18,28 @@ Level::~Level()
 
 void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, float XScale, float YScale)
 {
+	const float DISTANCE_BETWEEN_BLOCKS_X = BASE_SPRITE_SIZE * XScale;
+	const float DISTANCE_BETWEEN_BLOCKS_Y = BASE_SPRITE_SIZE * YScale;
+	// TODO bug with another scale of the game level border block need t fix
+	//std::cout << "x = " << DISTANCE_BETWEEN_BLOCKS_X << " y = " << DISTANCE_BETWEEN_BLOCKS_Y << std::endl;
 	// fill border with blocks
-	for (int32 x = 0; x < MAIN_WINDOW_WIDTH; x += 42)//TODO change 42 to variable SpriteSize
+	for (float x = 0; x < MAIN_WINDOW_WIDTH; x += DISTANCE_BETWEEN_BLOCKS_X)
 	{
-		for (int32 y = 0; y < MAIN_WINDOW_HIGHT; y += 42)
+		for (float y = 0; y < MAIN_WINDOW_HIGHT; y += DISTANCE_BETWEEN_BLOCKS_Y)
 		{
-			if (x == 0 || x == MAIN_WINDOW_WIDTH - 42 || y == 0 || y == MAIN_WINDOW_HIGHT - 42)
+			if (x == 0 || x == MAIN_WINDOW_WIDTH - DISTANCE_BETWEEN_BLOCKS_X)
 			{
-				MainBorder.push_back(new BorderBlock("Light", x, y, XScale, YScale));
+				MainBorder.push_back(new Block("Light", x, y, XScale, YScale));
+			}
+			if (y == 0 || y == MAIN_WINDOW_HIGHT - DISTANCE_BETWEEN_BLOCKS_Y)
+			{
+				MainBorder.push_back(new Block("Light", x, y, XScale, YScale));
 			}
 		}
 	}
 }
 
-std::vector<BorderBlock*> Level::GetMainBorder()// returns main border of the level
+std::vector<Block*> Level::GetMainBorder()// returns main border of the level
 {
 	return MainBorder;
 }

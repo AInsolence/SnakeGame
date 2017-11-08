@@ -1,3 +1,7 @@
+/*
+	KeyListener class handles user input and changes the Snake object direction.
+*/
+
 #pragma once
 #include "Snake.h"
 

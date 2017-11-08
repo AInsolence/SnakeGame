@@ -5,15 +5,16 @@
 //constructor
 Snake::Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale)
 {
-	Reset(x, y);
-	// snake's head, tail and body segments
-	Body.push_back(new BorderBlock("Light", 1000, 150, XScale, YScale));
-	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new BorderBlock("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new BorderBlock("Red", 1000, 192, XScale, YScale));
+	Reset(x, y);// reset object to default parameters
+
+	// create snake's head, tail and body segments // TODO move this code to Reset method
+	Body.push_back(new Block("Light", 1000, 150, XScale, YScale));
+	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Red", 1000, 192, XScale, YScale));
 }
 
 // destructor
@@ -88,43 +89,40 @@ void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
 void Snake::IncreaseSize(int32 AdditionToCurrentSize)
 {
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
-	{
-		
-		// TODO change to real coordinates here depending on movement direction
+	{// add new segment with head segment scale
+		Body.push_back(new Block("Green", 1000, 171,\
+			Body[0]->MainSprite.getScale().x, Body[0]->MainSprite.getScale().y));
 	}
 }
 
+// move snake and it's segments through changing sprites coordinates
 void Snake::Move()
 {
-	float tmpX = Body[0]->MainSprite.getPosition().x;
-	float tmpY = Body[0]->MainSprite.getPosition().y;
-	
+	// steps on x and y axises depends on sprite size and scale
+	float Step_x = BASE_SPRITE_SIZE * Body[0]->MainSprite.getScale().x;
+	float Step_y = BASE_SPRITE_SIZE * Body[0]->MainSprite.getScale().y;
+	//change segments position to the next step
+	for (size_t i = Body.size() - 1; i > 0; i--)
+	{
+		Body[i]->MainSprite.setPosition(Body[i - 1]->MainSprite.getPosition().x, \
+			Body[i - 1]->MainSprite.getPosition().y);
+	}
 	// change head coordinates depends on current direction
 	switch (CurrentDirection)// TODO add changing of snake's  head tile  
 	{
 	case ESnakeCurrentDirection::Left:
-		Body[0]->MainSprite.move(-20, 0);// TODO Change to step const var
+		Body[0]->MainSprite.move(-Step_x, 0);
 		break;
 	case ESnakeCurrentDirection::Right:
-		Body[0]->MainSprite.move(20, 0);
+		Body[0]->MainSprite.move(Step_x, 0);
 		break;
 	case ESnakeCurrentDirection::Up:
-		Body[0]->MainSprite.move(0, -20);
+		Body[0]->MainSprite.move(0, -Step_y);
 	break;
 		case ESnakeCurrentDirection::Down:
-		Body[0]->MainSprite.move(0, 20);
+		Body[0]->MainSprite.move(0, Step_y);
 		break;
 	default:
 		break;
 	}
-
-	
-	for (size_t i = Body.size() - 1; i > 0; i--)
-	{
-		float XFactor = 0;
-		float YFactor = 0;
-		Body[i]->MainSprite.setPosition(Body[i - 1]->MainSprite.getPosition().x + XFactor, Body[i - 1]->MainSprite.getPosition().y + YFactor);
-	}
-	Body[1]->MainSprite.setPosition(tmpX, tmpY);
-	//std::rotate(Body.rbegin() + 1, Body.rbegin() + 2, Body.rend());
 }
