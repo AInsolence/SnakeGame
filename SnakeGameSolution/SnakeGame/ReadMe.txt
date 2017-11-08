@@ -1,27 +1,38 @@
-========================================================================
-    КОНСОЛЬНОЕ ПРИЛОЖЕНИЕ. Обзор проекта [!output PROJECT_NAME]
-========================================================================
+This is a classic game Snake.
 
-Это приложение [!output PROJECT_NAME] создано автоматически с помощью мастера приложений.
+Language: C++
 
-В этом файле представлена сводка содержимого всех файлов, входящих в состав приложения [!output PROJECT_NAME].
+Graphic library: SFML 2.4.2 
+https://www.sfml-dev.org/download.php
+
+Use free assets by @CamTatz (special THX for him:))
+https://opengameart.org/content/platformer-asset-pack-1
+
+To play it is needed to setup assets, link sfml library, and compile the sources.
 
 
-    Это основной файл проекта VC++, создаваемый с помощью мастера приложений. Он содержит данные о версии языка Visual C++, использованной для создания файла, а также сведения о платформах, конфигурациях и функциях проекта, выбранных с помощью мастера приложений.
+SCRUM plan 08.11.2017
 
-    Это файл фильтров для проектов VC++, созданный с помощью мастера приложений. Он содержит сведения о сопоставлениях между файлами в вашем проекте и фильтрами. Эти сопоставления используются в среде IDE для группировки файлов с одинаковыми расширениями в одном узле (например CPP-файлы сопоставляются с фильтром "Исходные файлы").
+Sprints:
 
-    Это основной исходный файл приложения.
-
-/////////////////////////////////////////////////////////////////////////////
-Другие стандартные файлы:
-
-StdAfx.h, StdAfx.cpp
-    Эти файлы используются для построения файла предкомпилированного заголовка (PCH) с именем [!output PROJECT_NAME].pch и файла предкомпилированных типов с именем StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Прочие примечания.
-
-С помощью комментариев «TODO:» в мастере приложений обозначаются фрагменты исходного кода, которые необходимо дополнить или изменить.
-
-/////////////////////////////////////////////////////////////////////////////
+1. Create main block class - DONE
+2. Create Level class - DONE
+3. Create Snake class - DONE
+4. Create KeyListener class - DONE
+5. SetUp SFML - DONE
+6. Find Assets - DONE
+7. Create Food class and logic for its random appearing in the game screen
+8. Create collision detection for the Snake head (collision with borders and food)
+9. Create point counter and HUD
+10. Create GAME class and add win/lose conditions
+11. Add game music and sounds (for move, collision(game over), eating&grow)
+12. Create Main Menu screen with animation and music
+13. Create options screen
+14. Rewrite KeyListener class with using SFML tools to handle user input
+15. Add ability to change key controls in options
+16. Create Record screen
+17. Add write/read records to/from file
+18. ***more levels
+19. ***add more lives for player
+20. User game test)
+21. ***Create installation pack
