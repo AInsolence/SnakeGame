@@ -123,33 +123,6 @@ void Snake::Move()
 	{
 		float XFactor = 0;
 		float YFactor = 0;
-		// if forward block above or below the current
-		/*if (Body[i]->MainSprite.getPosition().x == Body[i - 1]->MainSprite.getPosition().x)
-		{
-			//if block above
-			if (Body[i]->MainSprite.getPosition().y > Body[i - 1]->MainSprite.getPosition().y)
-			{
-				//change position to -y
-				YFactor = -30;
-			}
-			else //change position to +y
-			{
-				YFactor = 30;
-			}
-		}
-		else// if forward block right-side or left-side from the current
-		{
-			//if block left-side from the current
-			if (Body[i]->MainSprite.getPosition().x > Body[i - 1]->MainSprite.getPosition().x)
-			{
-				//change position to -x
-				XFactor = -30;
-			}
-			else //change position to +x
-			{
-				XFactor = 30;
-			}
-		}*/
 		Body[i]->MainSprite.setPosition(Body[i - 1]->MainSprite.getPosition().x + XFactor, Body[i - 1]->MainSprite.getPosition().y + YFactor);
 	}
 	Body[1]->MainSprite.setPosition(tmpX, tmpY);

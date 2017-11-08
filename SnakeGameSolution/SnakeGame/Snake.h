@@ -19,7 +19,7 @@ enum class ESnakeCurrentDirection// movement direction of the snake object
 	Down
 };
 
-class Snake : public IGameObject
+class Snake
 {
 public:
 	Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale);
