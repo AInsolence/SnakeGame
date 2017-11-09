@@ -32,7 +32,6 @@ bool bIsObjectsCollide::operator()(Block* Object_1, Block* Object_2) const
 			// get coordinates of the SECOND object points
 			for (float x2 = X_POS_OBJ_2; x2 != X_POS_OBJ_2 + X_SIZE_OBJ_2; x2++)
 			{
-				
 				for (float y2 = Y_POS_OBJ_2; y2 != Y_POS_OBJ_2 + Y_SIZE_OBJ_2; y2++)
 				{// if the coordinates of any points of two objects are equal
 					if (x == x2 && y == y2)

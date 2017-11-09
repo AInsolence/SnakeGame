@@ -11,10 +11,6 @@ Snake::Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScal
 	Body.push_back(new Block("Light", 1000, 150, XScale, YScale));
 	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
 	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new Block("Red", 1000, 192, XScale, YScale));
 }
 
 // destructor
@@ -86,12 +82,14 @@ void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
 	SetSize(START_SNAKE_SIZE);
 }
 
-void Snake::IncreaseSize(int32 AdditionToCurrentSize)
+void Snake::ChangeSize(int32 AdditionToCurrentSize)
 {
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{// add new segment with head segment scale
-		Body.push_back(new Block("Green", 1000, 171,\
-			Body[0]->MainSprite.getScale().x, Body[0]->MainSprite.getScale().y));
+		Body.push_back(new Block("Green",\
+			Body[1]->MainSprite.getPosition().x,\
+			Body[1]->MainSprite.getPosition().y,\
+			Body[1]->MainSprite.getScale().x, Body[1]->MainSprite.getScale().y));
 	}
 }
 

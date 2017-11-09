@@ -54,7 +54,10 @@ int main()
 			else std::cout << "false" << std::endl;
 		}
 		
-		//std::cout << bIsCollide(MySnake.Body[0], NewBlock);
+		if (bIsCollide(MySnake.Body[0], NewBlock))
+		{
+			MySnake.ChangeSize(1);
+		}
 		window.clear();
 
 		window.draw(NewBlock->MainSprite);

@@ -42,7 +42,7 @@ public:
 	void SetSpeed(int32);
 	void SetSize(int32);
 	void SetCurrentDirection(ESnakeCurrentDirection);
-	void IncreaseSize(int32);
+	void ChangeSize(int32);
 	void Move();
 
 	

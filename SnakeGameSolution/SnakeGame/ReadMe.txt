@@ -22,7 +22,8 @@ Sprints:
 5. SetUp SFML - DONE
 6. Find Assets - DONE
 7. Create Food class - DONE
-8. Create collision detection for the Snake head (collision with borders and food). Functor.
+8. Create collision detection for the Snake head (collision with borders and food). Functor. - DONE
+8.1 Check snake size change method. Changed. - DONE
 9. Create point counter and HUD
 10. Create GAME class and add win/lose conditions. Logic for random food appearing in the game screen.
 11. Add game music and sounds (for move, collision(game over), eating&grow)
