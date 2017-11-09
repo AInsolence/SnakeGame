@@ -7,6 +7,8 @@
 #include "Level.h"
 #include "Snake.h"
 #include "KeyListener.h"
+#include "Food.h"
+#include "bIsObjectsCollide.h"
 
 
 
