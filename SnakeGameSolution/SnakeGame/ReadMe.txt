@@ -21,10 +21,10 @@ Sprints:
 4. Create KeyListener class - DONE
 5. SetUp SFML - DONE
 6. Find Assets - DONE
-7. Create Food class and logic for its random appearing in the game screen
-8. Create collision detection for the Snake head (collision with borders and food)
+7. Create Food class - DONE
+8. Create collision detection for the Snake head (collision with borders and food). Functor.
 9. Create point counter and HUD
-10. Create GAME class and add win/lose conditions
+10. Create GAME class and add win/lose conditions. Logic for random food appearing in the game screen.
 11. Add game music and sounds (for move, collision(game over), eating&grow)
 12. Create Main Menu screen with animation and music
 13. Create options screen
