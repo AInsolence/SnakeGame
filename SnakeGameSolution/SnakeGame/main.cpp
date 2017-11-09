@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "StartDisplay.h"
+#include "HUD.h"
 #include "Block.h"
 #include "Level.h"
 #include "Snake.h"
@@ -22,6 +23,7 @@ int main()
 	Level Level01(0.2f, 0.2f);
 	KeyListener Klistner;
 	bIsObjectsCollide bIsCollide;
+	HUD hud("Anton", 0);
 	
 	
 	sf::Texture texture;
@@ -72,6 +74,9 @@ int main()
 		{
 			window.draw(segment->MainSprite);
 		}
+
+		//HUD Display
+		window.draw(hud.Display->MainSprite);
 
 		window.display();
 		sf::Time TimeGap = sf::seconds(0.6f);

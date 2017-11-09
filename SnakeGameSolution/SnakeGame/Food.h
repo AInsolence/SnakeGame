@@ -1,3 +1,8 @@
+/*
+	This class create food instances which is the target to Snake in the game.
+	It change snake's size, increase or decrease dependes on Value of the food.
+*/
+
 #pragma once
 #include "Block.h"
 
