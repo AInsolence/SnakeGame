@@ -7,6 +7,6 @@ public:
 	bIsObjectsCollide();
 	~bIsObjectsCollide();
 
-	bool operator () (const Block&, const Block&) const;
+	bool operator () (Block*, Block*) const;
 };
 

@@ -17,10 +17,11 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
 	
-	Block NewBlock("Yellow", 100, 100, 0.2f, 0.2f);
+	Block* NewBlock = new Block ("Yellow", 100, 100, 0.3f, 0.3f);
 	Snake MySnake("Red", 200, 200, 0.1f, 0.1f);
 	Level Level01(0.2f, 0.2f);
 	KeyListener Klistner;
+	bIsObjectsCollide bIsCollide;
 	
 	
 	sf::Texture texture;
@@ -44,19 +45,19 @@ int main()
 		}
 		Klistner.Start(&MySnake);
 		MySnake.Move();
-		std::cout << MySnake.Body.size();
-		std::cout << MySnake.Body[0]->MainSprite.getPosition().x << " ";
-		std::cout << MySnake.Body[0]->MainSprite.getPosition().y << std::endl;
-
-		MySnake.SetCurrentDirection(ESnakeCurrentDirection::Down);
-		if (ESnakeCurrentDirection::Down ==  MySnake.GetCurrentDirection())
+		for (auto block : Level01.GetMainBorder())
 		{
-			std::cout << "Right" << std::endl;
+			if (bIsCollide(MySnake.Body[0], block))
+			{
+				std::cout << "true" << std::endl;
+			}
+			else std::cout << "false" << std::endl;
 		}
 		
+		//std::cout << bIsCollide(MySnake.Body[0], NewBlock);
 		window.clear();
 
-		//window.draw(NewBlock.GetMainSprite());
+		window.draw(NewBlock->MainSprite);
 		//window.draw(MySnake.Body[0]->GetMainSprite());
 
 		for (auto block : Level01.GetMainBorder())
