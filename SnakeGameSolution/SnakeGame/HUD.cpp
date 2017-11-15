@@ -7,7 +7,8 @@ HUD::HUD(std::string NewPlayerName, int32 StartScores)
 	// create current player name info line on x =5, y = 5 position
 	Create(Player, Arial, FontLocation, NewPlayerName, 5, 5);
 	// create start Scores info line on x = main_window_w - 70, y = 5 position
-	Create(Scores, Arial, FontLocation, std::to_string(StartScores),\
+	Create(Scores, Arial, FontLocation,
+ std::to_string(StartScores),\
 			MAIN_WINDOW_WIDTH - 70, 5);
 }
 
@@ -40,7 +41,7 @@ void HUD::SetScores(int32 NewScores)
 // increase or decrease player's scores depending on increment parameter
 void HUD::UpdateScores(int32 Increment)
 {
-	int32 NewScores;
+	long double NewScores;
 	std::string  OldScore = Scores.getString();// get the current scores
 	// cast to an integer and add increment
 	NewScores = (std::stoi(OldScore)) + Increment;
@@ -49,8 +50,8 @@ void HUD::UpdateScores(int32 Increment)
 
 // create the HUD info line
 int32 HUD::Create(sf::Text & HUDLineName, sf::Font &Arial,\
-					std::string FontLocation, std::string TextValue,\
-					int32 X_pos, int32 Y_pos)
+					std::string FontLocation,\
+					 std::string TextValue, float X_pos, float Y_pos)
 {
 	if (!Arial.loadFromFile(FontLocation))// load font from file
 	{

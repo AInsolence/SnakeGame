@@ -19,9 +19,10 @@ public:
 	void SetScores(int32);
 	void UpdateScores(int32);
 
-	int32 Create(sf::Text & HUDLineName, sf::Font &Arial,\
-		std::string TextureLocation, std::string TextValue,\
-		int32 X_pos, int32 Y_pos);
+	int32 Create(sf::Text & HUDLineName, sf::Font &Arial,
+\
+		std::string TextureLocation,
+ std::string TextValue, float X_pos, float Y_pos);
 
 private:
 	sf::Text Player;
