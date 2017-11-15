@@ -7,8 +7,7 @@ HUD::HUD(std::string NewPlayerName, int32 StartScores)
 	// create current player name info line on x =5, y = 5 position
 	Create(Player, Arial, FontLocation, NewPlayerName, 5, 5);
 	// create start Scores info line on x = main_window_w - 70, y = 5 position
-	Create(Scores, Arial, FontLocation,
- std::to_string(StartScores),\
+	Create(Scores, Arial, FontLocation,std::to_string(StartScores),\
 			MAIN_WINDOW_WIDTH - 70, 5);
 }
 
@@ -43,8 +42,10 @@ void HUD::UpdateScores(int32 Increment)
 {
 	long double NewScores;
 	std::string  OldScore = Scores.getString();// get the current scores
+	std::cout << OldScore << std::endl;
 	// cast to an integer and add increment
 	NewScores = (std::stoi(OldScore)) + Increment;
+	
 	SetScores(NewScores);// set a new value of the scores
 }
 
