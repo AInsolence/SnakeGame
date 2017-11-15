@@ -1,5 +1,6 @@
 /*
-	This class create HUD, contain the Player name, Points, Game time & Other helpful info.
+	This class create HUD, could contain the Player name, Scores, 
+	Game time & Other helpful info.
 */
 
 
@@ -9,13 +10,23 @@
 class HUD
 {
 public:
-	HUD(std::string NewPlayerName, int32 StartPoints);
+	HUD(std::string NewPlayerName, int32 StartScores);
 	~HUD();
 
-	void Create();
-	Block* Display;
+	sf::Text GetPlayerName() const;
+	sf::Text GetScores() const;
+
+	void SetScores(int32);
+	void UpdateScores(int32);
+
+	int32 Create(sf::Text & HUDLineName, sf::Font &Arial,\
+		std::string TextureLocation, std::string TextValue,\
+		int32 X_pos, int32 Y_pos);
+
 private:
-	std::string PlayerName;
-	int32 PointsCounter;
+	sf::Text Player;
+	sf::Text Scores;
+	sf::Font Arial;
+	std::string FontLocation = "../../image/ARIAL.TTF";
 };
 

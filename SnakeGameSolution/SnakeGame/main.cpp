@@ -12,8 +12,6 @@
 #include "bIsObjectsCollide.h"
 
 
-
-
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
@@ -76,7 +74,10 @@ int main()
 		}
 
 		//HUD Display
-		window.draw(hud.Display->MainSprite);
+		window.draw(hud.GetPlayerName());
+		window.draw(hud.GetScores());
+		//Check UpdateScore method
+		hud.UpdateScores(10);// works well
 
 		window.display();
 		sf::Time TimeGap = sf::seconds(0.6f);
