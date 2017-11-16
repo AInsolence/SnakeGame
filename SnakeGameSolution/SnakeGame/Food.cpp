@@ -1,3 +1,4 @@
+#pragma once
 #include "stdafx.h"
 #include "Food.h"
 
@@ -27,6 +28,11 @@ float Food::GetLifeTime() const
 	return LifeTime;
 }
 
+EFoodStatus Food::GetStatus() const
+{
+	return Status;
+}
+
 //Setters
 void Food::SetValue(int32 NewValue)
 {
@@ -37,5 +43,17 @@ void Food::SetValue(int32 NewValue)
 void Food::SetLifeTime(float NewTime)
 {
 	LifeTime = NewTime;
+	return;
+}
+
+void Food::SetStatus(EFoodStatus NewStatus)
+{
+	Status = NewStatus;
+	return;
+}
+
+void Food::UpdateCoordinates(int32 x, int32 y)
+{
+	Body->MainSprite.setPosition(x, y);
 	return;
 }
