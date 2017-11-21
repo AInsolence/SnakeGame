@@ -8,9 +8,9 @@ Snake::Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScal
 	Reset(x, y);// reset object to default parameters
 
 	// create snake's head, tail and body segments // TODO move this code to Reset method
-	Body.push_back(new Block("Light", 1000, 150, XScale, YScale));
-	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
-	Body.push_back(new Block("Green", 1000, 171, XScale, YScale));
+	Body.push_back(new Block("Light", 420, 140, XScale, YScale));
+	Body.push_back(new Block("Green", 420, 161, XScale, YScale));
+	Body.push_back(new Block("Green", 420, 182, XScale, YScale));
 }
 
 // destructor

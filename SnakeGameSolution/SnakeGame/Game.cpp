@@ -38,6 +38,17 @@ int32 Game::Run() const
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	sf::Clock clock;//start the clock
 
+	//Game music and sounds
+	sf::Music GameMusic;// create music to stream music from file
+	if (!GameMusic.openFromFile("../../music/game.wav")) {
+		std::cout << "Main game music asset is not found! ";
+		//return EXIT_FAILURE;
+	}
+	GameMusic.setLoop(true);
+	GameMusic.setVolume(50);
+	GameMusic.play();//start to play main game theme
+	
+
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
 	{
