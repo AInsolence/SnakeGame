@@ -6,7 +6,10 @@
 #pragma once
 #include "stdafx.h"
 #include <string>
+#include "Block.h"
 
+constexpr int32 CURSOR_START_POS_X = 20;
+constexpr int32 CURSOR_START_POS_Y = 30;
 
 enum class EMenuPage
 {
@@ -21,12 +24,16 @@ enum class EMenuPage
 class StartDisplay
 {
 public:
-	StartDisplay();
+	StartDisplay(sf::RenderWindow &window);
 	~StartDisplay();
 
-	int MenuListener() const;
+	int32 Run() const;
 	
+
 private:
+	sf::RenderWindow &MenuWindow;
+	Block* Menu;
+	Block* MenuCursor;
 	void ShowMenuScreen() const;
 	void ShowOptionsScreen() const;
 	void ShowRecordsScreen() const;

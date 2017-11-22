@@ -27,6 +27,6 @@ private:
 	sf::Text Player;
 	sf::Text Scores;
 	sf::Font Arial;
-	std::string FontLocation = "../../image/ARIAL.TTF";
+	std::string FontLocation = "../../img/ARIAL.TTF";
 };
 

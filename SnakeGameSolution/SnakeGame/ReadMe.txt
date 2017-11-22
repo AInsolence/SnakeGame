@@ -27,12 +27,13 @@ Sprints:
 9. Create point counter and HUD - DONE
 10. Create GAME class and add win/lose conditions. - DONE
 10.1 Make logic for the random food appearing in the game screen. - DONE
-11. Add game music and sounds (for move, collision(game over), eating&grow)
-12. Create Main Menu screen with animation and music
-13. Create options screen
+11. Add game music and sounds (for move, collision(game over), eating&grow) - AWAIT
+12. Create Main Menu screen with animation - DONE
+12.1 Create cursor and menu navigation - DONE
+13. Create options screen - DONE
 14. Rewrite KeyListener class with using SFML tools to handle user input
 15. Add ability to change key controls in options
-16. Create Record screen
+16. Create Record screen - DONE
 17. Add write/read records to/from file
 18. ***more levels
 19. ***add more lives for player

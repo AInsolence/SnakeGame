@@ -27,12 +27,16 @@ private:
 	sf::Texture Texture;// helper variable used to textures mapping
 	FPair SpriteSize;
 	std::map<std::string, std::string> BlockTypes{
-		{"Blue", "../../image/Block_Blue.png"},
-		{ "Dark", "../../image/Block_Box_1_Dark.png" },
-		{ "Light", "../../image/Block_Box_1_Light.png" },
-		{ "Green", "../../image/Block_Green.png" },
-		{ "Red", "../../image/Block_Red.png" },
-		{ "Yellow", "../../image/Block_Yellow.png" }
+		{"Blue", "../../img/Block_Blue.png"},
+		{ "Dark", "../../img/Block_Box_1_Dark.png" },
+		{ "Light", "../../img/Block_Box_1_Light.png" },
+		{ "Green", "../../img/Block_Green.png" },
+		{ "Red", "../../img/Block_Red.png" },
+		{ "Yellow", "../../img/Block_Yellow.png" },
+		{"Menu", "../../img/MENU.png" },
+		{ "MenuCursor", "../../img/MENU_CURSOR.png" },
+		{ "Options", "../../img/OPTIONS.png" },
+		{ "Records", "../../img/RECORDS.png" },
 	};
 };
 

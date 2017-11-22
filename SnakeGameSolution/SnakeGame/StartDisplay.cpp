@@ -2,9 +2,12 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 
+
 // constructor
-StartDisplay::StartDisplay() 
+StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 {
+	Menu = new Block("Menu", 0, -60, 0.68f, 0.68f);
+	MenuCursor = new Block("MenuCursor", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.15f, 0.15f);
 }
 
 //destructor
@@ -15,98 +18,76 @@ StartDisplay::~StartDisplay()
 // Methods
 
 //show display and handle user input in menu area
-int StartDisplay::MenuListener() const
+int StartDisplay::Run() const
 {
 	ShowMenuScreen(); //show main menu for player
 	// use enum to track current page to handle user input with appropriate switcher
 	EMenuPage CurrentMenuPage = EMenuPage::MainMenu;
-	constexpr int32 ESC_KEY = 27;// used to handle "ESC" keystroke
-	char UserCommand = ' ';// variable to store user input in menu area
-	
-	do{
-		if (_kbhit())// check if any key is pressed by player
-		{
-			UserCommand = _getch();
-		}
+	while (MenuWindow.isOpen())
+	{
+		sf::Event event;
 
-		if (CurrentMenuPage == EMenuPage::MainMenu)
-			// main menu navigation
+		while (MenuWindow.pollEvent(event))
 		{
-			switch (UserCommand)
-			{
-				case '1':
-					return 0;// TODO change line to "Start the new game"
+			if (event.type == sf::Event::Closed){
+				MenuWindow.close();
+			}
+			// Handle user keyboard input in main menu
+			if (event.type == sf::Event::KeyPressed) {
+				// cursor step in menu in pixels
+				constexpr int32 CURSOR_STEP_BY_X = 15;
+				constexpr int32 CURSOR_STEP_BY_Y = 160;
+
+				switch (event.key.code)
+				{
+				case sf::Keyboard::Down:// go down by menu points
+					if (MenuCursor->MainSprite.getPosition().y < MAIN_WINDOW_HIGHT - 300)
+					{// if curson not on the bottom of the screen
+						MenuCursor->MainSprite.move(-CURSOR_STEP_BY_X, CURSOR_STEP_BY_Y);
+					}
 					break;
-				case '2':
-					ShowOptionsScreen();
-					CurrentMenuPage = EMenuPage::Options;
-					UserCommand = ' ';// reset user input to avoid deep fall in menu
+				case sf::Keyboard::Up:// go up by menu points
+					if (MenuCursor->MainSprite.getPosition().y > 50)
+					{// if curson not on the top of the screen
+						MenuCursor->MainSprite.move(CURSOR_STEP_BY_X, -CURSOR_STEP_BY_Y);
+					}
 					break;
-				case '3':
-					ShowRecordsScreen();
-					CurrentMenuPage = EMenuPage::Records;
+				case sf::Keyboard::Return:// choose a menu point
+					const int32 CurrentCursorPosition =\
+						MenuCursor->MainSprite.getPosition().y;// get cursor Y position
+					switch (CurrentCursorPosition)
+					{
+					case CURSOR_START_POS_Y:// TODO Change to cursor start pos const
+						return 0;
+						break;
+					case CURSOR_START_POS_Y + CURSOR_STEP_BY_Y:
+						std::cout << "Options! ";
+						break;
+					case CURSOR_START_POS_Y + 2*CURSOR_STEP_BY_Y:
+						std::cout << "Records! ";
+						break;
+					case CURSOR_START_POS_Y + 3*CURSOR_STEP_BY_Y:
+						MenuWindow.close();
+					default:
+						break;
+					}
+					break;
+				}
 			}
 		}
 
-		if (CurrentMenuPage == EMenuPage::Options)
-			// options menu navigation
-		{
-			switch (UserCommand)
-			{
-			case '1':
-				ShowRules();
-				CurrentMenuPage = EMenuPage::Rules;
-				break;
-			case '2':
-				ShowControls();
-				CurrentMenuPage = EMenuPage::Controls;
-				break;
-			case ESC_KEY:
-				ShowMenuScreen();
-				CurrentMenuPage = EMenuPage::MainMenu;
-				break;
-			default:
-				break;
-			}
-		}
+		MenuWindow.draw(Menu->MainSprite);
+		MenuWindow.draw(MenuCursor->MainSprite);
 
-		if(CurrentMenuPage == EMenuPage::Records)
-			// records menu navigation
-		{
-			switch (UserCommand)
-			{
-			case ESC_KEY:
-				ShowMenuScreen();
-				CurrentMenuPage = EMenuPage::MainMenu;
-				UserCommand = ' ';// reset user input to avoid deep fall in menu
-				break;
-			default:
-				break;
-			}
-		}
-
-		if (CurrentMenuPage == EMenuPage::Rules || CurrentMenuPage == EMenuPage::Controls)
-			// go back to options menu
-		{
-			switch (UserCommand)
-			{
-			case ESC_KEY:
-				ShowOptionsScreen();
-				CurrentMenuPage = EMenuPage::Options;
-				UserCommand = ' ';// reset user input to avoid returning straight to main menu
-			default:
-				break;
-			}
-		}
-	} while (tolower(UserCommand) != 'q'); // user could press 'q' to exit game
+		MenuWindow.display();
+		MenuWindow.clear();
+	}
 	return 0;
 }
 
 void StartDisplay::ShowMenuScreen() const
 {
-	system ("cls");
-	std::cout << "\n\n\n    1. Start new game \n    2. Options \n    3. Best Players \n\n\n\
-    Press 'q' to exit the game" << std::endl;
+	
 }
 
 void StartDisplay::ShowOptionsScreen() const
