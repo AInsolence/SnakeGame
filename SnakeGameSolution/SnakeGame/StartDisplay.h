@@ -8,8 +8,12 @@
 #include <string>
 #include "Block.h"
 
+//menu cursor start position
 constexpr int32 CURSOR_START_POS_X = 20;
 constexpr int32 CURSOR_START_POS_Y = 30;
+// cursor step in menu in pixels
+constexpr int32 CURSOR_STEP_BY_X = 15;
+constexpr int32 CURSOR_STEP_BY_Y = 160;
 
 enum class EMenuPage
 {
@@ -34,9 +38,8 @@ private:
 	sf::RenderWindow &MenuWindow;
 	Block* Menu;
 	Block* MenuCursor;
-	void ShowMenuScreen() const;
-	void ShowOptionsScreen() const;
-	void ShowRecordsScreen() const;
-	void ShowRules() const;
-	void ShowControls() const;
+	Block* Options;
+	Block* Records;
+	int32 ShowOptionsScreen() const;
+	int32 ShowRecordsScreen() const;
 };

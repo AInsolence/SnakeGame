@@ -32,7 +32,7 @@ Sprints:
 12.1 Create cursor and menu navigation - DONE
 13. Create options screen - DONE
 14. Rewrite KeyListener class with using SFML tools to handle user input
-15. Add ability to change key controls in options
+15. Add ability to change key controls in options - AWAIT
 16. Create Record screen - DONE
 17. Add write/read records to/from file
 18. ***more levels
