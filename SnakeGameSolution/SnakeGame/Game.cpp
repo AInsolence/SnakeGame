@@ -32,12 +32,12 @@ int32 Game::Run() const
 	Level Level01(0.2f, 0.2f);//Create the level
 	HUD hud(Player, 0);//Create the HUD
 	Snake MySnake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
+	KeyListener Klistner(GameWindow);//Create the player's input handler
 	// Create food
 	Food* NewFood = new Food(600, 500, 0.2f, 0.2f, 10, 20);// TODO make real rand for x, y
-	KeyListener Klistner;//Create the player's input handler
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	sf::Clock clock;//start the clock
-
+	sf::Time TimeGap = sf::seconds(5.f);
 	//Game music and sounds
 	sf::Music GameMusic;// create music to stream music from file
 	if (!GameMusic.openFromFile("../../music/game.wav")) {
@@ -48,17 +48,10 @@ int32 Game::Run() const
 	GameMusic.setVolume(50);
 	GameMusic.play();//start to play main game theme
 	
-
+	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
-	{
-		// TODO replace this code to the KeyListener object
-		sf::Event event;
-		while (GameWindow.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				GameWindow.close();
-		}
+	{		
 		Klistner.Start(&MySnake);// start handle player input
 
 		MySnake.Move();// Start Snake movement
@@ -87,7 +80,7 @@ int32 Game::Run() const
 		GameWindow.display();//Display window and all game elements
 
 		//Speed of the game handling through the system clock
-		sf::Time TimeGap = sf::seconds(0.6f);
+		
 		sf::Time Elapsed = clock.restart();
 		while (Elapsed < TimeGap)
 		{

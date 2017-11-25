@@ -70,6 +70,9 @@ void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
 	// snake LIVE STATUS in the beginning of the game
 	ESnakeState CurrentState = ESnakeState::Alive;
 
+	// snake move;
+	bIsMove = true;
+
 	// snake starting DIRECTION is left
 	ESnakeCurrentDirection CurrentDirection = ESnakeCurrentDirection::Right;
 

@@ -3,9 +3,9 @@
 #include "KeyListener.h"
 
 
-KeyListener::KeyListener()
+KeyListener::KeyListener(sf::RenderWindow &window) : GameWindow(window)
 {
-	KeyCommand = 'd';// right-direction by default
+	
 }
 
 
@@ -15,24 +15,30 @@ KeyListener::~KeyListener()
 
 void KeyListener::Start(Snake *Object)
 {
-	// get users input
-	if (_kbhit())//if any key is pressed
+	sf::Event event;
+
+	while (GameWindow.pollEvent(event))
 	{
-		KeyCommand = _getch();//get it
-	}
-	switch (KeyCommand) {// and change direction if it's necessary
-	case KEY_LEFT:
-		Object->SetCurrentDirection(ESnakeCurrentDirection::Left);
-		break;
-	case KEY_RIGHT:
-		Object->SetCurrentDirection(ESnakeCurrentDirection::Right);
-		break;
-	case KEY_UP:
-		Object -> SetCurrentDirection(ESnakeCurrentDirection::Up);
-		break;
-	case KEY_DOWN:
-		Object -> SetCurrentDirection(ESnakeCurrentDirection::Down);
-	default:
-		break;
+		if (event.type == sf::Event::Closed)
+			GameWindow.close();
+		// Handle user keyboard input in the game
+		if (event.type == sf::Event::KeyPressed) {
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Left:
+				Object->SetCurrentDirection(ESnakeCurrentDirection::Left);
+				break;
+			case sf::Keyboard::Right:
+				Object->SetCurrentDirection(ESnakeCurrentDirection::Right);
+				break;
+			case sf::Keyboard::Up:
+				Object->SetCurrentDirection(ESnakeCurrentDirection::Up);
+				break;
+			case sf::Keyboard::Down:
+				Object->SetCurrentDirection(ESnakeCurrentDirection::Down);
+			default:
+				break;
+			}
+		}
 	}
 }

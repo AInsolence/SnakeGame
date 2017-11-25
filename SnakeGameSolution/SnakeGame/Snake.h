@@ -32,11 +32,13 @@ public:
 	~Snake();
 
 	std::vector<Block*> Body;// container to store snake head & snake segments
+	bool bIsMove;// state of the snake move or hold
 
 	int32 GetSpeed() const;
 	int32 GetSize() const;
 	ESnakeState GetCurrentState() const;
 	ESnakeCurrentDirection GetCurrentDirection() const;
+	
 	// reset the snake to the default parameters
 	void Reset(int32 &XStartPosition, int32 &YStartPosition);
 	void SetSpeed(int32);
