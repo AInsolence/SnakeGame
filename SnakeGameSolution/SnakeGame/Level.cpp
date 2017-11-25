@@ -40,7 +40,7 @@ void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, floa
 	}
 }
 
-std::vector<Block*> Level::GetMainBorder()// returns main border of the level
+std::vector<Block*> Level::GetMainBorder() const// returns main border of the level
 {
 	return MainBorder;
 }

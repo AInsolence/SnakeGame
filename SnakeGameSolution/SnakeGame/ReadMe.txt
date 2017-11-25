@@ -39,3 +39,8 @@ Sprints:
 19. ***add more lives for player
 20. User game test)
 21. ***Create installation pack
+
+Debug:
+
+1. Need new collision detection functor
+2. Need fix food appearing

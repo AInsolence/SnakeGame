@@ -11,7 +11,7 @@ public:
 	Game(sf::RenderWindow &window, std::string PlayerName);
 	~Game();
 
-	int32 Run() const;// start the new game 
+	int32 Run();// start the new game 
 
 private:
 	// reference to the main window where the new game will be rendered

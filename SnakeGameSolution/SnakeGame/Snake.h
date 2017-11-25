@@ -28,7 +28,7 @@ enum class ESnakeCurrentDirection// movement direction of the snake object
 class Snake
 {
 public:
-	Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale);
+	Snake(std::string SnakeColor, float x, float y, float XScale, float YScale);
 	~Snake();
 
 	std::vector<Block*> Body;// container to store snake head & snake segments
@@ -40,7 +40,7 @@ public:
 	ESnakeCurrentDirection GetCurrentDirection() const;
 	
 	// reset the snake to the default parameters
-	void Reset(int32 &XStartPosition, int32 &YStartPosition);
+	void Reset(float &XStartPosition, float &YStartPosition);
 	void SetSpeed(int32);
 	void SetSize(int32);
 	void SetCurrentDirection(ESnakeCurrentDirection);

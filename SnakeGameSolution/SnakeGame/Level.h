@@ -12,7 +12,7 @@ public:
 	~Level();
 
 	void SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, float XScale, float YScale);
-	std::vector<Block*> GetMainBorder ();
+	std::vector<Block*> GetMainBorder () const;
 
 private:
 	std::vector<Block*> MainBorder;// stores blocks represents main border of the level

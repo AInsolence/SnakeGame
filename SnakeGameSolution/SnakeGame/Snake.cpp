@@ -3,7 +3,7 @@
 #include "Snake.h"
 
 //constructor
-Snake::Snake(std::string SnakeColor, int32 x, int32 y, float XScale, float YScale)
+Snake::Snake(std::string SnakeColor, float x, float y, float XScale, float YScale)
 {
 	Reset(x, y);// reset object to default parameters
 
@@ -65,23 +65,19 @@ void Snake::SetCurrentDirection(ESnakeCurrentDirection NewDirection)
 
 // Methods
 
-void Snake::Reset(int32 &XStartPosition, int32 &YStartPosition)
+void Snake::Reset(float &XStartPosition, float &YStartPosition)
 {
 	// snake LIVE STATUS in the beginning of the game
 	ESnakeState CurrentState = ESnakeState::Alive;
-
 	// snake move;
 	bIsMove = true;
-
 	// snake starting DIRECTION is left
-	ESnakeCurrentDirection CurrentDirection = ESnakeCurrentDirection::Right;
-
+	SetCurrentDirection(ESnakeCurrentDirection::Left);
 	// set snake SPEED in the beginning of the game
 	constexpr int32 START_SNAKE_SPEED = 1;
 	SetSpeed(START_SNAKE_SPEED);
-
 	// set snake SIZE in the beginning of the game
-	constexpr int32 START_SNAKE_SIZE = 1;
+	constexpr int32 START_SNAKE_SIZE = 3;
 	SetSize(START_SNAKE_SIZE);
 }
 

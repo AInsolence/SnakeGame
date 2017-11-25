@@ -26,18 +26,17 @@ Game::~Game()
 // Methods
 
 // create all game's objects and handlers, start a game loop
-int32 Game::Run() const
+int32 Game::Run()
 {
 	// ***Initialization of the game objects are used in the game loop***
-	Level Level01(0.2f, 0.2f);//Create the level
-	HUD hud(Player, 0);//Create the HUD
-	Snake MySnake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
-	KeyListener Klistner(GameWindow);//Create the player's input handler
+	Level* Level01 = new Level(0.2f, 0.2f);//Create the level
+	HUD* hud = new HUD(Player, 0);//Create the HUD
+	Snake* MySnake = new Snake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
+	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create food
 	Food* NewFood = new Food(600, 500, 0.2f, 0.2f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
-	sf::Clock clock;//start the clock
-	sf::Time TimeGap = sf::seconds(5.f);
+
 	//Game music and sounds
 	sf::Music GameMusic;// create music to stream music from file
 	if (!GameMusic.openFromFile("../../music/game.wav")) {
@@ -52,18 +51,20 @@ int32 Game::Run() const
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
 	{		
-		Klistner.Start(&MySnake);// start handle player input
+		Klistner->Start(MySnake);// start handle player input
 
-		MySnake.Move();// Start Snake movement
-		
+		MySnake->Move();// Start Snake movement
+
+		GameWindow.setFramerateLimit(10);
+
 		// ***RENDERING PART OF THE GAME LOOP***
 		// Level render
-		for (auto block : Level01.GetMainBorder())
+		for (auto block : Level01->GetMainBorder())
 		{
 			GameWindow.draw(block->MainSprite);
 		}
 		// Snake render
-		for (auto segment : MySnake.Body)
+		for (auto segment : MySnake->Body)
 		{
 			GameWindow.draw(segment->MainSprite);
 		}
@@ -72,53 +73,45 @@ int32 Game::Run() const
 		{
 			GameWindow.draw(NewFood->Body->MainSprite);
 		}
-		
 		//HUD render
-		GameWindow.draw(hud.GetPlayerName());// display Player name
-		GameWindow.draw(hud.GetScores());// display Scores
+		GameWindow.draw(hud->GetPlayerName());// display Player name
+		GameWindow.draw(hud->GetScores());// display Scores
 		
-		GameWindow.display();//Display window and all game elements
-
-		//Speed of the game handling through the system clock
-		
-		sf::Time Elapsed = clock.restart();
-		while (Elapsed < TimeGap)
-		{
-			Elapsed = clock.getElapsedTime();
-		}
 		// ***END OF RENDERING PART***
 
+		GameWindow.display();//Display window and all game elements
+
 		// ***COLLISION DETECTION PART OF THE GAME LOOP***
-		//Check collision with walls
-		for (auto block : Level01.GetMainBorder())
+		// Check collision snake with it's own segments
+		for (auto segment : MySnake->Body)
 		{
-			if (bIsCollide(block, MySnake.Body[0]))
+			if (bIsCollide(segment, MySnake->Body[0]))
 			{
-				std::cout << "You are dead!" << std::endl;
-				// TODO finish after ceating game over window
-			}
-		}
-		//Check collision snake with it's own segments
-		for (auto segment : MySnake.Body)
-		{
-			if (bIsCollide(segment, MySnake.Body[0]))
-			{
-				if (segment != MySnake.Body[0])// if it is not a head itself
+				if (segment != MySnake->Body[0])// if it is not a head itself
 				{
 					std::cout << "You are dead!" << std::endl;
 					// TODO finish after ceating game over window
 				}
 			}
 		}
-		//Check collision with the food & change size & points after that
-		if (bIsCollide(NewFood->Body, MySnake.Body[0]))
+		//Check collision with walls
+		/*for (auto block : Level01->GetMainBorder())
 		{
-			hud.UpdateScores(NewFood->GetValue());// increase scores
-			MySnake.ChangeSize(1);// increase snake's size
+			if (bIsCollide(block, MySnake->Body[0]))
+			{
+				std::cout << "You are dead!" << std::endl;
+				// TODO finish after ceating game over window
+			}
+		}*/
+		//Check collision with the food & change size & points after that
+		if (bIsCollide(NewFood->Body, MySnake->Body[0]))
+		{
+			hud->UpdateScores(NewFood->GetValue());// increase scores
+			MySnake->ChangeSize(1);// increase snake's size
 			NewFood->SetStatus(EFoodStatus::Disappear);// hide food object
 			// create random coordinates
-			int32 NewX_pos = rand() % MAIN_WINDOW_WIDTH;
-			int32 NewY_pos = rand() % MAIN_WINDOW_HIGHT;
+			int32 NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 50);
+			int32 NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 50);
 
 			NewFood->UpdateCoordinates(NewX_pos, NewY_pos);// set new coordinates
 			NewFood->SetStatus(EFoodStatus::Appear);// show
