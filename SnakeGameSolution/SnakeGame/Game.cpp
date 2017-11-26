@@ -55,7 +55,7 @@ int32 Game::Run()
 
 		MySnake->Move();// Start Snake movement
 
-		GameWindow.setFramerateLimit(10);
+		GameWindow.setFramerateLimit(8);
 
 		// ***RENDERING PART OF THE GAME LOOP***
 		// Level render
@@ -95,14 +95,14 @@ int32 Game::Run()
 			}
 		}
 		//Check collision with walls
-		/*for (auto block : Level01->GetMainBorder())
+		for (auto block : Level01->GetMainBorder())
 		{
 			if (bIsCollide(block, MySnake->Body[0]))
 			{
 				std::cout << "You are dead!" << std::endl;
 				// TODO finish after ceating game over window
 			}
-		}*/
+		}
 		//Check collision with the food & change size & points after that
 		if (bIsCollide(NewFood->Body, MySnake->Body[0]))
 		{

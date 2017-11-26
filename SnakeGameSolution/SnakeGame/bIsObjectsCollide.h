@@ -7,6 +7,7 @@ public:
 	bIsObjectsCollide();
 	~bIsObjectsCollide();
 
-	bool operator () (Block*, Block*) const;
+	bool operator () (const Block*, const Block*) const;
+	bool IsObjectInside(const Block*, const Block*) const;
 };
 
