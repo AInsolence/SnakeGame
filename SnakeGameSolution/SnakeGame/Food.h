@@ -29,10 +29,13 @@ public:
 	void SetStatus(EFoodStatus);
 
 	void UpdateCoordinates(int32, int32);
+	void Animation();
 
 private:
 	int32 Value;// nutrition value can be negative and positive. Impact for snake's size change.
 	EFoodStatus Status;// defind is the food exist or not on the map
 	float LifeTime;// lifetime in seconds when food will exists on the maps
+
+	
 };
 

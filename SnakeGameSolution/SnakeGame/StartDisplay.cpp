@@ -6,8 +6,8 @@
 // constructor
 StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 {
-	Menu = new Block("Menu", 0, -60, 0.68f, 0.68f);
-	MenuCursor = new Block("MenuCursor", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.15f, 0.15f);
+	Menu = new Block("Menu", 0, -30, 0.68f, 0.68f);
+	MenuCursor = new Block("MenuCursor", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.25f, 0.25f);
 	Options = new Block("Options", 0, -10, 0.68f, 0.68f);
 	Records = new Block("Records", 0, -10, 0.68f, 0.68f);
 }

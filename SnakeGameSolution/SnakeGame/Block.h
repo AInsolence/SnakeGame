@@ -37,6 +37,8 @@ private:
 		{ "MenuCursor", "../../img/MENU_CURSOR.png" },
 		{ "Options", "../../img/OPTIONS.png" },
 		{ "Records", "../../img/RECORDS.png" },
+		{ "GameOver", "../../img/OVER.png" },
+		{ "Pause", "../../img/PAUSE.png" }
 	};
 };
 

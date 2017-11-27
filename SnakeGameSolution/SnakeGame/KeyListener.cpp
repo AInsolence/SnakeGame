@@ -13,7 +13,7 @@ KeyListener::~KeyListener()
 {
 }
 
-void KeyListener::Start(Snake *Object)
+void KeyListener::Start(Snake *Object, bool &IsGamePaused)
 {
 	sf::Event event;
 
@@ -25,17 +25,39 @@ void KeyListener::Start(Snake *Object)
 		if (event.type == sf::Event::KeyPressed) {
 			switch (event.key.code)
 			{
+			case sf::Keyboard::Space:
+				if (IsGamePaused)
+				{
+					IsGamePaused = false;
+				}
+				else
+				{
+					IsGamePaused = true;
+				}
+				break;
 			case sf::Keyboard::Left:
-				Object->SetCurrentDirection(ESnakeCurrentDirection::Left);
+				if (Object->GetCurrentDirection() != ESnakeCurrentDirection::Right)
+				{
+					Object->SetCurrentDirection(ESnakeCurrentDirection::Left);
+				}
 				break;
 			case sf::Keyboard::Right:
-				Object->SetCurrentDirection(ESnakeCurrentDirection::Right);
+				if (Object->GetCurrentDirection() != ESnakeCurrentDirection::Left)
+				{
+					Object->SetCurrentDirection(ESnakeCurrentDirection::Right);
+				}
 				break;
 			case sf::Keyboard::Up:
-				Object->SetCurrentDirection(ESnakeCurrentDirection::Up);
+				if (Object->GetCurrentDirection() != ESnakeCurrentDirection::Down)
+				{
+					Object->SetCurrentDirection(ESnakeCurrentDirection::Up);
+				}
 				break;
 			case sf::Keyboard::Down:
-				Object->SetCurrentDirection(ESnakeCurrentDirection::Down);
+				if (Object->GetCurrentDirection() != ESnakeCurrentDirection::Up)
+				{
+					Object->SetCurrentDirection(ESnakeCurrentDirection::Down);
+				}
 			default:
 				break;
 			}

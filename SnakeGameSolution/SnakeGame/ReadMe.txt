@@ -34,6 +34,7 @@ Sprints:
 14. Rewrite KeyListener class with using SFML tools to handle user input - DONE
 15. Add ability to change key controls in options - AWAIT
 16. Create Record screen - DONE
+16.1 Create 'Game over' screen - DONE
 17. Add write/read records to/from file
 18. ***more levels
 19. ***add more lives for player
@@ -42,5 +43,6 @@ Sprints:
 
 Debug:
 
-1. Need new collision detection functor
-2. Need fix food appearing
+1. Need new collision detection functor - DONE
+2. Need fix food appearing - DONE
+3. Prohibit reverse moving to the snake - DONE

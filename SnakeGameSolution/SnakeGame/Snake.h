@@ -40,7 +40,7 @@ public:
 	ESnakeCurrentDirection GetCurrentDirection() const;
 	
 	// reset the snake to the default parameters
-	void Reset(float &XStartPosition, float &YStartPosition);
+	void Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale);
 	void SetSpeed(int32);
 	void SetSize(int32);
 	void SetCurrentDirection(ESnakeCurrentDirection);

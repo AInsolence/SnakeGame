@@ -34,8 +34,14 @@ int32 Game::Run()
 	Snake* MySnake = new Snake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create food
-	Food* NewFood = new Food(600, 500, 0.2f, 0.2f, 10, 20);// TODO make real rand for x, y
+	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
+	// Create 'Game Over' title
+	Block* GameOver = new Block("GameOver", MAIN_WINDOW_WIDTH/3, MAIN_WINDOW_WIDTH/6, 0.2f, 0.2f);
+	bool IsGameOver = false;
+	// Create 'Pause' title
+	Block* Pause = new Block("Pause", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 0.2f, 0.2f);
+	bool IsGamePaused = false;
 
 	//Game music and sounds
 	sf::Music GameMusic;// create music to stream music from file
@@ -51,7 +57,7 @@ int32 Game::Run()
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
 	{		
-		Klistner->Start(MySnake);// start handle player input
+		Klistner->Start(MySnake, IsGamePaused);// start handle player input
 
 		MySnake->Move();// Start Snake movement
 
@@ -72,11 +78,30 @@ int32 Game::Run()
 		if (NewFood->GetStatus() == EFoodStatus::Appear)
 		{
 			GameWindow.draw(NewFood->Body->MainSprite);
+			NewFood->Animation();
 		}
 		//HUD render
 		GameWindow.draw(hud->GetPlayerName());// display Player name
 		GameWindow.draw(hud->GetScores());// display Scores
-		
+		//Pause logic & render
+		if (IsGamePaused && !IsGameOver)
+		{
+			MySnake->bIsMove = false;
+			GameWindow.draw(Pause->MainSprite);
+			GameMusic.setVolume(0);
+		}
+		else
+		{
+			MySnake->bIsMove = true;
+			if (GameMusic.getVolume() == 0)	GameMusic.setVolume(50);
+		}
+		//Game Over logic & render
+		if (IsGameOver)
+		{
+			GameWindow.draw(GameOver->MainSprite);
+			sf::sleep(sf::seconds(3));
+			return 0;
+		}
 		// ***END OF RENDERING PART***
 
 		GameWindow.display();//Display window and all game elements
@@ -89,8 +114,8 @@ int32 Game::Run()
 			{
 				if (segment != MySnake->Body[0])// if it is not a head itself
 				{
-					std::cout << "You are dead!" << std::endl;
-					// TODO finish after ceating game over window
+					MySnake->bIsMove = false;
+					IsGameOver = true;
 				}
 			}
 		}
@@ -99,8 +124,8 @@ int32 Game::Run()
 		{
 			if (bIsCollide(block, MySnake->Body[0]))
 			{
-				std::cout << "You are dead!" << std::endl;
-				// TODO finish after ceating game over window
+				MySnake->bIsMove = false;
+				IsGameOver = true;
 			}
 		}
 		//Check collision with the food & change size & points after that
@@ -110,8 +135,10 @@ int32 Game::Run()
 			MySnake->ChangeSize(1);// increase snake's size
 			NewFood->SetStatus(EFoodStatus::Disappear);// hide food object
 			// create random coordinates
-			int32 NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 50);
-			int32 NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 50);
+			int32 NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 84);
+			int32 NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 84);
+			if (NewX_pos < 42) NewX_pos = 42;
+			if (NewY_pos < 42) NewY_pos = 42;
 
 			NewFood->UpdateCoordinates(NewX_pos, NewY_pos);// set new coordinates
 			NewFood->SetStatus(EFoodStatus::Appear);// show
