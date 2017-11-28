@@ -99,6 +99,7 @@ int32 Game::Run()
 		if (IsGameOver)
 		{
 			GameWindow.draw(GameOver->MainSprite);
+			GameWindow.display();//Display 'Game over' window
 			sf::sleep(sf::seconds(3));
 			return 0;
 		}
