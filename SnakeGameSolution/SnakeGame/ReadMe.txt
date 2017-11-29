@@ -35,6 +35,7 @@ Sprints:
 15. Add ability to change key controls in options - AWAIT
 16. Create Record screen - DONE
 16.1 Create 'Game over' screen - DONE
+16.2 Add animated head, food - DONE
 17. Add write/read records to/from file
 18. ***more levels
 19. ***add more lives for player

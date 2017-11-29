@@ -41,6 +41,10 @@ private:
 		{ "Pause", "../../img/PAUSE.png" },
 		{ "SolarBackground", "../../img/SOLAR.jpeg"},
 		{ "Head", "../../img/SNAKE.png"},
+		{ "HeadLeft", "../../img/SNAKE_L.png" },
+		{ "HeadRight", "../../img/SNAKE_Rg.png" },
+		{ "HeadDown", "../../img/SNAKE_D.png" },
+		{ "HeadUp", "../../img/SNAKE_U.png" },
 		{ "Body", "../../img/SBODY.png" }
 	};
 };

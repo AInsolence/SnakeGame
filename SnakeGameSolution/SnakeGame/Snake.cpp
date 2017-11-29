@@ -64,7 +64,7 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 {
 
 	// create snake's head, tail and body segments // TODO move this code to Reset method
-	Body.push_back(new Block("Head", 42, 42, XScale, YScale));
+	Body.push_back(new Block("HeadUp", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
 	// snake LIVE STATUS in the beginning of the game
@@ -110,15 +110,23 @@ void Snake::Move()
 		switch (CurrentDirection)// TODO add changing of snake's  head tile  
 		{
 		case ESnakeCurrentDirection::Left:
+			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_L.png", Body[0]->MainSprite.getScale().x,\
+				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(-Step_x, 0);
 			break;
 		case ESnakeCurrentDirection::Right:
+			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_Rg.png", Body[0]->MainSprite.getScale().x, \
+				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(Step_x, 0);
 			break;
 		case ESnakeCurrentDirection::Up:
+			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_U.png", Body[0]->MainSprite.getScale().x, \
+				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(0, -Step_y);
 			break;
 		case ESnakeCurrentDirection::Down:
+			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_D.png", Body[0]->MainSprite.getScale().x, \
+				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(0, Step_y);
 			break;
 		default:
