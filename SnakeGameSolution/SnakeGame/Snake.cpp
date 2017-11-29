@@ -65,8 +65,8 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 
 	// create snake's head, tail and body segments // TODO move this code to Reset method
 	Body.push_back(new Block("Head", 42, 42, XScale, YScale));
-	Body.push_back(new Block("Green", 42, 42, XScale, YScale));
-	Body.push_back(new Block("Green", 42, 42, XScale, YScale));
+	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
+	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
 	// snake LIVE STATUS in the beginning of the game
 	ESnakeState CurrentState = ESnakeState::Alive;
 	// snake move;
@@ -85,7 +85,7 @@ void Snake::ChangeSize(int32 AdditionToCurrentSize)
 {
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{// add new segment with head segment scale
-		Body.push_back(new Block("Green",\
+		Body.push_back(new Block("Body",\
 			Body[1]->MainSprite.getPosition().x,\
 			Body[1]->MainSprite.getPosition().y,\
 			Body[1]->MainSprite.getScale().x, Body[1]->MainSprite.getScale().y));

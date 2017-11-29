@@ -40,7 +40,8 @@ private:
 		{ "GameOver", "../../img/OVER.png" },
 		{ "Pause", "../../img/PAUSE.png" },
 		{ "SolarBackground", "../../img/SOLAR.jpeg"},
-		{ "Head", "../../img/SNAKE.png"}
+		{ "Head", "../../img/SNAKE.png"},
+		{ "Body", "../../img/SBODY.png" }
 	};
 };
 
