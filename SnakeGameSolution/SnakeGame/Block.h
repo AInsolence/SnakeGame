@@ -38,7 +38,8 @@ private:
 		{ "Options", "../../img/OPTIONS.png" },
 		{ "Records", "../../img/RECORDS.png" },
 		{ "GameOver", "../../img/OVER.png" },
-		{ "Pause", "../../img/PAUSE.png" }
+		{ "Pause", "../../img/PAUSE.png" },
+		{ "SolarBackground", "../../img/SOLAR.jpeg"}
 	};
 };
 

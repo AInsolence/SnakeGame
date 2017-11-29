@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 
-
 // constructor
 StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 {

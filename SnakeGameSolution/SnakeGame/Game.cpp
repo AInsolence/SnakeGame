@@ -29,6 +29,8 @@ Game::~Game()
 int32 Game::Run()
 {
 	// ***Initialization of the game objects are used in the game loop***
+	// Create game field background
+	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.3f, 0.3f);
 	Level* Level01 = new Level(0.2f, 0.2f);//Create the level
 	HUD* hud = new HUD(Player, 0);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
@@ -64,6 +66,8 @@ int32 Game::Run()
 		GameWindow.setFramerateLimit(8);
 
 		// ***RENDERING PART OF THE GAME LOOP***
+		// Background render
+		GameWindow.draw(GameBackground->MainSprite);
 		// Level render
 		for (auto block : Level01->GetMainBorder())
 		{
