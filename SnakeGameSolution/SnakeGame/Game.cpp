@@ -55,6 +55,8 @@ int32 Game::Run()
 	GameMusic.setVolume(50);
 	GameMusic.play();//start to play main game theme
 	
+	//Test block
+	Block* Test = new Block("Yellow", 100, 100, 0.2f, 0.2f);
 	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
@@ -107,6 +109,10 @@ int32 Game::Run()
 			sf::sleep(sf::seconds(3));
 			return 0;
 		}
+
+		GameWindow.draw(Test->MainSprite);
+		Test->MainSprite.setOrigin(Test->MainSprite.getPosition().x + 21, Test->MainSprite.getPosition().y + 21);
+		Test->MainSprite.rotate(20);
 		// ***END OF RENDERING PART***
 
 		GameWindow.display();//Display window and all game elements

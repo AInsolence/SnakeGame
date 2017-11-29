@@ -64,7 +64,7 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 {
 
 	// create snake's head, tail and body segments // TODO move this code to Reset method
-	Body.push_back(new Block("Light", 42, 42, XScale, YScale));
+	Body.push_back(new Block("Head", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Green", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Green", 42, 42, XScale, YScale));
 	// snake LIVE STATUS in the beginning of the game
