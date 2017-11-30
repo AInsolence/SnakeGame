@@ -6,7 +6,7 @@
 // x&y is the coordinates of appearing on the map
 Food::Food(int32 x, int32 y, float XScale, float YScale, int32 NewValue, float NewLifeTime)
 {
-	Body = new Block("Blue", x, y, XScale, YScale);
+	Body = new Block("Food", x, y, XScale, YScale);
 	Value = NewValue;
 	LifeTime = NewLifeTime;
 	Status = EFoodStatus::Appear;

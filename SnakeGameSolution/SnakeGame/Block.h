@@ -8,7 +8,7 @@
 #include <map>
 
 //Base block size without scaling, depends on using tileset images
-constexpr int32 BASE_SPRITE_SIZE = 210;
+constexpr int32 BASE_SPRITE_SIZE = 420;
 
 class Block
 {
@@ -45,7 +45,9 @@ private:
 		{ "HeadRight", "../../img/SNAKE_Rg.png" },
 		{ "HeadDown", "../../img/SNAKE_D.png" },
 		{ "HeadUp", "../../img/SNAKE_U.png" },
-		{ "Body", "../../img/SBODY.png" }
+		{ "Body", "../../img/SBODY.png" },
+		{"Block", "../../img/BLUE.png"},
+		{ "Food", "../../img/FOOD_1.png" }
 	};
 };
 

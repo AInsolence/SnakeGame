@@ -6,7 +6,7 @@
 StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 {
 	Menu = new Block("Menu", 0, -30, 0.68f, 0.68f);
-	MenuCursor = new Block("MenuCursor", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.25f, 0.25f);
+	MenuCursor = new Block("HeadRight", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.3f, 0.3f);
 	Options = new Block("Options", 0, -10, 0.68f, 0.68f);
 	Records = new Block("Records", 0, -10, 0.68f, 0.68f);
 }
@@ -22,6 +22,8 @@ StartDisplay::~StartDisplay()
 int StartDisplay::Run() const
 {
 	static bool bIsMusicPlay = false;
+	// Create the menu background
+	Block* MenuBackground = new Block("SolarBackground", 0, 0, 0.3f, 0.3f);
 	//move cursor to the start position
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	// Menu music
@@ -87,6 +89,7 @@ int StartDisplay::Run() const
 			}
 		}
 
+		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(Menu->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
 

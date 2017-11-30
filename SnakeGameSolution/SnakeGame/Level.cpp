@@ -30,11 +30,11 @@ void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, floa
 		{
 			if (x == 0 || x == MAIN_WINDOW_WIDTH - DISTANCE_BETWEEN_BLOCKS_X)
 			{
-				MainBorder.push_back(new Block("Light", x, y, XScale, YScale));
+				MainBorder.push_back(new Block("Block", x, y, XScale, YScale));
 			}
 			if (y == 0 || y == MAIN_WINDOW_HIGHT - DISTANCE_BETWEEN_BLOCKS_Y)
 			{
-				MainBorder.push_back(new Block("Light", x, y, XScale, YScale));
+				MainBorder.push_back(new Block("Block", x, y, XScale, YScale));
 			}
 		}
 	}

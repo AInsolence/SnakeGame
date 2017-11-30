@@ -31,12 +31,12 @@ int32 Game::Run()
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
 	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.3f, 0.3f);
-	Level* Level01 = new Level(0.2f, 0.2f);//Create the level
+	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
 	HUD* hud = new HUD(Player, 0);//Create the HUD
-	Snake* MySnake = new Snake("Red", 200, 200, 0.2f, 0.2f);//Create the Snake
+	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
-	// Create food
-	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
+	// Create the food
+	Food* NewFood = new Food(600, 500, 0.08f, 0.08f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	// Create 'Game Over' title
 	Block* GameOver = new Block("GameOver", MAIN_WINDOW_WIDTH/3, MAIN_WINDOW_WIDTH/6, 0.2f, 0.2f);
