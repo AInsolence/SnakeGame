@@ -30,7 +30,7 @@ int32 Game::Run()
 {
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
-	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.3f, 0.3f);
+	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
 	HUD* hud = new HUD(Player, 0);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
