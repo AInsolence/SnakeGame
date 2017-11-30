@@ -47,7 +47,8 @@ private:
 		{ "HeadUp", "../../img/SNAKE_U.png" },
 		{ "Body", "../../img/SBODY.png" },
 		{"Block", "../../img/BLUE.png"},
-		{ "Food", "../../img/FOOD_1.png" }
+		{ "Food", "../../img/FOOD_1.png" },
+		{ "Star", "../../img/STAR.jpg" }
 	};
 };
 

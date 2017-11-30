@@ -23,7 +23,7 @@ int StartDisplay::Run() const
 {
 	static bool bIsMusicPlay = false;
 	// Create the menu background
-	Block* MenuBackground = new Block("SolarBackground", 0, 0, 0.3f, 0.3f);
+	Block* MenuBackground = new Block("Star", 0, 0, 0.7f, 0.7f);
 	//move cursor to the start position
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	// Menu music
