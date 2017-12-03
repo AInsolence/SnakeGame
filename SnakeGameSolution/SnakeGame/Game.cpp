@@ -65,7 +65,7 @@ int32 Game::Run()
 
 		MySnake->Move();// Start Snake movement
 
-		GameWindow.setFramerateLimit(8);
+		GameWindow.setFramerateLimit(5);
 
 		// ***RENDERING PART OF THE GAME LOOP***
 		// Background render
