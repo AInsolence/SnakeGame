@@ -21,7 +21,6 @@ StartDisplay::~StartDisplay()
 //show display and handle user input in menu area
 int StartDisplay::Run() const
 {
-	static bool bIsMusicPlay = false;
 	// Create the menu background
 	Block* MenuBackground = new Block("Star", 0, 0, 0.7f, 0.7f);
 	//move cursor to the start position
@@ -34,10 +33,7 @@ int StartDisplay::Run() const
 	}
 	GameMusic.setLoop(true);
 	GameMusic.setVolume(50);
-	if (!bIsMusicPlay) {
-		GameMusic.play();//start to play main game theme
-		bIsMusicPlay = true;
-	}
+	GameMusic.play();//start to play main game theme
 
 	while (MenuWindow.isOpen())
 	{

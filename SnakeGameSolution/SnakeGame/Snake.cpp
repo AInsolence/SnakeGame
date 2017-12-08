@@ -86,9 +86,9 @@ void Snake::ChangeSize(int32 AdditionToCurrentSize)
 	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{// add new segment with head segment scale
 		Body.push_back(new Block("Body",\
-			Body[1]->MainSprite.getPosition().x,\
-			Body[1]->MainSprite.getPosition().y,\
-			Body[1]->MainSprite.getScale().x, Body[1]->MainSprite.getScale().y));
+			Body[0]->MainSprite.getPosition().x,\
+			Body[0]->MainSprite.getPosition().y,\
+			Body[0]->MainSprite.getScale().x, Body[0]->MainSprite.getScale().y));
 	}
 }
 

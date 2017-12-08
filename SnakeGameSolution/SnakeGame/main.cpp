@@ -17,10 +17,8 @@ int main()
 		StartDisplay* MainMenu = new StartDisplay(window);
 		Game* NewGame = new Game(window, "Anton");
 		MainMenu->Run();
-		delete MainMenu;
 		// Run the new game
 		NewGame->Run();
-		delete NewGame;
 	}
 
     return 0;
