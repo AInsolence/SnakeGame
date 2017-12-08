@@ -16,6 +16,6 @@ public:
 private:
 	// reference to the main window where the new game will be rendered
 	sf::RenderWindow &GameWindow;
-	std::string Player;
+	std::string MainText;
 };
 

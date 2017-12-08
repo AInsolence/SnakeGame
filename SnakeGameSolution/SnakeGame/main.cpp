@@ -15,7 +15,7 @@ int main()
 	{
 		// Create Game object and render all eventsin the main window
 		StartDisplay* MainMenu = new StartDisplay(window);
-		Game* NewGame = new Game(window, "Anton");
+		Game* NewGame = new Game(window, "Player");
 		MainMenu->Run();
 		// Run the new game
 		NewGame->Run();

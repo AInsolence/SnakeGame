@@ -15,7 +15,7 @@
 // constructor
 Game::Game(sf::RenderWindow &window, std::string PlayerName) : GameWindow (window)// link to the main window
 {
-	Player = PlayerName;
+	MainText = PlayerName;
 }
 
 // destructor
@@ -32,17 +32,17 @@ int32 Game::Run()
 	// Create game field background
 	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
-	HUD* hud = new HUD(Player, 0);//Create the HUD
+	HUD* hud = new HUD("Player", 0, 45);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create the food
-	Food* NewFood = new Food(600, 500, 0.08f, 0.08f, 10, 20);// TODO make real rand for x, y
+	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	// Create 'Game Over' title
-	Block* GameOver = new Block("GameOver", MAIN_WINDOW_WIDTH/3, MAIN_WINDOW_WIDTH/6, 0.2f, 0.2f);
+	HUD* GameOver = new HUD("GAME OVER!", MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGameOver = false;
 	// Create 'Pause' title
-	Block* Pause = new Block("Pause", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 0.2f, 0.2f);
+	HUD* Pause = new HUD("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGamePaused = false;
 
 	//Game music and sounds
@@ -54,9 +54,6 @@ int32 Game::Run()
 	GameMusic.setLoop(true);
 	GameMusic.setVolume(50);
 	GameMusic.play();//start to play main game theme
-	
-	//Test block
-	Block* Test = new Block("Yellow", 100, 100, 0.2f, 0.2f);
 	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
@@ -87,13 +84,13 @@ int32 Game::Run()
 			NewFood->Animation();
 		}
 		//HUD render
-		GameWindow.draw(hud->GetPlayerName());// display Player name
+		GameWindow.draw(hud->GetText());// display Player name
 		GameWindow.draw(hud->GetScores());// display Scores
 		//Pause logic & render
 		if (IsGamePaused && !IsGameOver)
 		{
 			MySnake->bIsMove = false;
-			GameWindow.draw(Pause->MainSprite);
+			GameWindow.draw(Pause->GetText());
 			GameMusic.setVolume(0);
 		}
 		else
@@ -104,15 +101,11 @@ int32 Game::Run()
 		//Game Over logic & render
 		if (IsGameOver)
 		{
-			GameWindow.draw(GameOver->MainSprite);
+			GameWindow.draw(GameOver->GetText());
 			GameWindow.display();//Display 'Game over' window
 			sf::sleep(sf::seconds(3));
 			return 0;
 		}
-
-		GameWindow.draw(Test->MainSprite);
-		Test->MainSprite.setOrigin(Test->MainSprite.getPosition().x + 21, Test->MainSprite.getPosition().y + 21);
-		Test->MainSprite.rotate(20);
 		// ***END OF RENDERING PART***
 
 		GameWindow.display();//Display window and all game elements

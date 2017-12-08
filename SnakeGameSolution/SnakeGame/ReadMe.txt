@@ -5,6 +5,8 @@ Language: C++
 Graphic library: SFML 2.4.2 
 https://www.sfml-dev.org/download.php
 
+Background from: http://www.guoguiyan.com/data/out/144/69896840-papyrus-wallpapers.jpeg
+
 To play it is needed to setup assets, link sfml library, and compile the sources.
 
 SCRUM plan 08.11.2017
@@ -45,7 +47,7 @@ Debug:
 3. Prohibit reverse moving to the snake - DONE
 
 Additional features after manual testing:
-1. Create new graphics for the food & walls in the game
-2. Create new graphics for the main menu 
-3. Create new graphics for the main menu points
+1. Create new graphics for the food & walls in the game - DONE
+2. Create new graphics for the main menu - DONE
+3. Create new graphics for the main menu points - DONE
 4. Increasing speed depending on length of the snake

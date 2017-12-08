@@ -1,14 +1,21 @@
 #include "stdafx.h"
 #include "HUD.h"
 
-
-HUD::HUD(std::string NewPlayerName, int32 StartScores)
+// variant to create info about Player and his scores in the game
+HUD::HUD(std::string NewPlayerName, int32 StartScores, int32 FontSize)
 {	
 	// create current player name info line on x =5, y = 5 position
-	Create(Player, Arial, FontLocation, NewPlayerName, 5, 5);
+	Create(MainText, Arial, FontLocation, NewPlayerName, 40, 40, FontSize);
 	// create start Scores info line on x = main_window_w - 70, y = 5 position
 	Create(Scores, Arial, FontLocation,std::to_string(StartScores),\
-			MAIN_WINDOW_WIDTH - 70, 5);
+			MAIN_WINDOW_WIDTH - 85, 40, FontSize);
+}
+
+// variant to create text only
+HUD::HUD(std::string Message, int32 X_pos, int32 Y_pos, int32 FontSize)
+{
+	// create message to display
+	Create(MainText, Arial, FontLocation, Message, X_pos, Y_pos, FontSize);
 }
 
 
@@ -17,9 +24,9 @@ HUD::~HUD()
 }
 
 // Getters
-sf::Text HUD::GetPlayerName() const
+sf::Text HUD::GetText() const
 {
-	return Player;
+	return MainText;
 }
 
 sf::Text HUD::GetScores() const
@@ -52,7 +59,7 @@ void HUD::UpdateScores(int32 Increment)
 // create the HUD info line
 int32 HUD::Create(sf::Text & HUDLineName, sf::Font &Arial,\
 					std::string FontLocation,\
-					 std::string TextValue, float X_pos, float Y_pos)
+					 std::string TextValue, float X_pos, float Y_pos, int32 FontSize)
 {
 	if (!Arial.loadFromFile(FontLocation))// load font from file
 	{
@@ -61,8 +68,9 @@ int32 HUD::Create(sf::Text & HUDLineName, sf::Font &Arial,\
 
 	HUDLineName.setString(TextValue);
 	HUDLineName.setFont(Arial);
-	HUDLineName.setFillColor(White);
-	HUDLineName.setCharacterSize(20);
+	HUDLineName.setStyle(sf::Text::Bold);
+	HUDLineName.setFillColor(Black);
+	HUDLineName.setCharacterSize(FontSize);
 	HUDLineName.setPosition(X_pos, Y_pos);
 
 	return 0;

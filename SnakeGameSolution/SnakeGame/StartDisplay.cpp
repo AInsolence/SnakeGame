@@ -5,10 +5,18 @@
 // constructor
 StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 {
-	Menu = new Block("Menu", 0, -30, 0.68f, 0.68f);
-	MenuCursor = new Block("HeadRight", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.3f, 0.3f);
-	Options = new Block("Options", 0, -10, 0.68f, 0.68f);
-	Records = new Block("Records", 0, -10, 0.68f, 0.68f);
+	MenuBackground = new Block("Star", -150, -50, 1.0f, 1.0f);
+	MenuCursor = new Block("Food", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.3f, 0.3f);
+	// create main menu screen
+	MainMenuNewGame = new HUD("NEW GAME", 270, 0, 200);
+	MainMenuOptions = new HUD("OPTIONS", 270, CURSOR_STEP_BY_Y, 200);
+	MainMenuRecords = new HUD("RECORDS", 270, 2*CURSOR_STEP_BY_Y, 200);
+	MainMenuExit = new HUD("EXIT", 270, 3*CURSOR_STEP_BY_Y, 200);
+	// create options screen
+	OptionsHeader = new HUD("OPTIONS", 230, 0, 150);
+	ExitToMain = new HUD("RETURN TO THE MAIN MENU", 230, 3 * CURSOR_STEP_BY_Y + 30, 100);
+	// create records screen
+	RecordsHeader = new HUD("RECORDS", 230, 0, 150);
 }
 
 //destructor
@@ -21,8 +29,6 @@ StartDisplay::~StartDisplay()
 //show display and handle user input in menu area
 int StartDisplay::Run() const
 {
-	// Create the menu background
-	Block* MenuBackground = new Block("Star", 0, 0, 0.7f, 0.7f);
 	//move cursor to the start position
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	// Menu music
@@ -86,8 +92,11 @@ int StartDisplay::Run() const
 		}
 
 		MenuWindow.draw(MenuBackground->MainSprite);
-		MenuWindow.draw(Menu->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
+		MenuWindow.draw(MainMenuNewGame->GetText());
+		MenuWindow.draw(MainMenuOptions->GetText());
+		MenuWindow.draw(MainMenuRecords->GetText());
+		MenuWindow.draw(MainMenuExit->GetText());
 
 		MenuWindow.display();
 		MenuWindow.clear();
@@ -138,8 +147,10 @@ int32 StartDisplay::ShowOptionsScreen() const
 			}
 		}
 
-		MenuWindow.draw(Options->MainSprite);
+		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
+		MenuWindow.draw(OptionsHeader->GetText());
+		MenuWindow.draw(ExitToMain->GetText());
 		MenuWindow.display();
 		MenuWindow.clear();
 	}
@@ -193,8 +204,10 @@ int32 StartDisplay::ShowRecordsScreen() const
 			}
 		}
 
-		MenuWindow.draw(Records->MainSprite);
+		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
+		MenuWindow.draw(RecordsHeader->GetText());
+		MenuWindow.draw(ExitToMain->GetText());
 		MenuWindow.display();
 		MenuWindow.clear();
 	}

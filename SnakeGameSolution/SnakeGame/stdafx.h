@@ -28,7 +28,11 @@ using FString = std::string;
 constexpr int32 MAIN_WINDOW_WIDTH = 1302;
 constexpr int32 MAIN_WINDOW_HIGHT = 672;
 
+const sf::Color Black = sf::Color::Black;
 const sf::Color White = sf::Color::White;
+const sf::Color Blue = sf::Color::Blue;
+
+
 
 
 
