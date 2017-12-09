@@ -61,9 +61,8 @@ int32 Game::Run()
 		Klistner->Start(MySnake, IsGamePaused);// start handle player input
 
 		MySnake->Move();// Start Snake movement
-
-		GameWindow.setFramerateLimit(5);
-
+		// set game speed through players scores
+		GameWindow.setFramerateLimit(MySnake->GetSpeed());
 		// ***RENDERING PART OF THE GAME LOOP***
 		// Background render
 		GameWindow.draw(GameBackground->MainSprite);
@@ -132,10 +131,16 @@ int32 Game::Run()
 				IsGameOver = true;
 			}
 		}
-		//Check collision with the food & change size & points after that
+		//Check collision with the food & change size, speed & points
 		if (bIsCollide(NewFood->Body, MySnake->Body[0]))
 		{
 			hud->UpdateScores(NewFood->GetValue());// increase scores
+			// increase snake's speed depending on the scores
+			std::string CurrentScores = hud->GetScores().getString();
+			if (std::stoi(CurrentScores) % 50 == 0)
+			{
+				MySnake->UpdateSpeed(1);
+			}
 			MySnake->ChangeSize(1);// increase snake's size
 			NewFood->SetStatus(EFoodStatus::Disappear);// hide food object
 			// create random coordinates

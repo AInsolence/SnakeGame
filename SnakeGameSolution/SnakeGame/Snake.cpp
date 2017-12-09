@@ -41,9 +41,9 @@ ESnakeCurrentDirection Snake::GetCurrentDirection() const
 
 // Setters
 
-void Snake::SetSpeed(int32 CurrentSnakeSpeed)
+void Snake::UpdateSpeed(int32 CurrentSnakeSpeed)
 {
-	Speed = CurrentSnakeSpeed;
+	Speed += CurrentSnakeSpeed;
 	return;
 }
 
@@ -74,8 +74,8 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 	// snake starting DIRECTION is left
 	SetCurrentDirection(ESnakeCurrentDirection::Right);
 	// set snake SPEED in the beginning of the game
-	constexpr int32 START_SNAKE_SPEED = 1;
-	SetSpeed(START_SNAKE_SPEED);
+	constexpr int32 START_SNAKE_SPEED = 4;
+	Speed = START_SNAKE_SPEED;
 	// set snake SIZE in the beginning of the game
 	constexpr int32 START_SNAKE_SIZE = 3;
 	SetSize(START_SNAKE_SIZE);

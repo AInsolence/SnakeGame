@@ -30,13 +30,13 @@ Sprints:
 12.1 Create cursor and menu navigation - DONE
 13. Create options screen - DONE
 14. Rewrite KeyListener class with using SFML tools to handle user input - DONE
-15. Add ability to change key controls in options - AWAIT
+15. Add ability to change key controls in options - DECLINED for this game
 16. Create Record screen - DONE
 16.1 Create 'Game over' screen - DONE
 16.2 Add animated head, food - DONE
 17. Add write/read records to/from file
-18. ***more levels
-19. ***add more lives for player
+18. ***more levels - CHANGED game mechanic to gradual snake's speed increase
+19. ***add more lives for player - CAHNGED to one live survival
 20. User game test)
 21. ***Create installation pack
 
@@ -50,4 +50,4 @@ Additional features after manual testing:
 1. Create new graphics for the food & walls in the game - DONE
 2. Create new graphics for the main menu - DONE
 3. Create new graphics for the main menu points - DONE
-4. Increasing speed depending on length of the snake
+4. Increasing speed depending on length of the snake - DONE

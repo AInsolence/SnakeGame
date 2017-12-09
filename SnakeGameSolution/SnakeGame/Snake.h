@@ -41,7 +41,7 @@ public:
 	
 	// reset the snake to the default parameters
 	void Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale);
-	void SetSpeed(int32);
+	void UpdateSpeed(int32);
 	void SetSize(int32);
 	void SetCurrentDirection(ESnakeCurrentDirection);
 	void ChangeSize(int32);
