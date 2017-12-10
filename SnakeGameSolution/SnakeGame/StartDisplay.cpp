@@ -73,6 +73,7 @@ int StartDisplay::Run() const
 					switch (CurrentCursorPosition)
 					{
 					case CURSOR_START_POS_Y:
+						ShowInputName();
 						return 0;
 						break;
 					case CURSOR_START_POS_Y + CURSOR_STEP_BY_Y:
@@ -208,6 +209,54 @@ int32 StartDisplay::ShowRecordsScreen() const
 		MenuWindow.draw(MenuCursor->MainSprite);
 		MenuWindow.draw(RecordsHeader->GetText());
 		MenuWindow.draw(ExitToMain->GetText());
+		MenuWindow.display();
+		MenuWindow.clear();
+	}
+}
+
+int32 StartDisplay::ShowInputName() const
+{
+	HUD* EnterName = new HUD("Hero, please enter your name:", 200, 50, 80);
+	// create user name input form
+	Records InputNameForm;
+	sf::String PlayerName = "";
+
+	while (MenuWindow.isOpen())
+	{
+		sf::Event event;
+
+		while (MenuWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed) {
+				MenuWindow.close();
+			}
+			// Handle user keyboard input on records screen
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Return)
+				{
+					InputNameForm.SetNewPlayer();
+					return 0;
+				}
+			}
+			// input user name handler
+			if (event.type == sf::Event::TextEntered)
+			{
+				// use only ASCII symbols
+				if (event.text.unicode < 128)
+				{
+					PlayerName += static_cast<char>(event.text.unicode);
+					InputNameForm.PlayerName->SetMainText(PlayerName);
+					std::cout << static_cast<char>(event.text.unicode);
+				}
+				// TODO create delete with backspace
+			}
+		}
+
+		MenuWindow.draw(MenuBackground->MainSprite);
+		MenuWindow.draw(InputNameForm.NameInputForm->MainSprite);
+		MenuWindow.draw(InputNameForm.PlayerName->GetText());
+
 		MenuWindow.display();
 		MenuWindow.clear();
 	}

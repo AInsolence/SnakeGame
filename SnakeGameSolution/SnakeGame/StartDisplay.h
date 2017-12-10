@@ -8,6 +8,7 @@
 #include <string>
 #include "HUD.h"
 #include "Block.h"
+#include "Records.h"
 
 //menu cursor start position
 constexpr int32 CURSOR_START_POS_X = 80;
@@ -48,4 +49,5 @@ private:
 	HUD * RecordsHeader;
 	int32 ShowOptionsScreen() const;
 	int32 ShowRecordsScreen() const;
+	int32 ShowInputName() const;
 };

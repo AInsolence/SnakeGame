@@ -5,6 +5,7 @@
 
 Records::Records()
 {
+	InputForm();
 	std::vector<std::pair<std::string, int32>> TestMap{
 		{"Anton", 2300},
 		{"Marina", 2800},
@@ -55,6 +56,16 @@ PlayerTable Records::ReadFromFile()
 	return PlayerTable();
 }
 
+// add new player in the table if it is not exist
+void Records::SetNewPlayer()
+{
+	std::string NewPlayerName = PlayerName->GetText().getString();
+	if (!PlayerScoreTable[NewPlayerName])
+	{// if not in the table
+		PlayerScoreTable[NewPlayerName] = 0;
+	}
+}
+
 // predicate to compare players scores in the PlayerScoresTable
 bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two)
 {
@@ -85,4 +96,11 @@ void Records::WriteToFile(std::vector<std::pair<std::string, int32>> Table)
 		FirstPlace++;// next place in the table
 	}	
 	Fstream->close();
+}
+
+int32 Records::InputForm()
+{
+	NameInputForm = new Block ("Star", 200, 170, 0.5f, 0.1f);
+	PlayerName = new HUD("", 300, 175, 60);
+	return 0;
 }

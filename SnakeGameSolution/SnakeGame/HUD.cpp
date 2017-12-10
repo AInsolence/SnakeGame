@@ -42,6 +42,11 @@ void HUD::SetScores(int32 NewScores)
 	return;
 }
 
+void HUD::SetMainText(sf::String NewText)
+{
+	MainText.setString(NewText);
+}
+
 // Methods
 
 // increase or decrease player's scores depending on increment parameter

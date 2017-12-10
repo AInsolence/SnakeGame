@@ -18,6 +18,7 @@ public:
 	sf::Text GetScores() const;
 
 	void SetScores(int32);
+	void SetMainText(sf::String);
 	void UpdateScores(int32);
 
 	int32 Create(sf::Text & HUDLineName, sf::Font &Arial,\
