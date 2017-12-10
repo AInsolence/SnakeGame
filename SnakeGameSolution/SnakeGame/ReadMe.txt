@@ -34,11 +34,15 @@ Sprints:
 16. Create Record screen - DONE
 16.1 Create 'Game over' screen - DONE
 16.2 Add animated head, food - DONE
-17. Add write/read records to/from file
+17. Add write/read records to/from file - DONE
+17.1 Add player name input form - IN PROCESS
+17.2 Add ability to record players scores if it is higher than previous
+17.3 Add info showing after the GAME OVER screen
+17.4 Finish records screen
 18. ***more levels - CHANGED game mechanic to gradual snake's speed increase
-19. ***add more lives for player - CAHNGED to one live survival
-20. User game test)
-21. ***Create installation pack
+19. ***add more lives for player - CHANGED to one live survival
+20. ***Create installation pack
+21. User game test)
 
 Debug:
 
