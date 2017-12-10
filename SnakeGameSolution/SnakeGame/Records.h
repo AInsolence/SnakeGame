@@ -1,6 +1,6 @@
 #pragma once
 
-using PlayerTable = std::vector < std::map<std::string, int32> >;
+using PlayerTable = std::map<std::string, int32>;
 
 class Records
 {
@@ -8,11 +8,11 @@ public:
 	Records();
 	~Records();
 
-	PlayerTable ReadFromFile() const;
-	void WriteToFile(std::map<std::string, int32>);
+	PlayerTable ReadFromFile();
+	void WriteToFile(std::vector<std::pair<std::string, int32>>);
 
 private:
-	PlayerTable Buffer;
-	std::fstream Fstream;
+	PlayerTable PlayerScoreTable;
+	std::fstream* Fstream;
 };
 

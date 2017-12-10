@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "StartDisplay.h"
 #include "Game.h"
-
+#include "Records.h"
 
 int main()
 {
@@ -16,6 +16,7 @@ int main()
 		// Create Game object and render all eventsin the main window
 		StartDisplay* MainMenu = new StartDisplay(window);
 		Game* NewGame = new Game(window, "Player");
+		Records records;
 		MainMenu->Run();
 		// Run the new game
 		NewGame->Run();
