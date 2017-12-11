@@ -14,7 +14,7 @@ Records::Records()
 	};
 
 	ReadFromFile();
-	WriteToFile(TestMap);
+	WriteToFile();
 	
 }
 
@@ -36,9 +36,10 @@ PlayerTable Records::ReadFromFile()
 	char Delimeter = '*'; // delimeter to find player's name
 	std::string PlayerScores = "";
 	// get all info(place, name, scores)
+	int32 FirstPlayerIndex = 0;
 	while(!Fstream->eof())
 	{
-		getline(*Fstream, PlayerInfo);
+		getline(*Fstream, PlayerInfo);// get all info about player
 		if (PlayerInfo != "")
 		{
 			// get player name
@@ -49,7 +50,7 @@ PlayerTable Records::ReadFromFile()
 			size_t NotScores = PlayerInfo.find_last_not_of("0123456789");
 			PlayerScores = PlayerInfo.substr(NotScores + 1);
 			// write results to the PlayerScoreTable
-			PlayerScoreTable[PlayerName] = std::stoi(PlayerScores);
+			PlayerScoreTable[FirstPlayerIndex].first = std::stoi(PlayerScores);
 		}
 	}
 	Fstream->close();
@@ -66,6 +67,17 @@ void Records::SetNewPlayer()
 	}
 }
 
+// write new player records
+void Records::SetPlayerScores(int32 NewScores)
+{// get player name
+	std::string NewPlayerName = PlayerName->GetText().getString();
+	if (PlayerScoreTable[NewPlayerName] < NewScores)
+	{
+		PlayerScoreTable[NewPlayerName] = NewScores;
+		std::cout << "New Record for this Player!" << std::endl;
+	}
+}
+
 // predicate to compare players scores in the PlayerScoresTable
 bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two)
 {
@@ -73,9 +85,10 @@ bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two
 	return false;
 }
 
-void Records::WriteToFile(std::vector<std::pair<std::string, int32>> Table)
+void Records::WriteToFile()
 {
 	// sort players by scores before writing in the file
+	PlayerTable Table = PlayerScoreTable;
 	std::stable_sort(Table.begin(), Table.end(), UnPred);
 	// open records file
 	Fstream = new std::fstream("../../records.txt", std::ios::out | std::ios::trunc);

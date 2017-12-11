@@ -33,8 +33,8 @@ public:
 	StartDisplay(sf::RenderWindow &window);
 	~StartDisplay();
 
-	int32 Run() const;
-	
+	int32 Run(Records InputNameForm) const;
+	int32 ShowInputName(Records InputNameForm) const;
 
 private:
 	sf::RenderWindow &MenuWindow;
@@ -49,5 +49,4 @@ private:
 	HUD * RecordsHeader;
 	int32 ShowOptionsScreen() const;
 	int32 ShowRecordsScreen() const;
-	int32 ShowInputName() const;
 };

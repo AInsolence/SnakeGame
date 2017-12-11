@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 
+#include "Records.h"
 #include "stdafx.h"
 #include "Game.h"
 #include "HUD.h"
@@ -26,13 +27,14 @@ Game::~Game()
 // Methods
 
 // create all game's objects and handlers, start a game loop
-int32 Game::Run()
+int32 Game::Run(Records InputNameForm)
 {
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
 	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
-	HUD* hud = new HUD("Player", 0, 45);//Create the HUD
+	std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
+	HUD* hud = new HUD(PlayerName ,0, 45);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create the food
@@ -100,6 +102,9 @@ int32 Game::Run()
 		//Game Over logic & render
 		if (IsGameOver)
 		{
+			std::string NewRecord = hud->GetScores().getString();
+			InputNameForm.SetPlayerScores(std::stoi(NewRecord));
+			InputNameForm.WriteToFile();
 			GameWindow.draw(GameOver->GetText());
 			GameWindow.display();//Display 'Game over' window
 			sf::sleep(sf::seconds(3));

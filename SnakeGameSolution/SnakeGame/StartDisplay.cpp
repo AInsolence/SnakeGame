@@ -27,7 +27,7 @@ StartDisplay::~StartDisplay()
 // Methods
 
 //show display and handle user input in menu area
-int StartDisplay::Run() const
+int StartDisplay::Run(Records InputNameForm) const
 {
 	//move cursor to the start position
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
@@ -73,7 +73,8 @@ int StartDisplay::Run() const
 					switch (CurrentCursorPosition)
 					{
 					case CURSOR_START_POS_Y:
-						ShowInputName();
+						// show input name form before the starting the game
+						ShowInputName(InputNameForm);
 						return 0;
 						break;
 					case CURSOR_START_POS_Y + CURSOR_STEP_BY_Y:
@@ -214,11 +215,10 @@ int32 StartDisplay::ShowRecordsScreen() const
 	}
 }
 
-int32 StartDisplay::ShowInputName() const
+int32 StartDisplay::ShowInputName(Records InputNameForm) const
 {
 	HUD* EnterName = new HUD("Hero, please enter your name:", 200, 50, 80);
 	// create user name input form
-	Records InputNameForm;
 	sf::String PlayerName = "";
 
 	while (MenuWindow.isOpen())
@@ -254,6 +254,7 @@ int32 StartDisplay::ShowInputName() const
 		}
 
 		MenuWindow.draw(MenuBackground->MainSprite);
+		MenuWindow.draw(EnterName->GetText());
 		MenuWindow.draw(InputNameForm.NameInputForm->MainSprite);
 		MenuWindow.draw(InputNameForm.PlayerName->GetText());
 

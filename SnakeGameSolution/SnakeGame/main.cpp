@@ -13,13 +13,15 @@ int main()
 
 	while (window.isOpen())
 	{
+		// Create new PlayerName Object
+		Records InputNameForm;
 		// Create Game object and render all eventsin the main window
 		StartDisplay* MainMenu = new StartDisplay(window);
 		Game* NewGame = new Game(window, "Player");
 		Records records;
-		MainMenu->Run();
+		MainMenu->Run(InputNameForm);
 		// Run the new game
-		NewGame->Run();
+		NewGame->Run(InputNameForm);
 	}
 
     return 0;

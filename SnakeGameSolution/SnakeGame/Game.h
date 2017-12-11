@@ -4,6 +4,7 @@
 	to increase/decrease difficalty for the player.
 */
 #pragma once
+#include "Records.h"
 
 class Game
 {
@@ -11,7 +12,7 @@ public:
 	Game(sf::RenderWindow &window, std::string PlayerName);
 	~Game();
 
-	int32 Run();// start the new game 
+	int32 Run(Records InputNameForm);// start the new game 
 
 private:
 	// reference to the main window where the new game will be rendered

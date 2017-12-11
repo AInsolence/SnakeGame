@@ -2,7 +2,7 @@
 #include "Block.h"
 #include "HUD.h"
 
-using PlayerTable = std::map<std::string, int32>;
+using PlayerTable = std::vector<std::pair<std::string, int32>>;
 
 class Records
 {
@@ -12,7 +12,8 @@ public:
 
 	PlayerTable ReadFromFile();
 	void SetNewPlayer();
-	void WriteToFile(std::vector<std::pair<std::string, int32>>);
+	void SetPlayerScores(int32);
+	void WriteToFile();
 	int32 InputForm();
 	Block* NameInputForm;
 	HUD* PlayerName;
