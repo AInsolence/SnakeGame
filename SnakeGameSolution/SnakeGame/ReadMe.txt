@@ -35,8 +35,8 @@ Sprints:
 16.1 Create 'Game over' screen - DONE
 16.2 Add animated head, food - DONE
 17. Add write/read records to/from file - DONE
-17.1 Add player name input form - IN PROCESS
-17.2 Add ability to record players scores if it is higher than previous
+17.1 Add player name input form - DONE
+17.2 Add ability to record players scores if it is higher than previous - DONE
 17.3 Add info showing after the GAME OVER screen
 17.4 Finish records screen
 18. ***more levels - CHANGED game mechanic to gradual snake's speed increase

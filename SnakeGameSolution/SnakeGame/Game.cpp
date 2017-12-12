@@ -26,8 +26,17 @@ Game::~Game()
 
 // Methods
 
+void TEST_DB_NAME_SCORE_INPUT(Records InputNameForm, std::string Message)
+{
+	for (auto player : InputNameForm.GetTable())
+	{
+		std::cout << Message << player.first << std::endl;
+		std::cout << Message << player.second << std::endl;
+	}
+}
+
 // create all game's objects and handlers, start a game loop
-int32 Game::Run(Records InputNameForm)
+int32 Game::Run(Records &InputNameForm)
 {
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
@@ -103,6 +112,7 @@ int32 Game::Run(Records InputNameForm)
 		if (IsGameOver)
 		{
 			std::string NewRecord = hud->GetScores().getString();
+			std::cout << std::endl << std::stoi(NewRecord) << std::endl;
 			InputNameForm.SetPlayerScores(std::stoi(NewRecord));
 			InputNameForm.WriteToFile();
 			GameWindow.draw(GameOver->GetText());

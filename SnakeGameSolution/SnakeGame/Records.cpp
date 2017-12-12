@@ -5,17 +5,9 @@
 
 Records::Records()
 {
-	InputForm();
-	std::vector<std::pair<std::string, int32>> TestMap{
-		{"Anton", 2300},
-		{"Marina", 2800},
-		{"Roma", 2800},
-		{"Elina", 3200}
-	};
-
+	PlayerScoreTable.clear();
 	ReadFromFile();
-	WriteToFile();
-	
+	InputForm();
 }
 
 
@@ -36,7 +28,6 @@ PlayerTable Records::ReadFromFile()
 	char Delimeter = '*'; // delimeter to find player's name
 	std::string PlayerScores = "";
 	// get all info(place, name, scores)
-	int32 FirstPlayerIndex = 0;
 	while(!Fstream->eof())
 	{
 		getline(*Fstream, PlayerInfo);// get all info about player
@@ -50,7 +41,7 @@ PlayerTable Records::ReadFromFile()
 			size_t NotScores = PlayerInfo.find_last_not_of("0123456789");
 			PlayerScores = PlayerInfo.substr(NotScores + 1);
 			// write results to the PlayerScoreTable
-			PlayerScoreTable[FirstPlayerIndex].first = std::stoi(PlayerScores);
+			PlayerScoreTable.push_back(std::make_pair(PlayerName, std::stoi(PlayerScores)));
 		}
 	}
 	Fstream->close();
@@ -59,22 +50,50 @@ PlayerTable Records::ReadFromFile()
 
 // add new player in the table if it is not exist
 void Records::SetNewPlayer()
-{
+{// get new player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
-	if (!PlayerScoreTable[NewPlayerName])
-	{// if not in the table
-		PlayerScoreTable[NewPlayerName] = 0;
+	std::cout << "NewPlayerName: " << NewPlayerName << std::endl;
+	// check if the current player in the Table
+	bool IsPlayerInTable = false;
+	for (auto player : PlayerScoreTable)
+	{
+		if (player.first == NewPlayerName)
+		{
+			IsPlayerInTable = true;
+			break;
+		}
 	}
+	// if player not in the table -> add to the table
+	if (!IsPlayerInTable)
+	{// if not in the table
+		PlayerScoreTable.push_back(std::make_pair(NewPlayerName, 0));
+		std::cout << "Player is setted";
+	}
+}
+
+PlayerTable Records::GetTable() const
+{
+	return PlayerScoreTable;
 }
 
 // write new player records
 void Records::SetPlayerScores(int32 NewScores)
 {// get player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
-	if (PlayerScoreTable[NewPlayerName] < NewScores)
-	{
-		PlayerScoreTable[NewPlayerName] = NewScores;
-		std::cout << "New Record for this Player!" << std::endl;
+	std::cout << NewPlayerName << std::endl;
+	for (auto &player : PlayerScoreTable)// NOTE!!! Here use access by-reference
+	{// if current player in score table
+		if (player.first == NewPlayerName)
+		{// and last player scores < current scores
+			std::cout << "Player in the table!";
+			if (player.second < NewScores)
+			{// save new record
+				player.second = NewScores;
+				// TODO change to 'new own record!' message to player
+				std::cout << "New Record for this Player!: " << NewScores << std::endl;
+				std::cout << "New Record in the Table!: " << player.second << std::endl;
+			}
+		}
 	}
 }
 
@@ -101,7 +120,7 @@ void Records::WriteToFile()
 	{
 		*Fstream << FirstPlace << ". *";// write player's position in the table & delimeter
 		*Fstream << player.first << "*";// write player name
-		for (int32 i = 20; i > (player.first.length() + std::to_string(player.second).length()); i--)
+		for (size_t i = 20; i > (player.first.length() + std::to_string(player.second).length()); i--)
 		{// write spaces between name & scores
 			*Fstream << '_';
 		}

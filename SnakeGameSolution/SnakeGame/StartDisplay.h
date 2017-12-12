@@ -33,8 +33,8 @@ public:
 	StartDisplay(sf::RenderWindow &window);
 	~StartDisplay();
 
-	int32 Run(Records InputNameForm) const;
-	int32 ShowInputName(Records InputNameForm) const;
+	int32 Run(Records &InputNameForm) const;
+	int32 ShowInputName(Records &InputNameForm) const;
 
 private:
 	sf::RenderWindow &MenuWindow;

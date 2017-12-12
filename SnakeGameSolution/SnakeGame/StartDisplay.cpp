@@ -27,7 +27,7 @@ StartDisplay::~StartDisplay()
 // Methods
 
 //show display and handle user input in menu area
-int StartDisplay::Run(Records InputNameForm) const
+int StartDisplay::Run(Records &InputNameForm) const
 {
 	//move cursor to the start position
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
@@ -215,7 +215,7 @@ int32 StartDisplay::ShowRecordsScreen() const
 	}
 }
 
-int32 StartDisplay::ShowInputName(Records InputNameForm) const
+int32 StartDisplay::ShowInputName(Records &InputNameForm) const
 {
 	HUD* EnterName = new HUD("Hero, please enter your name:", 200, 50, 80);
 	// create user name input form
@@ -243,11 +243,11 @@ int32 StartDisplay::ShowInputName(Records InputNameForm) const
 			if (event.type == sf::Event::TextEntered)
 			{
 				// use only ASCII symbols
-				if (event.text.unicode < 128)
+				if (event.text.unicode > 48 && event.text.unicode < 128)
 				{
 					PlayerName += static_cast<char>(event.text.unicode);
+					std::cout << event.text.unicode;
 					InputNameForm.PlayerName->SetMainText(PlayerName);
-					std::cout << static_cast<char>(event.text.unicode);
 				}
 				// TODO create delete with backspace
 			}

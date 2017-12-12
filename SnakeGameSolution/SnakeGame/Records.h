@@ -10,7 +10,9 @@ public:
 	Records();
 	~Records();
 
+	PlayerTable GetTable() const;
 	PlayerTable ReadFromFile();
+
 	void SetNewPlayer();
 	void SetPlayerScores(int32);
 	void WriteToFile();
