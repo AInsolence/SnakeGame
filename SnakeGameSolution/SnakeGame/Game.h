@@ -19,7 +19,7 @@ public:
 private:
 	// reference to the main window where the new game will be rendered
 	sf::RenderWindow &GameWindow;
-	std::string CurrentPlayername;
+	std::string CurrentPlayerName;
 	sf::Music GameMusic;//Game music and sounds
 };
 

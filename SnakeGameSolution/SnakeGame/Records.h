@@ -22,7 +22,6 @@ public:
 	
 	void WriteToFile();
 	int32 InputForm();
-	int32 IsRecord();
 
 private:
 	PlayerTable PlayerScoreTable;

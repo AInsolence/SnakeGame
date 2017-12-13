@@ -16,7 +16,7 @@
 // constructor
 Game::Game(sf::RenderWindow &window, std::string PlayerName) : GameWindow (window)// link to the main window
 {
-	CurrentPlayername = PlayerName;
+	CurrentPlayerName = PlayerName;
 }
 
 // destructor
@@ -177,14 +177,9 @@ void Game::GameOver(HUD * hud, Records & InputNameForm)
 	}
 	InputNameForm.WriteToFile();
 	InputNameForm.ReadFromFile();
-	for (auto player : InputNameForm.GetTable())
-	{
-		std::cout << "TEST2: " << player.first << std::endl;
-	}
-	// check the position in score table
-	int Position = InputNameForm.IsRecord();
-	std::string Message = "Your positionin the score table is " + std::to_string(Position);
-	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 100);
+	// get the position in score table
+	std::string Message = "Message " + std::to_string(Start);
+	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
 	GameWindow.draw(NewPosition->GetText());
 	GameWindow.draw(GameOver->GetText());
 	GameWindow.display();//Display 'Game over' window

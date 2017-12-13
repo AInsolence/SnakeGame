@@ -7,7 +7,6 @@ Records::Records()
 {
 	bIsItNewOwnRecord = false;
 
-	PlayerScoreTable.clear();
 	ReadFromFile();
 	InputForm();
 }
@@ -19,6 +18,8 @@ Records::~Records()
 
 PlayerTable Records::ReadFromFile()
 {
+	// clear table before reading the file
+	PlayerScoreTable.clear();
 	// open records file
 	Fstream = new std::fstream("../../records.txt", std::ios::in);
 	if (!Fstream->is_open())
@@ -133,17 +134,5 @@ int32 Records::InputForm()
 {
 	NameInputForm = new Block ("Star", 200, 170, 0.5f, 0.1f);
 	PlayerName = new HUD("", 300, 175, 60);
-	return 0;
-}
-
-int32 Records::IsRecord()
-{
-	std::string NewPlayerName = PlayerName->GetText().getString();
-	int32 Position = 1;
-	for (auto player : GetTable())
-	{
-		if (NewPlayerName == player.first) return Position;
-		Position++;
-	}
 	return 0;
 }
