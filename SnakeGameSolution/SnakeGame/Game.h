@@ -11,12 +11,15 @@ class Game
 public:
 	Game(sf::RenderWindow &window, std::string PlayerName);
 	~Game();
-
-	int32 Run(Records &InputNameForm);// start the new game 
-
+	 
+	int32 Run(Records &InputNameForm);// start the new game
+	void GameOver(HUD * NewPlayerHUD, Records & InputNameForm);
+	void StartGameMusic();
+	
 private:
 	// reference to the main window where the new game will be rendered
 	sf::RenderWindow &GameWindow;
-	std::string MainText;
+	std::string CurrentPlayername;
+	sf::Music GameMusic;//Game music and sounds
 };
 

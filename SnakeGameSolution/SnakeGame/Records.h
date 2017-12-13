@@ -13,12 +13,16 @@ public:
 	PlayerTable GetTable() const;
 	PlayerTable ReadFromFile();
 
-	void SetNewPlayer();
-	void SetPlayerScores(int32);
-	void WriteToFile();
-	int32 InputForm();
 	Block* NameInputForm;
 	HUD* PlayerName;
+	bool bIsItNewOwnRecord;
+
+	void SetNewPlayer();
+	bool bSetNewRecord(int32);
+	
+	void WriteToFile();
+	int32 InputForm();
+	int32 IsRecord();
 
 private:
 	PlayerTable PlayerScoreTable;

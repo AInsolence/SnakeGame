@@ -5,6 +5,8 @@
 
 Records::Records()
 {
+	bIsItNewOwnRecord = false;
+
 	PlayerScoreTable.clear();
 	ReadFromFile();
 	InputForm();
@@ -45,7 +47,7 @@ PlayerTable Records::ReadFromFile()
 		}
 	}
 	Fstream->close();
-	return PlayerTable();
+	return PlayerScoreTable;
 }
 
 // add new player in the table if it is not exist
@@ -77,24 +79,21 @@ PlayerTable Records::GetTable() const
 }
 
 // write new player records
-void Records::SetPlayerScores(int32 NewScores)
+bool Records::bSetNewRecord(int32 NewScores)
 {// get player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
-	std::cout << NewPlayerName << std::endl;
 	for (auto &player : PlayerScoreTable)// NOTE!!! Here use access by-reference
 	{// if current player in score table
 		if (player.first == NewPlayerName)
 		{// and last player scores < current scores
-			std::cout << "Player in the table!";
 			if (player.second < NewScores)
 			{// save new record
 				player.second = NewScores;
-				// TODO change to 'new own record!' message to player
-				std::cout << "New Record for this Player!: " << NewScores << std::endl;
-				std::cout << "New Record in the Table!: " << player.second << std::endl;
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 // predicate to compare players scores in the PlayerScoresTable
@@ -134,5 +133,17 @@ int32 Records::InputForm()
 {
 	NameInputForm = new Block ("Star", 200, 170, 0.5f, 0.1f);
 	PlayerName = new HUD("", 300, 175, 60);
+	return 0;
+}
+
+int32 Records::IsRecord()
+{
+	std::string NewPlayerName = PlayerName->GetText().getString();
+	int32 Position = 1;
+	for (auto player : GetTable())
+	{
+		if (NewPlayerName == player.first) return Position;
+		Position++;
+	}
 	return 0;
 }

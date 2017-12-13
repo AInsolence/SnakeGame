@@ -16,7 +16,7 @@
 // constructor
 Game::Game(sf::RenderWindow &window, std::string PlayerName) : GameWindow (window)// link to the main window
 {
-	MainText = PlayerName;
+	CurrentPlayername = PlayerName;
 }
 
 // destructor
@@ -43,28 +43,17 @@ int32 Game::Run(Records &InputNameForm)
 	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
 	std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
-	HUD* hud = new HUD(PlayerName ,0, 45);//Create the HUD
+	HUD* NewPlayerHUD = new HUD(PlayerName ,0, 45);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create the food
 	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
-	// Create 'Game Over' title
-	HUD* GameOver = new HUD("GAME OVER!", MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGameOver = false;
 	// Create 'Pause' title
 	HUD* Pause = new HUD("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGamePaused = false;
-
-	//Game music and sounds
-	sf::Music GameMusic;// create music to stream music from file
-	if (!GameMusic.openFromFile("../../music/game.wav")) {
-		std::cout << "Main game music asset is not found! ";
-		//return EXIT_FAILURE;
-	}
-	GameMusic.setLoop(true);
-	GameMusic.setVolume(50);
-	GameMusic.play();//start to play main game theme
+	StartGameMusic();
 	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
@@ -94,8 +83,8 @@ int32 Game::Run(Records &InputNameForm)
 			NewFood->Animation();
 		}
 		//HUD render
-		GameWindow.draw(hud->GetText());// display Player name
-		GameWindow.draw(hud->GetScores());// display Scores
+		GameWindow.draw(NewPlayerHUD->GetText());// display Player name
+		GameWindow.draw(NewPlayerHUD->GetScores());// display Scores
 		//Pause logic & render
 		if (IsGamePaused && !IsGameOver)
 		{
@@ -111,13 +100,7 @@ int32 Game::Run(Records &InputNameForm)
 		//Game Over logic & render
 		if (IsGameOver)
 		{
-			std::string NewRecord = hud->GetScores().getString();
-			std::cout << std::endl << std::stoi(NewRecord) << std::endl;
-			InputNameForm.SetPlayerScores(std::stoi(NewRecord));
-			InputNameForm.WriteToFile();
-			GameWindow.draw(GameOver->GetText());
-			GameWindow.display();//Display 'Game over' window
-			sf::sleep(sf::seconds(3));
+			GameOver(NewPlayerHUD, InputNameForm);
 			return 0;
 		}
 		// ***END OF RENDERING PART***
@@ -149,9 +132,9 @@ int32 Game::Run(Records &InputNameForm)
 		//Check collision with the food & change size, speed & points
 		if (bIsCollide(NewFood->Body, MySnake->Body[0]))
 		{
-			hud->UpdateScores(NewFood->GetValue());// increase scores
+			NewPlayerHUD->UpdateScores(NewFood->GetValue());// increase scores
 			// increase snake's speed depending on the scores
-			std::string CurrentScores = hud->GetScores().getString();
+			std::string CurrentScores = NewPlayerHUD->GetScores().getString();
 			if (std::stoi(CurrentScores) % 50 == 0)
 			{
 				MySnake->UpdateSpeed(1);
@@ -172,4 +155,50 @@ int32 Game::Run(Records &InputNameForm)
 		GameWindow.clear();// Clear the display
 	}
 	return 0;
+}
+
+void Game::GameOver(HUD * hud, Records & InputNameForm)
+{
+	// Create 'Game Over' title
+	HUD* GameOver = new HUD("GAME OVER!",\
+		MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 6, 170);
+	GameMusic.stop();
+	// check is the current scores a new record for this player
+	std::string NewScores = hud->GetScores().getString();
+	if (InputNameForm.bSetNewRecord(std::stoi(NewScores)))
+	{
+		HUD* NewOwnRecord = new HUD("**It is your own record!!!**", \
+			MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 4, 100);
+		GameWindow.draw(NewOwnRecord->GetText());
+	}
+	for (auto player : InputNameForm.GetTable())
+	{
+		std::cout << "TEST1: " << player.first << std::endl;
+	}
+	InputNameForm.WriteToFile();
+	InputNameForm.ReadFromFile();
+	for (auto player : InputNameForm.GetTable())
+	{
+		std::cout << "TEST2: " << player.first << std::endl;
+	}
+	// check the position in score table
+	int Position = InputNameForm.IsRecord();
+	std::string Message = "Your positionin the score table is " + std::to_string(Position);
+	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 100);
+	GameWindow.draw(NewPosition->GetText());
+	GameWindow.draw(GameOver->GetText());
+	GameWindow.display();//Display 'Game over' window
+	sf::sleep(sf::seconds(3));
+}
+
+void Game::StartGameMusic()
+{
+	// create music to stream music from file
+	if (!GameMusic.openFromFile("../../music/game.wav")) {
+		std::cout << "Main game music asset is not found! ";
+		//return EXIT_FAILURE;
+	}
+	GameMusic.setLoop(true);
+	GameMusic.setVolume(50);
+	GameMusic.play();//start to play main game theme
 }

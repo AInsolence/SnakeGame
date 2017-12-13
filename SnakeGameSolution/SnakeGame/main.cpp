@@ -22,6 +22,8 @@ int main()
 		MainMenu->Run(InputNameForm);
 		// Run the new game
 		NewGame->Run(InputNameForm);
+		delete MainMenu;
+		delete NewGame;
 	}
 
     return 0;
