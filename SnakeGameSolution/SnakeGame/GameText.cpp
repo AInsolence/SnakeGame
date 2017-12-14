@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "HUD.h"
+#include "GameText.h"
 
 // variant to create info about Player and his scores in the game
-HUD::HUD(std::string NewPlayerName, int32 StartScores, int32 FontSize)
+GameText::GameText(std::string NewPlayerName, int StartScores, int FontSize)
 {	
 	// create current player name info line on x =5, y = 5 position
 	Create(MainText, Arial, FontLocation, NewPlayerName, 40, 40, FontSize);
@@ -12,37 +12,37 @@ HUD::HUD(std::string NewPlayerName, int32 StartScores, int32 FontSize)
 }
 
 // variant to create text only
-HUD::HUD(std::string Message, int32 X_pos, int32 Y_pos, int32 FontSize)
+GameText::GameText(std::string Message, int X_pos, int Y_pos, int FontSize)
 {
 	// create message to display
 	Create(MainText, Arial, FontLocation, Message, X_pos, Y_pos, FontSize);
 }
 
 
-HUD::~HUD()
+GameText::~GameText()
 {
 }
 
 // Getters
-sf::Text HUD::GetText() const
+sf::Text GameText::GetText() const
 {
 	return MainText;
 }
 
-sf::Text HUD::GetScores() const
+sf::Text GameText::GetScores() const
 {
 	return Scores;
 }
 
 // Setters
-void HUD::SetScores(int32 NewScores)
+void GameText::SetScores(int NewScores)
 {
 	// cast integer to string and set a new scores value
 	Scores.setString(std::to_string(NewScores));
 	return;
 }
 
-void HUD::SetMainText(sf::String NewText)
+void GameText::SetMainText(sf::String NewText)
 {
 	MainText.setString(NewText);
 }
@@ -50,11 +50,10 @@ void HUD::SetMainText(sf::String NewText)
 // Methods
 
 // increase or decrease player's scores depending on increment parameter
-void HUD::UpdateScores(int32 Increment)
+void GameText::UpdateScores(int Increment)
 {
 	long double NewScores;
 	std::string  OldScore = Scores.getString();// get the current scores
-	std::cout << OldScore << std::endl;
 	// cast to an integer and add increment
 	NewScores = (std::stoi(OldScore)) + Increment;
 	
@@ -62,9 +61,9 @@ void HUD::UpdateScores(int32 Increment)
 }
 
 // create the HUD info line
-int32 HUD::Create(sf::Text & HUDLineName, sf::Font &Arial,\
+int GameText::Create(sf::Text & HUDLineName, sf::Font &Arial,\
 					std::string FontLocation,\
-					 std::string TextValue, float X_pos, float Y_pos, int32 FontSize)
+					 std::string TextValue, float X_pos, float Y_pos, int FontSize)
 {
 	if (!Arial.loadFromFile(FontLocation))// load font from file
 	{

@@ -6,16 +6,16 @@
 #pragma once
 #include "stdafx.h"
 #include <string>
-#include "HUD.h"
+#include "GameText.h"
 #include "Block.h"
 #include "Records.h"
 
 //menu cursor start position
-constexpr int32 CURSOR_START_POS_X = 80;
-constexpr int32 CURSOR_START_POS_Y = 40;
+constexpr int CURSOR_START_POS_X = 80;
+constexpr int CURSOR_START_POS_Y = 40;
 // cursor step in menu in pixels
-constexpr int32 CURSOR_STEP_BY_X = 0;
-constexpr int32 CURSOR_STEP_BY_Y = 160;
+constexpr int CURSOR_STEP_BY_X = 0;
+constexpr int CURSOR_STEP_BY_Y = 160;
 
 enum class EMenuPage
 {
@@ -33,20 +33,20 @@ public:
 	StartDisplay(sf::RenderWindow &window);
 	~StartDisplay();
 
-	int32 Run(Records &InputNameForm) const;
-	int32 ShowInputName(Records &InputNameForm) const;
+	int Run(Records &InputNameForm) const;
+	int ShowInputName(Records &InputNameForm) const;
 
 private:
 	sf::RenderWindow &MenuWindow;
 	Block* MenuCursor;
 	Block* MenuBackground;
-	HUD * MainMenuNewGame;
-	HUD * MainMenuOptions;
-	HUD * MainMenuRecords;
-	HUD * MainMenuExit;
-	HUD * OptionsHeader;
-	HUD * ExitToMain;
-	HUD * RecordsHeader;
-	int32 ShowOptionsScreen() const;
-	int32 ShowRecordsScreen(Records &InputNameForm) const;
+	GameText * MainMenuNewGame;
+	GameText * MainMenuOptions;
+	GameText * MainMenuRecords;
+	GameText * MainMenuExit;
+	GameText * OptionsHeader;
+	GameText * ExitToMain;
+	GameText * RecordsHeader;
+	int ShowOptionsScreen() const;
+	int ShowRecordsScreen(Records &InputNameForm) const;
 };

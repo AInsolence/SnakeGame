@@ -11,7 +11,7 @@ public:
 	Level(float XScale, float YScale);
 	~Level();
 
-	void SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, float XScale, float YScale);
+	void SetMainBorder(int MAIN_WINDOW_WIDTH, int MAIN_WINDOW_HIGHT, float XScale, float YScale);
 	std::vector<Block*> GetMainBorder () const;
 
 private:

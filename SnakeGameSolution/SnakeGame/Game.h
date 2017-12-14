@@ -12,9 +12,9 @@ public:
 	Game(sf::RenderWindow &window, std::string PlayerName);
 	~Game();
 	 
-	int32 Run(Records &InputNameForm);// start the new game
-	void GameOver(HUD * NewPlayerHUD, Records & InputNameForm);
-	void ShowCurrentPosition(Records & InputNameForm);
+	int Run(Records &InputNameForm);// start the new game
+	void GameOver(GameText * NewPlayerHUD, Records & InputNameForm);
+	void ShowCurrentPosition(Records & InputNameForm);// player position on the score table
 	void StartGameMusic();
 	
 private:

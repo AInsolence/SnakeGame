@@ -1,8 +1,13 @@
+/*
+	This class create and store info about player, he's scores, records table,
+	write/read information about records from/into the db file; 
+*/
+
 #pragma once
 #include "Block.h"
-#include "HUD.h"
+#include "GameText.h"
 
-using PlayerTable = std::vector<std::pair<std::string, int32>>;
+using PlayerTable = std::vector<std::pair<std::string, int>>;
 
 class Records
 {
@@ -12,16 +17,16 @@ public:
 
 	PlayerTable GetTable() const;
 	PlayerTable ReadFromFile();
-
+	// contain form to show player name input form before the each game
 	Block* NameInputForm;
-	HUD* PlayerName;
+	GameText* PlayerName;
 	bool bIsItNewOwnRecord;
 
 	void SetNewPlayer();
-	bool bSetNewRecord(int32);
+	bool bSetNewRecord(int);
 	
 	void WriteToFile();
-	int32 InputForm();
+	int InputForm();// create input form
 
 private:
 	PlayerTable PlayerScoreTable;

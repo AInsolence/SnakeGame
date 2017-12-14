@@ -6,7 +6,7 @@
 #include "Records.h"
 #include "stdafx.h"
 #include "Game.h"
-#include "HUD.h"
+#include "GameText.h"
 #include "Level.h"
 #include "Snake.h"
 #include "KeyListener.h"
@@ -14,7 +14,8 @@
 #include "bIsObjectsCollide.h"
 
 // constructor
-Game::Game(sf::RenderWindow &window, std::string PlayerName) : GameWindow (window)// link to the main window
+Game::Game(sf::RenderWindow &window, std::string 
+	PlayerName) : GameWindow (window)// link to the main window
 {
 	CurrentPlayerName = PlayerName;
 }
@@ -26,24 +27,15 @@ Game::~Game()
 
 // Methods
 
-void TEST_DB_NAME_SCORE_INPUT(Records InputNameForm, std::string Message)
-{
-	for (auto player : InputNameForm.GetTable())
-	{
-		std::cout << Message << player.first << std::endl;
-		std::cout << Message << player.second << std::endl;
-	}
-}
-
 // create all game's objects and handlers, start a game loop
-int32 Game::Run(Records &InputNameForm)
+int Game::Run(Records &InputNameForm)
 {
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
 	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
 	std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
-	HUD* NewPlayerHUD = new HUD(PlayerName ,0, 45);//Create the HUD
+	GameText* NewPlayerHUD = new GameText(PlayerName ,0, 45);//Create the HUD
 	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create the food
@@ -51,7 +43,7 @@ int32 Game::Run(Records &InputNameForm)
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	bool IsGameOver = false;
 	// Create 'Pause' title
-	HUD* Pause = new HUD("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
+	GameText* Pause = new GameText("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGamePaused = false;
 	StartGameMusic();
 	
@@ -59,7 +51,6 @@ int32 Game::Run(Records &InputNameForm)
 	while (GameWindow.isOpen())
 	{		
 		Klistner->Start(MySnake, IsGamePaused);// start handle player input
-
 		MySnake->Move();// Start Snake movement
 		// set game speed through players scores
 		GameWindow.setFramerateLimit(MySnake->GetSpeed());
@@ -142,8 +133,8 @@ int32 Game::Run(Records &InputNameForm)
 			MySnake->ChangeSize(1);// increase snake's size
 			NewFood->SetStatus(EFoodStatus::Disappear);// hide food object
 			// create random coordinates
-			int32 NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 84);
-			int32 NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 84);
+			int NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 84);
+			int NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 84);
 			if (NewX_pos < 42) NewX_pos = 42;
 			if (NewY_pos < 42) NewY_pos = 42;
 
@@ -157,39 +148,39 @@ int32 Game::Run(Records &InputNameForm)
 	return 0;
 }
 
-void Game::GameOver(HUD * hud, Records & InputNameForm)
+// show player all information about he's achievements after the game is over
+void Game::GameOver(GameText * hud, Records & InputNameForm)
 {
 	// Create 'Game Over' title
-	HUD* GameOver = new HUD("GAME OVER!",\
-		MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 6, 170);
+	GameText* GameOver = new GameText("GAME OVER!", MAIN_WINDOW_WIDTH/5, MAIN_WINDOW_WIDTH/6, 170);
+
 	GameMusic.stop();
 	// check is the current scores a new record for this player
 	std::string NewScores = hud->GetScores().getString();
 	if (InputNameForm.bSetNewRecord(std::stoi(NewScores)))
 	{
-		HUD* NewOwnRecord = new HUD("**It is your own record!!!**", \
+		GameText* NewOwnRecord = new GameText("**It is your own record!!!**", \
 			MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 4, 100);
 		GameWindow.draw(NewOwnRecord->GetText());
 	}
-	// show the position in score table
-	ShowCurrentPosition(InputNameForm);
+	ShowCurrentPosition(InputNameForm);// show the position in score table
 	GameWindow.draw(GameOver->GetText());
-	GameWindow.display();//Display 'Game over' window
-	sf::sleep(sf::seconds(3));
+	GameWindow.display();// display 'Game over' window
+	sf::sleep(sf::seconds(3));// pause before goto main menu
 }
 
 void Game::ShowCurrentPosition(Records & InputNameForm)
 {
 	InputNameForm.WriteToFile();// write results in the score table
 	InputNameForm.ReadFromFile();// read updated score table to show player
-	int32 Start = 0;
+	int Start = 0;// player's place in the records table
 	for (auto player : InputNameForm.GetTable())
 	{
 		Start++;// increase position to check
 		if (player.first == CurrentPlayerName) break;
 	}
 	std::string Message = "Your position in the record table is " + std::to_string(Start);
-	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
+	GameText* NewPosition = new GameText(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
 	GameWindow.draw(NewPosition->GetText());
 }
 
@@ -198,7 +189,6 @@ void Game::StartGameMusic()
 	// create music to stream music from file
 	if (!GameMusic.openFromFile("../../music/game.wav")) {
 		std::cout << "Main game music asset is not found! ";
-		//return EXIT_FAILURE;
 	}
 	GameMusic.setLoop(true);
 	GameMusic.setVolume(50);

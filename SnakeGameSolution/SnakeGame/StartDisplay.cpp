@@ -8,20 +8,29 @@ StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 	MenuBackground = new Block("Star", -150, -50, 1.0f, 1.0f);
 	MenuCursor = new Block("Food", CURSOR_START_POS_X, CURSOR_START_POS_Y, 0.3f, 0.3f);
 	// create main menu screen
-	MainMenuNewGame = new HUD("NEW GAME", 270, 0, 200);
-	MainMenuOptions = new HUD("OPTIONS", 270, CURSOR_STEP_BY_Y, 200);
-	MainMenuRecords = new HUD("RECORDS", 270, 2*CURSOR_STEP_BY_Y, 200);
-	MainMenuExit = new HUD("EXIT", 270, 3*CURSOR_STEP_BY_Y, 200);
+	MainMenuNewGame = new GameText("NEW GAME", 270, 0, 200);
+	MainMenuOptions = new GameText("OPTIONS", 270, CURSOR_STEP_BY_Y, 200);
+	MainMenuRecords = new GameText("RECORDS", 270, 2*CURSOR_STEP_BY_Y, 200);
+	MainMenuExit = new GameText("EXIT", 270, 3*CURSOR_STEP_BY_Y, 200);
 	// create options screen
-	OptionsHeader = new HUD("Game controls:", 230, 0, 150);
-	ExitToMain = new HUD("RETURN TO THE MAIN MENU", 230, 3 * CURSOR_STEP_BY_Y + 30, 100);
+	OptionsHeader = new GameText("Game controls:", 230, 0, 150);
+	ExitToMain = new GameText("RETURN TO THE MAIN MENU", 230, 3 * CURSOR_STEP_BY_Y + 30, 100);
 	// create records screen
-	RecordsHeader = new HUD("BEST PLAYERS:", 230, 0, 150);
+	RecordsHeader = new GameText("BEST PLAYERS:", 230, 0, 150);
 }
 
 //destructor
 StartDisplay::~StartDisplay()
 {
+	delete MenuBackground;
+	delete MenuCursor;
+	delete MainMenuNewGame;
+	delete MainMenuOptions;
+	delete MainMenuRecords;
+	delete MainMenuExit;
+	delete OptionsHeader;
+	delete ExitToMain;
+	delete RecordsHeader;
 }
 
 // Methods
@@ -67,9 +76,8 @@ int StartDisplay::Run(Records &InputNameForm) const
 					}
 					break;
 				case sf::Keyboard::Return:// choose a menu point
-					int32 CurrentCursorPosition = \
+					int CurrentCursorPosition = \
 						MenuCursor->MainSprite.getPosition().y;
-					std::cout << "CursorPosition: " << CurrentCursorPosition;
 					switch (CurrentCursorPosition)
 					{
 					case CURSOR_START_POS_Y:
@@ -106,11 +114,12 @@ int StartDisplay::Run(Records &InputNameForm) const
 	return 0;
 }
 
-int32 StartDisplay::ShowOptionsScreen() const
+int StartDisplay::ShowOptionsScreen() const
 {
 	std::string Rules = "RIGHT ARROW ----- turn right\nLEFT ARROW ----- turn left\n\
-Up ARROW ----- turn up\nDOWN ARROW ----- turn down\n";
-	HUD* GameRules = new HUD(Rules, 230, 150, 50);
+Up ARROW ----- turn up\nDOWN ARROW ----- turn down\nENTER ----- start the game\n\
+SPACE ----- pause";
+	GameText* GameRules = new GameText(Rules, 230, 150, 50);
 	// move cursor to the end of options. TODO change after adding real options points
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	while (MenuWindow.isOpen())
@@ -139,7 +148,7 @@ Up ARROW ----- turn up\nDOWN ARROW ----- turn down\n";
 					}
 					break;
 				case sf::Keyboard::Return:// choose an options point
-					const int32 CurrentCursorPosition = \
+					const int CurrentCursorPosition = \
 						MenuCursor->MainSprite.getPosition().y;// get cursor Y position
 					switch (CurrentCursorPosition)
 					{
@@ -162,11 +171,11 @@ Up ARROW ----- turn up\nDOWN ARROW ----- turn down\n";
 	}
 }
 
-int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
+int StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 {
-	int32 PlayerPosition = 0;
-	int32 PositionOnScreenY = 150;
-	std::vector<HUD*> AllRecords;
+	int PlayerPosition = 0;
+	int PositionOnScreenY = 150;
+	std::vector<GameText*> AllRecords;
 	for (auto& player : InputNameForm.GetTable())
 	{
 		PlayerPosition++;
@@ -178,8 +187,7 @@ int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 		}
 		std::string RecordMessage = std::to_string(PlayerPosition) + ". "\
 			+ player.first + Gap + std::to_string(player.second);
-		AllRecords.push_back(new HUD(RecordMessage, 230, PositionOnScreenY, 50));
-		std::cout << RecordMessage << std::endl;
+		AllRecords.push_back(new GameText(RecordMessage, 230, PositionOnScreenY, 50));
 		PositionOnScreenY += 50;
 	}
 	// move cursor to the end of the records
@@ -198,8 +206,8 @@ int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 			// Handle user keyboard input on records screen
 			if (event.type == sf::Event::KeyPressed) {
 				// cursor step in menu in pixels
-				constexpr int32 CURSOR_STEP_BY_X = 15;
-				constexpr int32 CURSOR_STEP_BY_Y = 160;
+				constexpr int CURSOR_STEP_BY_X = 15;
+				constexpr int CURSOR_STEP_BY_Y = 160;
 
 				switch (event.key.code)
 				{
@@ -216,7 +224,7 @@ int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 					}
 					break;
 				case sf::Keyboard::Return:// choose a menu point
-					const int32 CurrentCursorPosition = \
+					const int CurrentCursorPosition = \
 						MenuCursor->MainSprite.getPosition().y;// get cursor Y position
 					switch (CurrentCursorPosition)
 					{
@@ -234,7 +242,6 @@ int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 		MenuWindow.draw(RecordsHeader->GetText());
 		for (int i = 0; i < 7; i++)
 		{
-			std::cout << "DONE REC" << std::endl;
 			MenuWindow.draw(AllRecords[i]->GetText());
 		}
 		MenuWindow.draw(ExitToMain->GetText());
@@ -243,9 +250,9 @@ int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 	}
 }
 
-int32 StartDisplay::ShowInputName(Records &InputNameForm) const
+int StartDisplay::ShowInputName(Records &InputNameForm) const
 {
-	HUD* EnterName = new HUD("Hero, please enter your name:", 200, 50, 80);
+	GameText* EnterName = new GameText("Hero, please enter your name:", 200, 50, 80);
 	// create user name input form
 	sf::String PlayerName = "";
 
@@ -274,7 +281,6 @@ int32 StartDisplay::ShowInputName(Records &InputNameForm) const
 				if (event.text.unicode > 48 && event.text.unicode < 128)
 				{
 					PlayerName += static_cast<char>(event.text.unicode);
-					std::cout << event.text.unicode;
 					InputNameForm.PlayerName->SetMainText(PlayerName);
 				}
 				// TODO create delete with backspace

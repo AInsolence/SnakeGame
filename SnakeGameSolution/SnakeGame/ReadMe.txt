@@ -49,6 +49,8 @@ Debug:
 1. Need new collision detection functor - DONE
 2. Need fix food appearing - DONE
 3. Prohibit reverse moving to the snake - DONE
+4. Bug in Level.cpp, another scale of the blocks does not work in a right way
+5. Bug in reading players scores in the cases when player's name contain numbers
 
 Additional features after manual testing:
 1. Create new graphics for the food & walls in the game - DONE

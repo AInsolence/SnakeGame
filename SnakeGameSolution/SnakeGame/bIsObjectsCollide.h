@@ -1,3 +1,7 @@
+/*
+	This class represents the functor to find collision/intersection between two "Blocks"; 
+*/
+
 #pragma once
 #include "Block.h"
 

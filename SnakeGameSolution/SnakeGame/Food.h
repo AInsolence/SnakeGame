@@ -16,23 +16,23 @@ class Food
 {
 public:
 
-	Food(int32 x, int32 y, float XScale, float YScale, int32 NewValue, float NewLifeTime);
+	Food(int x, int y, float XScale, float YScale, int NewValue, float NewLifeTime);
 	~Food();
 
-	int32 GetValue() const;
+	int GetValue() const;
 	float GetLifeTime() const;
 	EFoodStatus GetStatus() const;
 	Block* Body;// pointer for food sprite
 
-	void SetValue(int32);
+	void SetValue(int);// value for the snake +increase/-decrease points or segments
 	void SetLifeTime(float);
 	void SetStatus(EFoodStatus);
 
-	void UpdateCoordinates(int32, int32);
+	void UpdateCoordinates(int, int);
 	void Animation();
 
 private:
-	int32 Value;// nutrition value can be negative and positive. Impact for snake's size change.
+	int Value;// nutrition value can be negative and positive. Impact for snake's size change.
 	EFoodStatus Status;// defind is the food exist or not on the map
 	float LifeTime;// lifetime in seconds when food will exists on the maps
 

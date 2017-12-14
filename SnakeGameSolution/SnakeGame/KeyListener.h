@@ -5,7 +5,7 @@
 #pragma once
 #include "Snake.h"
 
-class KeyListener // Change to sf::Keyboard interaction
+class KeyListener
 {
 public:
 	KeyListener(sf::RenderWindow &window);

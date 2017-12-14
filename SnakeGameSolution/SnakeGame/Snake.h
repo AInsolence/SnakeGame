@@ -9,7 +9,7 @@
 #include <vector>
 #include "Block.h"
 
-using FTuple = std::tuple<sf::Sprite, int32, int32>;
+using FTuple = std::tuple<sf::Sprite, int, int>;
 
 enum class ESnakeState// current status of the Snake object
 {
@@ -34,24 +34,24 @@ public:
 	std::vector<Block*> Body;// container to store snake head & snake segments
 	bool bIsMove;// state of the snake move or hold
 
-	int32 GetSpeed() const;
-	int32 GetSize() const;
+	int GetSpeed() const;
+	int GetSize() const;
 	ESnakeState GetCurrentState() const;
 	ESnakeCurrentDirection GetCurrentDirection() const;
 	
 	// reset the snake to the default parameters
 	void Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale);
-	void UpdateSpeed(int32);
-	void SetSize(int32);
+	void UpdateSpeed(int);
+	void SetSize(int);
 	void SetCurrentDirection(ESnakeCurrentDirection);
-	void ChangeSize(int32);
+	void ChangeSize(int);
 	void Move();
 
 	
 private:
 	// initialized in the reset function called in the constructor
-	int32 Speed;
-	int32 Size;
+	int Speed;
+	int Size;
 	ESnakeState CurrentState;// alive or dead
 	ESnakeCurrentDirection CurrentDirection;
 };

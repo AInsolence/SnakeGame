@@ -17,7 +17,7 @@ Records::~Records()
 }
 
 // predicate to compare players scores in the PlayerScoresTable
-bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two)
+bool UnPred(std::pair<std::string, int> one, std::pair<std::string, int> two)
 {
 	if (one.second > two.second) return true;
 	return false;
@@ -62,7 +62,6 @@ PlayerTable Records::ReadFromFile()
 void Records::SetNewPlayer()
 {// get new player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
-	std::cout << "NewPlayerName: " << NewPlayerName << std::endl;
 	// check if the current player in the Table
 	bool IsPlayerInTable = false;
 	for (auto player : PlayerScoreTable)
@@ -77,7 +76,6 @@ void Records::SetNewPlayer()
 	if (!IsPlayerInTable)
 	{// if not in the table
 		PlayerScoreTable.push_back(std::make_pair(NewPlayerName, 0));
-		std::cout << "Player is setted";
 	}
 }
 
@@ -87,12 +85,9 @@ PlayerTable Records::GetTable() const
 }
 
 // write new player records
-bool Records::bSetNewRecord(int32 NewScores)
+bool Records::bSetNewRecord(int NewScores)
 {// get player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
-	// sort players by scores before writing in the file
-	PlayerTable Table = PlayerScoreTable;
-	std::stable_sort(Table.begin(), Table.end(), UnPred);
 	for (auto &player : PlayerScoreTable)// NOTE!!! Here use access by-reference
 	{// if current player in score table
 		if (player.first == NewPlayerName)
@@ -118,7 +113,7 @@ void Records::WriteToFile()
 	{
 		std::cout << "Cannot open players records table storage file!";
 	}
-	int32 FirstPlace = 1;// for the first place write 1
+	int FirstPlace = 1;// for the first place write 1
 	for (auto player : Table)
 	{
 		*Fstream << FirstPlace << ". *";// write player's position in the table & delimeter
@@ -133,9 +128,10 @@ void Records::WriteToFile()
 	Fstream->close();
 }
 
-int32 Records::InputForm()
+int Records::InputForm()
 {
 	NameInputForm = new Block ("Star", 200, 170, 0.5f, 0.1f);
-	PlayerName = new HUD("", 300, 175, 60);
+	// changes dynamically in the StartDisplay.cpp file throught player input
+	PlayerName = new GameText("", 300, 175, 60);
 	return 0;
 }

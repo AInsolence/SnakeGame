@@ -19,12 +19,12 @@ Snake::~Snake()
 
 // Getters
 
-int32 Snake::GetSpeed() const
+int Snake::GetSpeed() const
 {
 	return Speed;
 }
 
-int32 Snake::GetSize() const
+int Snake::GetSize() const
 {
 	return Size;
 }
@@ -41,13 +41,13 @@ ESnakeCurrentDirection Snake::GetCurrentDirection() const
 
 // Setters
 
-void Snake::UpdateSpeed(int32 CurrentSnakeSpeed)
+void Snake::UpdateSpeed(int CurrentSnakeSpeed)
 {
 	Speed += CurrentSnakeSpeed;
 	return;
 }
 
-void Snake::SetSize(int32 NewSnakeSize)
+void Snake::SetSize(int NewSnakeSize)
 {
 	Size = NewSnakeSize;
 	return;
@@ -63,7 +63,7 @@ void Snake::SetCurrentDirection(ESnakeCurrentDirection NewDirection)
 void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale)
 {
 
-	// create snake's head, tail and body segments // TODO move this code to Reset method
+	// create snake's head, tail and body segments
 	Body.push_back(new Block("HeadUp", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
 	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
@@ -74,16 +74,16 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 	// snake starting DIRECTION is left
 	SetCurrentDirection(ESnakeCurrentDirection::Right);
 	// set snake SPEED in the beginning of the game
-	constexpr int32 START_SNAKE_SPEED = 4;
+	constexpr int START_SNAKE_SPEED = 4;
 	Speed = START_SNAKE_SPEED;
 	// set snake SIZE in the beginning of the game
-	constexpr int32 START_SNAKE_SIZE = 3;
+	constexpr int START_SNAKE_SIZE = 3;
 	SetSize(START_SNAKE_SIZE);
 }
 
-void Snake::ChangeSize(int32 AdditionToCurrentSize)
+void Snake::ChangeSize(int AdditionToCurrentSize)
 {
-	for (int32 NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
+	for (int NewSegments = 0; NewSegments < AdditionToCurrentSize; NewSegments++)
 	{// add new segment with head segment scale
 		Body.push_back(new Block("Body",\
 			Body[0]->MainSprite.getPosition().x,\
@@ -107,7 +107,7 @@ void Snake::Move()
 				Body[i - 1]->MainSprite.getPosition().y);
 		}
 		// change head coordinates depends on current direction
-		switch (CurrentDirection)// TODO add changing of snake's  head tile  
+		switch (CurrentDirection)
 		{
 		case ESnakeCurrentDirection::Left:
 			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_L.png", Body[0]->MainSprite.getScale().x,\

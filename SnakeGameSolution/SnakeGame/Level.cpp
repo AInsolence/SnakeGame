@@ -17,7 +17,7 @@ Level::~Level()
 	}
 }
 
-void Level::SetMainBorder(int32 MAIN_WINDOW_WIDTH, int32 MAIN_WINDOW_HIGHT, float XScale, float YScale)
+void Level::SetMainBorder(int MAIN_WINDOW_WIDTH, int MAIN_WINDOW_HIGHT, float XScale, float YScale)
 {
 	const float DISTANCE_BETWEEN_BLOCKS_X = BASE_SPRITE_SIZE * XScale;
 	const float DISTANCE_BETWEEN_BLOCKS_Y = BASE_SPRITE_SIZE * YScale;
