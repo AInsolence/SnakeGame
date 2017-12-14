@@ -17,8 +17,7 @@ int main()
 		Records InputNameForm;
 		// Create Game object and render all eventsin the main window
 		StartDisplay* MainMenu = new StartDisplay(window);
-		Game* NewGame = new Game(window, "Player");
-		Records records;
+		Game* NewGame = new Game(window, InputNameForm.PlayerName->GetText().getString());
 		MainMenu->Run(InputNameForm);
 		// Run the new game
 		NewGame->Run(InputNameForm);

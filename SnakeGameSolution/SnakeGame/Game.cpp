@@ -185,12 +185,14 @@ void Game::GameOver(HUD * hud, Records & InputNameForm)
 	int32 Start = 0;
 	for (auto player : InputNameForm.GetTable())
 	{
-		Start++;
+		std::cout << "IN THE FOR1 " << CurrentPlayerName << std::endl;
 		if (player.first == CurrentPlayerName)
 		{
 			auto Position = std::find(InputNameForm.GetTable().begin(),\
 				InputNameForm.GetTable().end(), player);
 			Start = std::distance(InputNameForm.GetTable().begin(), Position);
+			std::cout << "IN THE FOR " << Start << std::endl;
+			break;
 		}
 	}
 	std::string Message = "Message " + std::to_string(Start);

@@ -16,6 +16,13 @@ Records::~Records()
 {
 }
 
+// predicate to compare players scores in the PlayerScoresTable
+bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two)
+{
+	if (one.second > two.second) return true;
+	return false;
+}
+
 PlayerTable Records::ReadFromFile()
 {
 	// clear table before reading the file
@@ -83,6 +90,9 @@ PlayerTable Records::GetTable() const
 bool Records::bSetNewRecord(int32 NewScores)
 {// get player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
+	// sort players by scores before writing in the file
+	PlayerTable Table = PlayerScoreTable;
+	std::stable_sort(Table.begin(), Table.end(), UnPred);
 	for (auto &player : PlayerScoreTable)// NOTE!!! Here use access by-reference
 	{// if current player in score table
 		if (player.first == NewPlayerName)
@@ -94,13 +104,6 @@ bool Records::bSetNewRecord(int32 NewScores)
 			}
 		}
 	}
-	return false;
-}
-
-// predicate to compare players scores in the PlayerScoresTable
-bool UnPred(std::pair<std::string, int32> one, std::pair<std::string, int32> two)
-{
-	if (one.second > two.second) return true;
 	return false;
 }
 
