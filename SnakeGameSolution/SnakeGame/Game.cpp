@@ -177,7 +177,22 @@ void Game::GameOver(HUD * hud, Records & InputNameForm)
 	}
 	InputNameForm.WriteToFile();
 	InputNameForm.ReadFromFile();
+	for (auto player : InputNameForm.GetTable())
+	{
+		std::cout << "TEST2: " << player.first << std::endl;
+	}
 	// get the position in score table
+	int32 Start = 0;
+	for (auto player : InputNameForm.GetTable())
+	{
+		Start++;
+		if (player.first == CurrentPlayerName)
+		{
+			auto Position = std::find(InputNameForm.GetTable().begin(),\
+				InputNameForm.GetTable().end(), player);
+			Start = std::distance(InputNameForm.GetTable().begin(), Position);
+		}
+	}
 	std::string Message = "Message " + std::to_string(Start);
 	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
 	GameWindow.draw(NewPosition->GetText());
