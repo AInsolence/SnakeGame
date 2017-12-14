@@ -48,5 +48,5 @@ private:
 	HUD * ExitToMain;
 	HUD * RecordsHeader;
 	int32 ShowOptionsScreen() const;
-	int32 ShowRecordsScreen() const;
+	int32 ShowRecordsScreen(Records &InputNameForm) const;
 };

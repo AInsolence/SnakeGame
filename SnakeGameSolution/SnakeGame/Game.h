@@ -14,6 +14,7 @@ public:
 	 
 	int32 Run(Records &InputNameForm);// start the new game
 	void GameOver(HUD * NewPlayerHUD, Records & InputNameForm);
+	void ShowCurrentPosition(Records & InputNameForm);
 	void StartGameMusic();
 	
 private:

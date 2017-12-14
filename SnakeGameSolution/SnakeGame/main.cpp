@@ -17,9 +17,10 @@ int main()
 		Records InputNameForm;
 		// Create Game object and render all eventsin the main window
 		StartDisplay* MainMenu = new StartDisplay(window);
-		Game* NewGame = new Game(window, InputNameForm.PlayerName->GetText().getString());
 		MainMenu->Run(InputNameForm);
 		// Run the new game
+		std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
+		Game* NewGame = new Game(window, PlayerName);
 		NewGame->Run(InputNameForm);
 		delete MainMenu;
 		delete NewGame;

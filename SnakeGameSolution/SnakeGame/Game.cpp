@@ -171,36 +171,26 @@ void Game::GameOver(HUD * hud, Records & InputNameForm)
 			MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 4, 100);
 		GameWindow.draw(NewOwnRecord->GetText());
 	}
-	for (auto player : InputNameForm.GetTable())
-	{
-		std::cout << "TEST1: " << player.first << std::endl;
-	}
-	InputNameForm.WriteToFile();
-	InputNameForm.ReadFromFile();
-	for (auto player : InputNameForm.GetTable())
-	{
-		std::cout << "TEST2: " << player.first << std::endl;
-	}
-	// get the position in score table
-	int32 Start = 0;
-	for (auto player : InputNameForm.GetTable())
-	{
-		std::cout << "IN THE FOR1 " << CurrentPlayerName << std::endl;
-		if (player.first == CurrentPlayerName)
-		{
-			auto Position = std::find(InputNameForm.GetTable().begin(),\
-				InputNameForm.GetTable().end(), player);
-			Start = std::distance(InputNameForm.GetTable().begin(), Position);
-			std::cout << "IN THE FOR " << Start << std::endl;
-			break;
-		}
-	}
-	std::string Message = "Message " + std::to_string(Start);
-	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
-	GameWindow.draw(NewPosition->GetText());
+	// show the position in score table
+	ShowCurrentPosition(InputNameForm);
 	GameWindow.draw(GameOver->GetText());
 	GameWindow.display();//Display 'Game over' window
 	sf::sleep(sf::seconds(3));
+}
+
+void Game::ShowCurrentPosition(Records & InputNameForm)
+{
+	InputNameForm.WriteToFile();// write results in the score table
+	InputNameForm.ReadFromFile();// read updated score table to show player
+	int32 Start = 0;
+	for (auto player : InputNameForm.GetTable())
+	{
+		Start++;// increase position to check
+		if (player.first == CurrentPlayerName) break;
+	}
+	std::string Message = "Your position in the record table is " + std::to_string(Start);
+	HUD* NewPosition = new HUD(Message, MAIN_WINDOW_WIDTH / 5, MAIN_WINDOW_WIDTH / 3, 70);
+	GameWindow.draw(NewPosition->GetText());
 }
 
 void Game::StartGameMusic()

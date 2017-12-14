@@ -13,10 +13,10 @@ StartDisplay::StartDisplay(sf::RenderWindow &window) : MenuWindow(window)
 	MainMenuRecords = new HUD("RECORDS", 270, 2*CURSOR_STEP_BY_Y, 200);
 	MainMenuExit = new HUD("EXIT", 270, 3*CURSOR_STEP_BY_Y, 200);
 	// create options screen
-	OptionsHeader = new HUD("OPTIONS", 230, 0, 150);
+	OptionsHeader = new HUD("Game controls:", 230, 0, 150);
 	ExitToMain = new HUD("RETURN TO THE MAIN MENU", 230, 3 * CURSOR_STEP_BY_Y + 30, 100);
 	// create records screen
-	RecordsHeader = new HUD("RECORDS", 230, 0, 150);
+	RecordsHeader = new HUD("BEST PLAYERS:", 230, 0, 150);
 }
 
 //destructor
@@ -81,7 +81,7 @@ int StartDisplay::Run(Records &InputNameForm) const
 						ShowOptionsScreen();
 						break;
 					case CURSOR_START_POS_Y + 2*CURSOR_STEP_BY_Y:
-						ShowRecordsScreen();
+						ShowRecordsScreen(InputNameForm);
 						break;
 					case CURSOR_START_POS_Y + 3*CURSOR_STEP_BY_Y:
 						MenuWindow.close();
@@ -108,6 +108,9 @@ int StartDisplay::Run(Records &InputNameForm) const
 
 int32 StartDisplay::ShowOptionsScreen() const
 {
+	std::string Rules = "RIGHT ARROW ----- turn right\nLEFT ARROW ----- turn left\n\
+Up ARROW ----- turn up\nDOWN ARROW ----- turn down\n";
+	HUD* GameRules = new HUD(Rules, 230, 150, 50);
 	// move cursor to the end of options. TODO change after adding real options points
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	while (MenuWindow.isOpen())
@@ -152,17 +155,37 @@ int32 StartDisplay::ShowOptionsScreen() const
 		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
 		MenuWindow.draw(OptionsHeader->GetText());
+		MenuWindow.draw(GameRules->GetText());
 		MenuWindow.draw(ExitToMain->GetText());
 		MenuWindow.display();
 		MenuWindow.clear();
 	}
 }
 
-int32 StartDisplay::ShowRecordsScreen() const
+int32 StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 {
+	int32 PlayerPosition = 0;
+	int32 PositionOnScreenY = 150;
+	std::vector<HUD*> AllRecords;
+	for (auto& player : InputNameForm.GetTable())
+	{
+		PlayerPosition++;
+		std::string Gap;
+		for (size_t i = 50; i > (player.first.length() + \
+			std::to_string(player.second).length()); i--)
+		{// write spaces between name & scores
+			Gap += '-';
+		}
+		std::string RecordMessage = std::to_string(PlayerPosition) + ". "\
+			+ player.first + Gap + std::to_string(player.second);
+		AllRecords.push_back(new HUD(RecordMessage, 230, PositionOnScreenY, 50));
+		std::cout << RecordMessage << std::endl;
+		PositionOnScreenY += 50;
+	}
 	// move cursor to the end of the records
 	// TODO change after adding real records
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
+	bool Show = true;
 	while (MenuWindow.isOpen())
 	{
 		sf::Event event;
@@ -209,6 +232,11 @@ int32 StartDisplay::ShowRecordsScreen() const
 		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(MenuCursor->MainSprite);
 		MenuWindow.draw(RecordsHeader->GetText());
+		for (int i = 0; i < 7; i++)
+		{
+			std::cout << "DONE REC" << std::endl;
+			MenuWindow.draw(AllRecords[i]->GetText());
+		}
 		MenuWindow.draw(ExitToMain->GetText());
 		MenuWindow.display();
 		MenuWindow.clear();
