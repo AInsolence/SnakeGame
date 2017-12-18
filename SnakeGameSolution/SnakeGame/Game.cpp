@@ -32,25 +32,26 @@ int Game::Run(Records &InputNameForm)
 {
 	// ***Initialization of the game objects are used in the game loop***
 	// Create game field background
-	Block* GameBackground = new Block("SolarBackground", 0, 0, 0.7f, 0.7f);
-	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
+	auto GameBackground = std::make_shared<Block>("SolarBackground", 0, 0, 0.7f, 0.7f);
+	auto Level01 = std::make_shared<Level>(0.1f, 0.1f);//Create the level
 	std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
-	GameText* NewPlayerHUD = new GameText(PlayerName ,0, 45);//Create the HUD
-	Snake* MySnake = new Snake("Red", 42, 42, 0.2f, 0.2f);//Create the Snake
-	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
+	auto NewPlayerHUD = std::make_shared<GameText>(PlayerName ,0, 45);//Create the HUD
+	auto MySnake = std::make_shared<Snake>("Red", 42, 42, 0.2f, 0.2f);//Create the Snake
+	//Create the player's input handler
+	auto Klistner = std::make_shared<KeyListener>(GameWindow);
 	// Create the food
-	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
+	auto NewFood = std::make_shared<Food>(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	bool IsGameOver = false;
 	// Create 'Pause' title
-	GameText* Pause = new GameText("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
+	auto Pause = std::make_shared<GameText>("PAUSE", MAIN_WINDOW_WIDTH / 3, MAIN_WINDOW_WIDTH / 6, 170);
 	bool IsGamePaused = false;
 	StartGameMusic();
 	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
 	{		
-		Klistner->Start(MySnake, IsGamePaused);// start handle player input
+		Klistner->Start(MySnake.get(), IsGamePaused);// start handle player input
 		MySnake->Move();// Start Snake movement
 		// set game speed through players scores
 		GameWindow.setFramerateLimit(MySnake->GetSpeed());
@@ -91,7 +92,7 @@ int Game::Run(Records &InputNameForm)
 		//Game Over logic & render
 		if (IsGameOver)
 		{
-			GameOver(NewPlayerHUD, InputNameForm);
+			GameOver(NewPlayerHUD.get(), InputNameForm);
 			return 0;
 		}
 		// ***END OF RENDERING PART***

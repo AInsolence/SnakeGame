@@ -52,7 +52,7 @@ Debug:
 4. Bug in Level.cpp, another scale of the blocks does not work in a right way - DONE
 5. Bug in reading players scores in the cases when player's name contain numbers - DONE
 6. Does not work backspace in player's input name form - DONE
-7. Change all inatances initializations to variant with shared_ptr
+7. Change all inatances initializations in the game.cpp to variant with shared_ptr - DONE
 
 Additional features after manual testing:
 1. Create new graphics for the food & walls in the game - DONE
