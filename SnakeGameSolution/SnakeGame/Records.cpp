@@ -48,6 +48,7 @@ PlayerTable Records::ReadFromFile()
 			size_t EndPos = PlayerInfo.find_last_of(Delimeter);
 			PlayerName = PlayerInfo.substr(StartPos, EndPos - StartPos);
 			// get player scores
+			PlayerInfo = PlayerInfo.substr(EndPos);// skip player name
 			size_t NotScores = PlayerInfo.find_last_not_of("0123456789");
 			PlayerScores = PlayerInfo.substr(NotScores + 1);
 			// write results to the PlayerScoreTable
@@ -63,17 +64,17 @@ void Records::SetNewPlayer()
 {// get new player name
 	std::string NewPlayerName = PlayerName->GetText().getString();
 	// check if the current player in the Table
-	bool IsPlayerInTable = false;
+	bool IsPlayerintable = false;
 	for (auto player : PlayerScoreTable)
 	{
 		if (player.first == NewPlayerName)
 		{
-			IsPlayerInTable = true;
+			IsPlayerintable = true;
 			break;
 		}
 	}
 	// if player not in the table -> add to the table
-	if (!IsPlayerInTable)
+	if (!IsPlayerintable)
 	{// if not in the table
 		PlayerScoreTable.push_back(std::make_pair(NewPlayerName, 0));
 	}
@@ -128,10 +129,9 @@ void Records::WriteToFile()
 	Fstream->close();
 }
 
-int Records::InputForm()
+void Records::InputForm()
 {
 	NameInputForm = new Block ("Star", 200, 170, 0.5f, 0.1f);
 	// changes dynamically in the StartDisplay.cpp file throught player input
 	PlayerName = new GameText("", 300, 175, 60);
-	return 0;
 }

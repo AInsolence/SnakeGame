@@ -1,5 +1,5 @@
 /*
-	This class represents the functor to find collision/intersection between two "Blocks"; 
+	This class represents the functor to find collision/floatersection between two "Blocks"; 
 */
 
 #pragma once

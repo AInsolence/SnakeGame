@@ -4,7 +4,7 @@
 
 //constructor
 // x&y is the coordinates of appearing on the map
-Food::Food(int x, int y, float XScale, float YScale, int NewValue, float NewLifeTime)
+Food::Food(float x, float y, float XScale, float YScale, int NewValue, int NewLifeTime)
 {
 	Body = new Block("Food", x, y, XScale, YScale);
 	Value = NewValue;
@@ -41,7 +41,7 @@ void Food::SetValue(int NewValue)
 	return;
 }
 
-void Food::SetLifeTime(float NewTime)
+void Food::SetLifeTime(int NewTime)
 {
 	LifeTime = NewTime;
 	return;
@@ -53,7 +53,7 @@ void Food::SetStatus(EFoodStatus NewStatus)
 	return;
 }
 
-void Food::UpdateCoordinates(int x, int y)
+void Food::UpdateCoordinates(float x, float y)
 {
 	Body->MainSprite.setPosition(x, y);
 	return;
@@ -62,8 +62,8 @@ void Food::UpdateCoordinates(int x, int y)
 // animate the food through changing sprites scale up and down
 void Food::Animation()
 {
-	int MAX_FRAMES = 10;
-	int PERCENT_TO_CHANGE_SCALE = 40;
+	float MAX_FRAMES = 10;
+	float PERCENT_TO_CHANGE_SCALE = 40;
 	static float counter = 0;// how much frames will be, started from 0
 	static bool Grow = true;
 

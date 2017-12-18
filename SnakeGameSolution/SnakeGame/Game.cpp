@@ -36,7 +36,7 @@ int Game::Run(Records &InputNameForm)
 	Level* Level01 = new Level(0.1f, 0.1f);//Create the level
 	std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
 	GameText* NewPlayerHUD = new GameText(PlayerName ,0, 45);//Create the HUD
-	Snake* MySnake = new Snake("Red", 200, 200, 0.1f, 0.1f);//Create the Snake
+	Snake* MySnake = new Snake("Red", 42, 42, 0.2f, 0.2f);//Create the Snake
 	KeyListener* Klistner = new KeyListener(GameWindow);//Create the player's input handler
 	// Create the food
 	Food* NewFood = new Food(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
@@ -133,8 +133,8 @@ int Game::Run(Records &InputNameForm)
 			MySnake->ChangeSize(1);// increase snake's size
 			NewFood->SetStatus(EFoodStatus::Disappear);// hide food object
 			// create random coordinates
-			int NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 84);
-			int NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 84);
+			float NewX_pos = rand() % (MAIN_WINDOW_WIDTH - 84);
+			float NewY_pos = rand() % (MAIN_WINDOW_HIGHT - 84);
 			if (NewX_pos < 42) NewX_pos = 42;
 			if (NewY_pos < 42) NewY_pos = 42;
 

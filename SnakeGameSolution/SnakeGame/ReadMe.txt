@@ -11,7 +11,7 @@ To play it is needed to setup assets, link sfml library, and compile the sources
 
 SCRUM plan 08.11.2017
 
-Sprints:
+Sprfloats:
 
 1. Create main block class - DONE
 2. Create Level class - DONE
@@ -22,7 +22,7 @@ Sprints:
 7. Create Food class - DONE
 8. Create collision detection for the Snake head (collision with borders and food). Functor. - DONE
 8.1 Check snake size change method. Changed. - DONE
-9. Create point counter and HUD - DONE
+9. Create pofloat counter and HUD - DONE
 10. Create GAME class and add win/lose conditions. - DONE
 10.1 Make logic for the random food appearing in the game screen. - DONE
 11. Add game music and sounds (for move, collision(game over), eating&grow) - AWAIT
@@ -49,11 +49,13 @@ Debug:
 1. Need new collision detection functor - DONE
 2. Need fix food appearing - DONE
 3. Prohibit reverse moving to the snake - DONE
-4. Bug in Level.cpp, another scale of the blocks does not work in a right way
-5. Bug in reading players scores in the cases when player's name contain numbers
+4. Bug in Level.cpp, another scale of the blocks does not work in a right way - DONE
+5. Bug in reading players scores in the cases when player's name contain numbers - DONE
+6. Does not work backspace in player's input name form - DONE
+7. Change all inatances initializations to variant with shared_ptr
 
 Additional features after manual testing:
 1. Create new graphics for the food & walls in the game - DONE
 2. Create new graphics for the main menu - DONE
-3. Create new graphics for the main menu points - DONE
+3. Create new graphics for the main menu pofloats - DONE
 4. Increasing speed depending on length of the snake - DONE

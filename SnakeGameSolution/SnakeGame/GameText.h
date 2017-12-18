@@ -1,5 +1,5 @@
 /*
-	This class create text to show in the game interface,
+	This class create text to show in the game floaterface,
 	could contain the PlayerName, Scores, Game time & other helpful info.
 */
 
@@ -10,8 +10,8 @@
 class GameText
 {
 public:
-	GameText(std::string NewPlayerName, int StartScores, int FontSize);
-	GameText(std::string Message, int X_pos, int Y_pos, int FontSize);
+	GameText(std::string NewPlayerName, int StartScores, float FontSize);
+	GameText(std::string Message, float X_pos, float Y_pos, float FontSize);
 	~GameText();
 
 	sf::Text GetText() const;
@@ -21,14 +21,13 @@ public:
 	void UpdateScores(int);
 	void SetMainText(sf::String);
 	
-	int Create(sf::Text & HUDLineName, sf::Font &Arial,\
+	float Create(sf::Text & HUDLineName, sf::Font &Arial,\
 					std::string TextureLocation,\
-						std::string TextValue, float X_pos, float Y_pos, int FontSize);
+						std::string TextValue, float X_pos, float Y_pos, float FontSize);
 
 private:
-	sf::Text MainText;
+	sf::Text Mafloatext;
 	sf::Text Scores;
 	sf::Font Arial;
 	std::string FontLocation = "../../img/ARIAL.TTF";
 };
-

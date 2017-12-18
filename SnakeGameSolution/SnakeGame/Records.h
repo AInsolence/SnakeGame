@@ -26,7 +26,7 @@ public:
 	bool bSetNewRecord(int);
 	
 	void WriteToFile();
-	int InputForm();// create input form
+	void InputForm();// create input form
 
 private:
 	PlayerTable PlayerScoreTable;

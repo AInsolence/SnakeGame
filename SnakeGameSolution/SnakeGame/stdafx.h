@@ -6,24 +6,21 @@
 #pragma once
 
 #include "targetver.h"
-//SFML Headers
+// SFML Headers
 #include "SFML/Graphics.hpp"
 #include <SFML/Audio.hpp>
-//
+// STD headers
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
 #include <conio.h>
+#include<memory>
 
-// Size of game screen costants
-// TODO replace this variables  into GAME class
-constexpr int MAIN_WINDOW_WIDTH = 1302;
-constexpr int MAIN_WINDOW_HIGHT = 672;
+/*
+	Size of game screen costants division by BASE_SPRITE_SIZE must be even to avoid
+	unexpected collisions
+*/
+constexpr int MAIN_WINDOW_WIDTH = 1344;
+constexpr int MAIN_WINDOW_HIGHT = 756;
 
 const sf::Color Black = sf::Color::Black;
-
-
-
-
-
-// TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы

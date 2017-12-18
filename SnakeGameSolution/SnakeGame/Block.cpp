@@ -4,7 +4,7 @@
 
 
 // constructor
-Block::Block(std::string BlockType, int x, int y, float XScale, float YScale)
+Block::Block(std::string BlockType, float x, float y, float XScale, float YScale)
 {
 	// set start block position on the game screen
 	MainSprite.setPosition(x, y);

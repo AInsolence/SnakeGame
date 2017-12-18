@@ -273,8 +273,16 @@ int StartDisplay::ShowInputName(Records &InputNameForm) const
 					InputNameForm.SetNewPlayer();
 					return 0;
 				}
+				if (event.key.code == sf::Keyboard::BackSpace)
+				{
+					if (PlayerName.getSize() > 0)
+					{// delete last character in input user name form
+						PlayerName.erase(PlayerName.getSize() - 1, 1);
+					}
+					InputNameForm.PlayerName->SetMainText(PlayerName);
+				}
 			}
-			// input user name handler
+			// input user name
 			if (event.type == sf::Event::TextEntered)
 			{
 				// use only ASCII symbols
@@ -283,7 +291,6 @@ int StartDisplay::ShowInputName(Records &InputNameForm) const
 					PlayerName += static_cast<char>(event.text.unicode);
 					InputNameForm.PlayerName->SetMainText(PlayerName);
 				}
-				// TODO create delete with backspace
 			}
 		}
 

@@ -3,9 +3,10 @@
 #include "Snake.h"
 
 //constructor
-Snake::Snake(std::string SnakeColor, float x, float y, float XScale, float YScale)
-{
-	Reset(x, y, XScale, YScale);// reset object to default parameters
+Snake::Snake(std::string SnakeColor, float XStartPosition, float YStartPosition,\
+				float XScale, float YScale)
+{// reset object to default parameters
+	Reset(XStartPosition, YStartPosition, XScale, YScale);
 }
 
 // destructor
@@ -19,7 +20,7 @@ Snake::~Snake()
 
 // Getters
 
-int Snake::GetSpeed() const
+float Snake::GetSpeed() const
 {
 	return Speed;
 }
@@ -41,7 +42,7 @@ ESnakeCurrentDirection Snake::GetCurrentDirection() const
 
 // Setters
 
-void Snake::UpdateSpeed(int CurrentSnakeSpeed)
+void Snake::UpdateSpeed(float CurrentSnakeSpeed)
 {
 	Speed += CurrentSnakeSpeed;
 	return;
@@ -50,7 +51,6 @@ void Snake::UpdateSpeed(int CurrentSnakeSpeed)
 void Snake::SetSize(int NewSnakeSize)
 {
 	Size = NewSnakeSize;
-	return;
 }
 
 void Snake::SetCurrentDirection(ESnakeCurrentDirection NewDirection)
@@ -64,9 +64,9 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 {
 
 	// create snake's head, tail and body segments
-	Body.push_back(new Block("HeadUp", 42, 42, XScale, YScale));
-	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
-	Body.push_back(new Block("Body", 42, 42, XScale, YScale));
+	Body.push_back(new Block("HeadUp", XStartPosition, YStartPosition, XScale, YScale));
+	Body.push_back(new Block("Body", XStartPosition, YStartPosition, XScale, YScale));
+	Body.push_back(new Block("Body", XStartPosition, YStartPosition, XScale, YScale));
 	// snake LIVE STATUS in the beginning of the game
 	ESnakeState CurrentState = ESnakeState::Alive;
 	// snake move;
@@ -74,7 +74,7 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 	// snake starting DIRECTION is left
 	SetCurrentDirection(ESnakeCurrentDirection::Right);
 	// set snake SPEED in the beginning of the game
-	constexpr int START_SNAKE_SPEED = 4;
+	constexpr float START_SNAKE_SPEED = 4;
 	Speed = START_SNAKE_SPEED;
 	// set snake SIZE in the beginning of the game
 	constexpr int START_SNAKE_SIZE = 3;

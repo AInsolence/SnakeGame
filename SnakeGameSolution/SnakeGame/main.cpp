@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "Records.h"
 
-int main()
+float main()
 {
 	// Create main app window
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");
@@ -16,16 +16,13 @@ int main()
 		// Create new PlayerName Object
 		Records InputNameForm;
 		// Create Game object and render all eventsin the main window
-		StartDisplay* MainMenu = new StartDisplay(window);
+		std::shared_ptr<StartDisplay> MainMenu = std::make_shared<StartDisplay>(window);
 		MainMenu->Run(InputNameForm);
 		// Run the new game
 		std::string PlayerName = InputNameForm.PlayerName->GetText().getString();
-		Game* NewGame = new Game(window, PlayerName);
+		std::shared_ptr<Game> NewGame = std::make_shared<Game>(window, PlayerName);
 		NewGame->Run(InputNameForm);
-		delete MainMenu;
-		delete NewGame;
 	}
-
     return 0;
 }
 

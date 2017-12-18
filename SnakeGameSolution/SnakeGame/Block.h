@@ -8,13 +8,13 @@
 #include <map>
 
 //Base block size without scaling, depends on using tileset images
-constexpr int BASE_SPRITE_SIZE = 420;
+constexpr float BASE_SPRITE_SIZE = 420;
 
 class Block
 {
 public:
 	// (SIZE, x_size, y_size)
-	Block(std::string BlockType, int x, int y, float XScale, float YScale);
+	Block(std::string BlockType, float x, float y, float XScale, float YScale);
 	~Block();
 
 	sf::Sprite MainSprite;// store object's image
