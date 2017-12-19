@@ -40,7 +40,7 @@ int Game::Run(Records &InputNameForm)
 	//Create the player's input handler
 	auto Klistner = std::make_shared<KeyListener>(GameWindow);
 	// Create the food
-	auto NewFood = std::make_shared<Food>(600, 500, 0.15f, 0.15f, 10, 20);// TODO make real rand for x, y
+	auto NewFood = std::make_shared<Food>(600, 500, 0.15f, 0.15f, 10, 20);
 	bIsObjectsCollide bIsCollide;//Create collision detection functor
 	bool IsGameOver = false;
 	// Create 'Pause' title
@@ -70,7 +70,7 @@ int Game::Run(Records &InputNameForm)
 		// Food render
 		if (NewFood->GetStatus() == EFoodStatus::Appear)
 		{
-			GameWindow.draw(NewFood->Body->MainSprite);
+			GameWindow.draw(NewFood->GetBody()->MainSprite);
 			NewFood->Animation();
 		}
 		//HUD render
@@ -121,7 +121,7 @@ int Game::Run(Records &InputNameForm)
 			}
 		}
 		//Check collision with the food & change size, speed & points
-		if (bIsCollide(NewFood->Body, MySnake->Body[0]))
+		if (bIsCollide(NewFood->GetBody(), MySnake->Body[0]))
 		{
 			NewPlayerHUD->UpdateScores(NewFood->GetValue());// increase scores
 			// increase snake's speed depending on the scores
@@ -169,7 +169,7 @@ void Game::GameOver(GameText * hud, Records & InputNameForm)
 	sf::sleep(sf::seconds(3));// pause before goto main menu
 }
 
-void Game::ShowCurrentPosition(Records & InputNameForm)
+void Game::ShowCurrentPosition(Records & InputNameForm) const
 {
 	InputNameForm.WriteToFile();// write results in the score table
 	InputNameForm.ReadFromFile();// read updated score table to show player

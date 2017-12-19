@@ -21,13 +21,12 @@ public:
 
 	int GetValue() const;
 	float GetLifeTime() const;
+	Block* GetBody() const;
 	EFoodStatus GetStatus() const;
-	Block* Body;// pofloater for food sprite
 
-	void SetValue(int);// value for the snake +increase/-decrease pofloats or segments
+	void SetValue(int);// value for the snake +increase/-decrease points or segments
 	void SetLifeTime(int);
 	void SetStatus(EFoodStatus);
-
 	void UpdateCoordinates(float, float);
 	void Animation();
 
@@ -35,7 +34,6 @@ private:
 	float Value;// nutrition value can be negative and positive. Impact for snake's size change.
 	EFoodStatus Status;// defind is the food exist or not on the map
 	float LifeTime;// lifetime in seconds when food will exists on the maps
-
-	
+	Block* Body;// pointer for food sprite
 };
 

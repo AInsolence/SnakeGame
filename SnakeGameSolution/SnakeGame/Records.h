@@ -15,21 +15,22 @@ public:
 	Records();
 	~Records();
 
-	PlayerTable GetTable() const;
-	PlayerTable ReadFromFile();
-	// contain form to show player name input form before the each game
-	Block* NameInputForm;
 	GameText* PlayerName;
-	bool bIsItNewOwnRecord;
 
-	void SetNewPlayer();
+	PlayerTable GetTable() const;
+	Block* GetNameInputForm() const;
+	PlayerTable ReadFromFile();
 	bool bSetNewRecord(int);
-	
+	void SetNewPlayer();
 	void WriteToFile();
-	void InputForm();// create input form
-
+	
 private:
 	PlayerTable PlayerScoreTable;
 	std::fstream* Fstream;
+	bool bIsItNewOwnRecord;
+	// contain form to show player name input form before the each game
+	Block* NameInputForm;
+	
+	void InputForm();// create input form
 };
 

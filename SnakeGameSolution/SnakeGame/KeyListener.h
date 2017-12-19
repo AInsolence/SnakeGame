@@ -12,6 +12,7 @@ public:
 	~KeyListener();
 
 	void Start(Snake *Object, bool &IsGamePaused);
+
 private:
 	sf::RenderWindow &GameWindow;
 };

@@ -6,7 +6,6 @@
 Records::Records()
 {
 	bIsItNewOwnRecord = false;
-
 	ReadFromFile();
 	InputForm();
 }
@@ -83,6 +82,11 @@ void Records::SetNewPlayer()
 PlayerTable Records::GetTable() const
 {
 	return PlayerScoreTable;
+}
+
+Block * Records::GetNameInputForm() const
+{
+	return NameInputForm;
 }
 
 // write new player records

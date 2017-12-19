@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "Records.h"
 
-float main()
+int main()
 {
 	// Create main app window
 	sf::RenderWindow window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HIGHT), "SFML works!");

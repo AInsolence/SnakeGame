@@ -120,7 +120,7 @@ int StartDisplay::ShowOptionsScreen() const
 Up ARROW ----- turn up\nDOWN ARROW ----- turn down\nENTER ----- start the game\n\
 SPACE ----- pause";
 	GameText* GameRules = new GameText(Rules, 230, 150, 50);
-	// move cursor to the end of options. TODO change after adding real options points
+	// move cursor to the end of options
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	while (MenuWindow.isOpen())
 	{
@@ -191,7 +191,6 @@ int StartDisplay::ShowRecordsScreen(Records &InputNameForm) const
 		PositionOnScreenY += 50;
 	}
 	// move cursor to the end of the records
-	// TODO change after adding real records
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	bool Show = true;
 	while (MenuWindow.isOpen())
@@ -296,7 +295,7 @@ int StartDisplay::ShowInputName(Records &InputNameForm) const
 
 		MenuWindow.draw(MenuBackground->MainSprite);
 		MenuWindow.draw(EnterName->GetText());
-		MenuWindow.draw(InputNameForm.NameInputForm->MainSprite);
+		MenuWindow.draw(InputNameForm.GetNameInputForm()->MainSprite);
 		MenuWindow.draw(InputNameForm.PlayerName->GetText());
 
 		MenuWindow.display();

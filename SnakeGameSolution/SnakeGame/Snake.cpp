@@ -74,7 +74,7 @@ void Snake::Reset(float &XStartPosition, float &YStartPosition, float XScale, fl
 	// snake starting DIRECTION is left
 	SetCurrentDirection(ESnakeCurrentDirection::Right);
 	// set snake SPEED in the beginning of the game
-	constexpr float START_SNAKE_SPEED = 4;
+	constexpr int START_SNAKE_SPEED = 4;
 	Speed = START_SNAKE_SPEED;
 	// set snake SIZE in the beginning of the game
 	constexpr int START_SNAKE_SIZE = 3;

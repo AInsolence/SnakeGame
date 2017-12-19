@@ -17,16 +17,6 @@ constexpr int CURSOR_START_POS_Y = 40;
 constexpr int CURSOR_STEP_BY_X = 0;
 constexpr int CURSOR_STEP_BY_Y = 160;
 
-enum class EMenuPage
-{
-	MainMenu,
-	Options,
-	Records,
-	Rules,
-	Controls
-};
-
-
 class StartDisplay
 {
 public:
@@ -34,7 +24,7 @@ public:
 	~StartDisplay();
 
 	int Run(Records &InputNameForm) const;
-	int ShowInputName(Records &InputNameForm) const;
+	
 
 private:
 	sf::RenderWindow &MenuWindow;
@@ -47,6 +37,8 @@ private:
 	GameText * OptionsHeader;
 	GameText * ExitToMain;
 	GameText * RecordsHeader;
+
 	int ShowOptionsScreen() const;
 	int ShowRecordsScreen(Records &InputNameForm) const;
+	int ShowInputName(Records &InputNameForm) const;
 };

@@ -11,7 +11,7 @@ To play it is needed to setup assets, link sfml library, and compile the sources
 
 SCRUM plan 08.11.2017
 
-Sprfloats:
+Sprints:
 
 1. Create main block class - DONE
 2. Create Level class - DONE
@@ -22,7 +22,7 @@ Sprfloats:
 7. Create Food class - DONE
 8. Create collision detection for the Snake head (collision with borders and food). Functor. - DONE
 8.1 Check snake size change method. Changed. - DONE
-9. Create pofloat counter and HUD - DONE
+9. Create point counter and HUD - DONE
 10. Create GAME class and add win/lose conditions. - DONE
 10.1 Make logic for the random food appearing in the game screen. - DONE
 11. Add game music and sounds (for move, collision(game over), eating&grow) - AWAIT
@@ -48,7 +48,7 @@ Additional features after manual testing:
 
 1. Create new graphics for the food & walls in the game - DONE
 2. Create new graphics for the main menu - DONE
-3. Create new graphics for the main menu pofloats - DONE
+3. Create new graphics for the main menu points - DONE
 4. Increasing speed depending on length of the snake - DONE
 
 Debug:

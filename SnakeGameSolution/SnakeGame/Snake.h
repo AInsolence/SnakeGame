@@ -9,8 +9,6 @@
 #include <vector>
 #include "Block.h"
 
-using FTuple = std::tuple<sf::Sprite, float, float>;
-
 enum class ESnakeState// current status of the Snake object
 {
 	Alive,
@@ -41,7 +39,6 @@ public:
 	ESnakeCurrentDirection GetCurrentDirection() const;
 	
 	// reset the snake to the default parameters
-	void Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale);
 	void UpdateSpeed(float);
 	void SetSize(int);
 	void SetCurrentDirection(ESnakeCurrentDirection);
@@ -55,5 +52,7 @@ private:
 	int Size;
 	ESnakeState CurrentState;// alive or dead
 	ESnakeCurrentDirection CurrentDirection;
+
+	void Reset(float &XStartPosition, float &YStartPosition, float XScale, float YScale);
 };
 

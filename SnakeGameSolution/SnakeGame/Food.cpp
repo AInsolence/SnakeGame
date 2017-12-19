@@ -29,6 +29,11 @@ float Food::GetLifeTime() const
 	return LifeTime;
 }
 
+Block * Food::GetBody() const
+{
+	return Body;
+}
+
 EFoodStatus Food::GetStatus() const
 {
 	return Status;
@@ -62,9 +67,9 @@ void Food::UpdateCoordinates(float x, float y)
 // animate the food through changing sprites scale up and down
 void Food::Animation()
 {
-	float MAX_FRAMES = 10;
-	float PERCENT_TO_CHANGE_SCALE = 40;
-	static float counter = 0;// how much frames will be, started from 0
+	int MAX_FRAMES = 10;
+	int PERCENT_TO_CHANGE_SCALE = 40;
+	static int counter = 0;// how much frames will be, started from 0
 	static bool Grow = true;
 
 	if (Grow)
