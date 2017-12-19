@@ -51,7 +51,6 @@ int Game::Run(Records &InputNameForm)
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
 	{
-		Klistner->Start(MySnake.get(), IsGamePaused);// start handle player input
 		MySnake->Move();// Start Snake movement
 		// set game speed through players scores
 		GameWindow.setFramerateLimit(MySnake->GetSpeed());
@@ -127,7 +126,7 @@ int Game::Run(Records &InputNameForm)
 			NewPlayerHUD->UpdateScores(NewFood->GetValue());// increase scores
 			// increase snake's speed depending on the scores
 			std::string CurrentScores = NewPlayerHUD->GetScores().getString();
-			if (std::stoi(CurrentScores) % 50 == 0)
+			if (std::stoi(CurrentScores) % 100 == 0)
 			{
 				MySnake->UpdateSpeed(1);
 			}
@@ -143,7 +142,7 @@ int Game::Run(Records &InputNameForm)
 			NewFood->SetStatus(EFoodStatus::Appear);// show
 		}
 		// ***END OF COLLISION DENECTION PART***
-
+		Klistner->Start(MySnake.get(), IsGamePaused);//handle player input
 		GameWindow.clear();// Clear the display
 	}
 	return 0;
