@@ -110,22 +110,22 @@ void Snake::Move()
 		switch (CurrentDirection)
 		{
 		case ESnakeCurrentDirection::Left:
-			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_L.png", Body[0]->MainSprite.getScale().x,\
+			Body[0]->SetTexture(Body[0]->MainSprite, "../img/SNAKE_L.png", Body[0]->MainSprite.getScale().x,\
 				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(-Step_x, 0);
 			break;
 		case ESnakeCurrentDirection::Right:
-			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_Rg.png", Body[0]->MainSprite.getScale().x, \
+			Body[0]->SetTexture(Body[0]->MainSprite, "../img/SNAKE_Rg.png", Body[0]->MainSprite.getScale().x, \
 				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(Step_x, 0);
 			break;
 		case ESnakeCurrentDirection::Up:
-			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_U.png", Body[0]->MainSprite.getScale().x, \
+			Body[0]->SetTexture(Body[0]->MainSprite, "../img/SNAKE_U.png", Body[0]->MainSprite.getScale().x, \
 				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(0, -Step_y);
 			break;
 		case ESnakeCurrentDirection::Down:
-			Body[0]->SetTexture(Body[0]->MainSprite, "../../img/SNAKE_D.png", Body[0]->MainSprite.getScale().x, \
+			Body[0]->SetTexture(Body[0]->MainSprite, "../img/SNAKE_D.png", Body[0]->MainSprite.getScale().x, \
 				Body[0]->MainSprite.getScale().y);
 			Body[0]->MainSprite.move(0, Step_y);
 			break;

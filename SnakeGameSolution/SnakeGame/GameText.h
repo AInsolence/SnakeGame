@@ -29,5 +29,5 @@ private:
 	sf::Text Mafloatext;
 	sf::Text Scores;
 	sf::Font Arial;
-	std::string FontLocation = "../../img/ARIAL.TTF";
+	std::string FontLocation = "../img/ARIAL.TTF";
 };

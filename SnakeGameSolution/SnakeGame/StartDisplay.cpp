@@ -42,7 +42,7 @@ int StartDisplay::Run(Records &InputNameForm) const
 	MenuCursor->MainSprite.setPosition(CURSOR_START_POS_X, CURSOR_START_POS_Y);
 	// Menu music
 	sf::Music GameMusic;// create music to stream from file
-	if (!GameMusic.openFromFile("../../music/menu.wav")) {
+	if (!GameMusic.openFromFile("../music/menu.wav")) {
 		std::cout << "Main game music asset is not found! ";
 		//return EXIT_FAILURE;
 	}

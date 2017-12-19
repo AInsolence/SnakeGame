@@ -17,7 +17,7 @@ void KeyListener::Start(Snake *Object, bool &IsGamePaused)
 {
 	sf::Event event;
 
-	while (GameWindow.pollEvent(event))
+	if (GameWindow.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			GameWindow.close();

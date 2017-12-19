@@ -44,18 +44,21 @@ Sprfloats:
 20. ***Create installation pack
 21. User game test
 
-Debug:
-
-1. Need new collision detection functor - DONE
-2. Need fix food appearing - DONE
-3. Prohibit reverse moving to the snake - DONE
-4. Bug in Level.cpp, another scale of the blocks does not work in a right way - DONE
-5. Bug in reading players scores in the cases when player's name contain numbers - DONE
-6. Does not work backspace in player's input name form - DONE
-7. Change all inatances initializations in the game.cpp to variant with shared_ptr - DONE
-
 Additional features after manual testing:
+
 1. Create new graphics for the food & walls in the game - DONE
 2. Create new graphics for the main menu - DONE
 3. Create new graphics for the main menu pofloats - DONE
 4. Increasing speed depending on length of the snake - DONE
+
+Debug:
+
+1. Need new collision detection functor - FIXED
+2. Need fix food appearing - FIXED
+3. Prohibit reverse moving to the snake - FIXED
+4. Bug in Level.cpp, another scale of the blocks does not work in a right way - FIXED
+5. Bug in reading players scores in the cases when player's name contain numbers - FIXED
+6. Does not work backspace in player's input name form - FIXED
+7. Change all inatances initializations in the game.cpp to variant with shared_ptr - FIXED
+After player test:
+8. Bug with turn the snake into itself after double pressing the control keys - FIXED

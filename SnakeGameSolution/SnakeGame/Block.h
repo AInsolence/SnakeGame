@@ -24,22 +24,22 @@ public:
 private:
 	sf::Texture Texture;// helper variable used to textures mapping
 	std::map<std::string, std::string> BlockTypes{
-		{"Menu", "../../img/MENU.png" },
-		{ "MenuCursor", "../../img/MENU_CURSOR.png" },
-		{ "Options", "../../img/OPTIONS.png" },
-		{ "Records", "../../img/RECORDS.png" },
-		{ "GameOver", "../../img/OVER.png" },
-		{ "Pause", "../../img/PAUSE.png" },
-		{ "SolarBackground", "../../img/SOLAR.jpeg"},
-		{ "Head", "../../img/SNAKE.png"},
-		{ "HeadLeft", "../../img/SNAKE_L.png" },
-		{ "HeadRight", "../../img/SNAKE_Rg.png" },
-		{ "HeadDown", "../../img/SNAKE_D.png" },
-		{ "HeadUp", "../../img/SNAKE_U.png" },
-		{ "Body", "../../img/SBODY.png" },
-		{"Block", "../../img/BLUE.png"},
-		{ "Food", "../../img/FOOD_1.png" },
-		{ "Star", "../../img/STAR.jpg" }
+		{"Menu", "../img/MENU.png" },
+		{ "MenuCursor", "../img/MENU_CURSOR.png" },
+		{ "Options", "../img/OPTIONS.png" },
+		{ "Records", "../img/RECORDS.png" },
+		{ "GameOver", "../img/OVER.png" },
+		{ "Pause", "../img/PAUSE.png" },
+		{ "SolarBackground", "../img/SOLAR.jpeg"},
+		{ "Head", "../img/SNAKE.png"},
+		{ "HeadLeft", "../img/SNAKE_L.png" },
+		{ "HeadRight", "../img/SNAKE_Rg.png" },
+		{ "HeadDown", "../img/SNAKE_D.png" },
+		{ "HeadUp", "../img/SNAKE_U.png" },
+		{ "Body", "../img/SBODY.png" },
+		{"Block", "../img/BLUE.png"},
+		{ "Food", "../img/FOOD_1.png" },
+		{ "Star", "../img/STAR.jpg" }
 	};
 };
 

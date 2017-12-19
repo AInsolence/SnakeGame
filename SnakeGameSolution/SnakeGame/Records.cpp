@@ -28,7 +28,7 @@ PlayerTable Records::ReadFromFile()
 	// clear table before reading the file
 	PlayerScoreTable.clear();
 	// open records file
-	Fstream = new std::fstream("../../records.txt", std::ios::in);
+	Fstream = new std::fstream("../img/records.txt", std::ios::in);
 	if (!Fstream->is_open())
 	{
 		std::cout << "Cannot open players records table storage file!";
@@ -109,7 +109,7 @@ void Records::WriteToFile()
 	PlayerTable Table = PlayerScoreTable;
 	std::stable_sort(Table.begin(), Table.end(), UnPred);
 	// open records file
-	Fstream = new std::fstream("../../records.txt", std::ios::out | std::ios::trunc);
+	Fstream = new std::fstream("../img/records.txt", std::ios::out | std::ios::trunc);
 	if (!Fstream->is_open())
 	{
 		std::cout << "Cannot open players records table storage file!";

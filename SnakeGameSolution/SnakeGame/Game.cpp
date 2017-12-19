@@ -50,7 +50,7 @@ int Game::Run(Records &InputNameForm)
 	
 	// ***Start main game loop***
 	while (GameWindow.isOpen())
-	{		
+	{
 		Klistner->Start(MySnake.get(), IsGamePaused);// start handle player input
 		MySnake->Move();// Start Snake movement
 		// set game speed through players scores
@@ -188,7 +188,7 @@ void Game::ShowCurrentPosition(Records & InputNameForm)
 void Game::StartGameMusic()
 {
 	// create music to stream music from file
-	if (!GameMusic.openFromFile("../../music/game.wav")) {
+	if (!GameMusic.openFromFile("../music/game.wav")) {
 		std::cout << "Main game music asset is not found! ";
 	}
 	GameMusic.setLoop(true);
