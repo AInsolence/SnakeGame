@@ -1,13 +1,30 @@
+
 This is a classic game Snake.
+
+The game was written for self-study, and is not a holistic and complete product.
+However, it is done to the stage when you can just play it.
+Initially, I planned to write a console version, 
+but since I already had experience in writing console games, 
+I was decided to rewrite it with the SFML graphics library.
+It was a very interesting experience, as I decided to write a game in the OOP style
+and faced the challenges of building an application architecture,
+which I have not always been able to solve and which I maybe would have done differently
+if I wrote a new project.
+
+To play it is needed to download SnakeDistr folder 
+or compile project from the sources and link SFML2.4.2 library.
+
+Additional Info:
 
 Language: C++
 
 Graphic library: SFML 2.4.2 
 https://www.sfml-dev.org/download.php
 
-Background from: http://www.guoguiyan.com/data/out/144/69896840-papyrus-wallpapers.jpeg
+Backgrounds downloaded from: http://www.guoguiyan.com/data/out/144/69896840-papyrus-wallpapers.jpeg
 
-To play it is needed to setup assets, link sfml library, and compile the sources.
+For Programming and Graphics I used VS2017 Community and GIMP.
+Special THX for music & sound-effects to my brother Artem.
 
 SCRUM plan 08.11.2017
 
@@ -20,9 +37,9 @@ Sprints:
 5. SetUp SFML - DONE
 6. Find Assets - DONE
 7. Create Food class - DONE
-8. Create collision detection for the Snake head (collision with borders and food). Functor. - DONE
-8.1 Check snake size change method. Changed. - DONE
-9. Create point counter and HUD - DONE
+8. Create collision detection for the Snake head (collision with borders and food). Functor - DONE
+8.1 Check snake size change method - DONE
+9. Create point counter and GameText class - DONE
 10. Create GAME class and add win/lose conditions. - DONE
 10.1 Make logic for the random food appearing in the game screen. - DONE
 11. Add game music and sounds (for move, collision(game over), eating&grow) - AWAIT
